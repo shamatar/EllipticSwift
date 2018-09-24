@@ -10,15 +10,8 @@ import Foundation
 import BigInt
 
 public class MontPrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatible, T: MontArithmeticsCompatible  {
-    public typealias UnderlyingRawType = T
-//    public typealias UnderlyingFieldElementType = PrimeFieldElement<MontPrimeField<T>>
     
-//    internal func fromByte(_ a: UInt8) -> UnderlyingRawType {
-//        let t = T(Data([a]))
-//        precondition(t != nil)
-//        let reduced = t!.toMontForm(self.prime)
-//        return reduced
-//    }
+    public typealias UnderlyingRawType = T
     
     public func reduce(_ a: BytesRepresentable) -> T {
         let t = T(a.bytes)
@@ -171,7 +164,7 @@ public class MontPrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatibl
     }
 
     public func pow(_ a: T, _ b: T) -> T {
-        if b == 0 {
+        if b.isZero {
             return self.identityElement
         }
         if b == 1 {

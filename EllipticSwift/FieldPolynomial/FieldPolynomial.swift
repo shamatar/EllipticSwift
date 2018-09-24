@@ -8,13 +8,12 @@
 
 import Foundation
 
-public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldProtocol {
+public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: FieldProtocol, F: FieldWithDivisionProtocol {
     public typealias Field = F
-    public typealias FieldElement = PrimeFieldElement<F>
-    public typealias FE = FieldElement
+    public typealias FE = FieldElement<F>
 
     public var field: Field
-    public var coefficients: [FieldElement]
+    public var coefficients: [FE]
     public var degree: Int {
         return self.coefficients.count - 1
     }
@@ -24,13 +23,13 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
     
     public init(field: Field) {
         self.field = field
-        self.coefficients = [FieldElement]()
+        self.coefficients = [FE]()
     }
     
     public init(_ coefficients: [BytesRepresentable], field: Field) {
         self.field = field
         let zero = FE.zeroElement(field)
-        var coeffs = [FieldElement](repeating: zero, count: coefficients.count)
+        var coeffs = [FE](repeating: zero, count: coefficients.count)
         for (i, c) in coefficients.enumerated() {
             let converted = FieldElement.fromValue(c, field: field)
             coeffs[i] = converted
@@ -41,7 +40,7 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
     public init(_ coefficients: [Field.UnderlyingRawType], field: Field) {
         self.field = field
         let zero = FE.zeroElement(field)
-        var coeffs = [FieldElement](repeating: zero, count: coefficients.count)
+        var coeffs = [FE](repeating: zero, count: coefficients.count)
         for (i, c) in coefficients.enumerated() {
             let converted = FieldElement.fromValue(c, field: field)
             coeffs[i] = converted
@@ -49,7 +48,7 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
         self.coefficients = coeffs
     }
     
-    public init(_ coefficients: [FieldElement]) {
+    public init(_ coefficients: [FE]) {
         precondition(coefficients.count > 0)
         self.coefficients = coefficients
         self.field = coefficients.first!.field
@@ -59,7 +58,7 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
         let longest = self.degree >= p.degree ? self.coefficients : p.coefficients
         let shortest = self.degree < p.degree ? self.coefficients : p.coefficients
         let zero = FE.zeroElement(self.field)
-        var coeffs = [FieldElement](repeating: zero, count: longest.count)
+        var coeffs = [FE](repeating: zero, count: longest.count)
         for i in 0 ..< longest.count {
             if i < shortest.count {
                 let newVal = longest[i] + shortest[i]
@@ -73,7 +72,7 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
     
     public func neg() -> FieldPolynomial<F> {
         let zero = FE.zeroElement(self.field)
-        var coeffs = [FieldElement](repeating: zero, count: self.coefficients.count)
+        var coeffs = [FE](repeating: zero, count: self.coefficients.count)
         for (i, c) in self.coefficients.enumerated() {
             coeffs[i] = c.negate()
         }
@@ -94,13 +93,13 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
         if topCoeff == -1 {
             return FieldPolynomial(field: self.field)
         }
-        let coeffs = [FieldElement](interm.coefficients[0 ... topCoeff])
+        let coeffs = [FE](interm.coefficients[0 ... topCoeff])
         return FieldPolynomial<F>(coeffs)
 
     }
     public func mul(_ p: FieldPolynomial<F>) -> FieldPolynomial<F> {
         let zero = FE.zeroElement(self.field)
-        var coeffs = [FieldElement](repeating: zero, count: self.coefficients.count + p.coefficients.count - 1)
+        var coeffs = [FE](repeating: zero, count: self.coefficients.count + p.coefficients.count - 1)
         for (i, a) in self.coefficients.enumerated() {
             for (j, b) in p.coefficients.enumerated() {
                 coeffs[i + j] = coeffs[i + j] + a * b
@@ -138,7 +137,7 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFieldPro
         return true
     }
     
-    public func evaluate(_ x: FieldElement) -> FieldElement {
+    public func evaluate(_ x: FE) -> FE {
         var p = FE.identityElement(self.field)
         var accumulator = self.coefficients[0] * x
         for i in 1 ..< self.coefficients.count {

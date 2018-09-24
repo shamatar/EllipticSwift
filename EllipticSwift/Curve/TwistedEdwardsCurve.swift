@@ -10,11 +10,9 @@ import Foundation
 import BigInt
 
 public class TwistedEdwardsCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
-    
     public typealias Field = T
-    public typealias FieldElement = PrimeFieldElement<T>
+    public typealias FE = PrimeFieldElement<T>
     public typealias UnderlyingRawType = T.UnderlyingRawType
-    public typealias FE = FieldElement
     public typealias AffineType = AffinePoint<TwistedEdwardsCurve<T>>
     public typealias ProjectiveType = ProjectivePoint<TwistedEdwardsCurve<T>>
     public var field: T
@@ -175,7 +173,7 @@ public class TwistedEdwardsCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
     //        return wNAFmul(scalar, p)
     //    }
     
-    //    public func mul(_ scalar: GeneralPrimeFieldElement, _ p: AffineType) -> ProjectiveType {
+    //    public func mul(_ scalar: GeneralFieldElement, _ p: AffineType) -> ProjectiveType {
     //        return wNAFmul(scalar.value, p)
     //    }
     
@@ -183,7 +181,7 @@ public class TwistedEdwardsCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
     //        return wNAFmul(scalar, p)
     //    }
     
-    //    public func mul<U>(_ scalar: PrimeFieldElement<U>, _ p: AffineType) -> ProjectiveType {
+    //    public func mul<U>(_ scalar: FieldElement<U>, _ p: AffineType) -> ProjectiveType {
     //        let nativeScalar = scalar.nativeValue
     //        if nativeScalar is UnderlyingRawType {
     //            return doubleAndAddMul(nativeScalar as! UnderlyingRawType, p)

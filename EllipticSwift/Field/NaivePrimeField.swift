@@ -11,14 +11,6 @@ import BigInt
 
 public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatible {
     public typealias UnderlyingRawType = T
-    //    public typealias UnderlyingFieldElementType = PrimeFieldElement<MontPrimeField<T>>
-    
-    //    internal func fromByte(_ a: UInt8) -> UnderlyingRawType {
-    //        let t = T(Data([a]))
-    //        precondition(t != nil)
-    //        let reduced = t!.toMontForm(self.prime)
-    //        return reduced
-    //    }
     
     @_specialize(exported: true, where T == U256)
     public func reduce(_ a: BytesRepresentable) -> T {
@@ -84,8 +76,8 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     }
     
     @_specialize(exported: true, where T == U256)
-    internal func toElement(_ a: T) -> PrimeFieldElement<NaivePrimeField<T>> {
-        return PrimeFieldElement<NaivePrimeField<T>>(a, self)
+    internal func toElement(_ a: T) -> FieldElement<NaivePrimeField<T>> {
+        return FieldElement<NaivePrimeField<T>>(a, self)
     }
     
     @_specialize(exported: true, where T == U256)
@@ -163,7 +155,7 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     
     @_specialize(exported: true, where T == U256)
     public func pow(_ a: T, _ b: T) -> T {
-        if b == 0 {
+        if b.isZero {
             return self.identityElement
         }
         if b == 1 {

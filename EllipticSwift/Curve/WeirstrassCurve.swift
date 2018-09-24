@@ -11,9 +11,8 @@ import BigInt
 
 public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
     public typealias Field = T
-    public typealias FieldElement = PrimeFieldElement<T>
+    public typealias FE = PrimeFieldElement<T>
     public typealias UnderlyingRawType = T.UnderlyingRawType
-    public typealias FE = FieldElement
     public typealias AffineType = AffinePoint<WeierstrassCurve<T>>
     public typealias ProjectiveType = ProjectivePoint<WeierstrassCurve<T>>
     public var field: T
@@ -21,7 +20,6 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
     public var curveOrderField: T
     public var A: FE
     public var B: FE
-//    public var generator: AffinePoint<WeierstrassCurve<T>>?
     
     internal var aIsZero: Bool = false
     internal var bIsZero: Bool = false
@@ -236,7 +234,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
     //        return wNAFmul(scalar, p)
     //    }
     
-//    public func mul(_ scalar: GeneralPrimeFieldElement, _ p: AffineType) -> ProjectiveType {
+//    public func mul(_ scalar: GeneralFieldElement, _ p: AffineType) -> ProjectiveType {
 //        return wNAFmul(scalar.value, p)
 //    }
     
@@ -244,7 +242,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
 //        return wNAFmul(scalar, p)
 //    }
     
-//    public func mul<U>(_ scalar: PrimeFieldElement<U>, _ p: AffineType) -> ProjectiveType {
+//    public func mul<U>(_ scalar: FieldElement<U>, _ p: AffineType) -> ProjectiveType {
 //        let nativeScalar = scalar.nativeValue
 //        if nativeScalar is UnderlyingRawType {
 //            return doubleAndAddMul(nativeScalar as! UnderlyingRawType, p)

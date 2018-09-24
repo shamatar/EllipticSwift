@@ -12,7 +12,7 @@ import BigInt
 public struct AffinePoint<T>: AffinePointProtocol where T: CurveProtocol {
     public typealias ProjectiveType = ProjectivePoint<T>
     public typealias Curve = T
-    public typealias FE = T.FieldElement
+    public typealias FE = T.FE
     public typealias UnderlyingRawType = T.Field.UnderlyingRawType
     
     public var description: String {
@@ -78,7 +78,7 @@ public struct ProjectivePoint<T>: ProjectivePointProtocol where T: CurveProtocol
     // also refered as Jacobian Point
     public typealias AffineType = AffinePoint<T>
     public typealias Curve = T
-    public typealias FE = T.FieldElement
+    public typealias FE = T.FE
     public typealias UnderlyingRawType = T.Field.UnderlyingRawType
     
     public var curve: Curve
@@ -92,8 +92,8 @@ public struct ProjectivePoint<T>: ProjectivePointProtocol where T: CurveProtocol
     
     public static func infinityPoint<U>(_ curve: U) -> ProjectivePoint<U> where U: CurveProtocol {
         let field = curve.field
-        let zero = U.FieldElement.zeroElement(field)
-        let one = U.FieldElement.identityElement(field)
+        let zero = U.FE.zeroElement(field)
+        let one = U.FE.identityElement(field)
         return ProjectivePoint<U>(zero, one, zero, curve)
     }
     

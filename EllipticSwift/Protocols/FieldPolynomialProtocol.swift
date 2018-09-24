@@ -11,24 +11,29 @@ import BigInt
 
 public protocol FieldPolynomialProtocol {
     associatedtype Field
-    associatedtype FieldElement: PrimeFieldElementProtocol where FieldElement.Field == Field
+    associatedtype FE: FieldElementProtocol where FE.Field == Field
     
     var field: Field {get}
-    var coefficients: [FieldElement] {get}
+    var coefficients: [FE] {get}
     var degree: Int {get}
     var isZero: Bool {get}
     
     init(_ coefficients: [BytesRepresentable], field: Field)
     init(_ coefficients: [Field.UnderlyingRawType], field: Field)
-    init(_ coefficients: [FieldElement])
+    init(_ coefficients: [FE])
     init(field: Field)
     
     func add(_ p: Self) -> Self
     func sub(_ p: Self) -> Self
     func mul(_ p: Self) -> Self
-    func div(_ p: Self) -> (Self, Self)
     func neg() -> Self
     func equals(_ other: Self) -> Bool
-    func evaluate(_ x: FieldElement) -> FieldElement
-    
+    func evaluate(_ x: FE) -> FE
+}
+
+public protocol DivisibleFieldPolynomialProtocol {
+    associatedtype Field: DivisibleFieldPolynomialProtocol
+    associatedtype FE: InvertibleFieldElementProtocol where FE.Field == Field
+    func div(_ p: Self) -> (Self, Self)
+    func inv() -> Self
 }

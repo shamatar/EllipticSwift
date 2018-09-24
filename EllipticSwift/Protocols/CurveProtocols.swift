@@ -11,7 +11,7 @@ import BigInt
 
 public protocol CurveProtocol {
     associatedtype Field
-    associatedtype FieldElement: PrimeFieldElementProtocol where FieldElement.Field == Field
+    associatedtype FE: PrimeFieldElementProtocol where FE.Field == Field
     
     associatedtype AffineType: AffinePointProtocol
     associatedtype ProjectiveType: ProjectivePointProtocol
@@ -19,15 +19,12 @@ public protocol CurveProtocol {
     var field: Field {get}
     var order: Field.UnderlyingRawType {get}
     var curveOrderField: Field {get}
-//    var generator: AffineType? {get}
     
     func checkOnCurve(_ p: AffineType) -> Bool
     func add(_ p: ProjectiveType, _ q: ProjectiveType) -> ProjectiveType
     func sub(_ p: ProjectiveType, _ q: ProjectiveType) -> ProjectiveType
     func mixedAdd(_ p: ProjectiveType, _ q: AffineType) -> ProjectiveType
-//    func mul(_ scalar: BigNumber, _ p: AffineType) -> ProjectiveType
-//    func mul(_ scalar: BigUInt, _ p: AffineType) -> ProjectiveType
-//    func mul<U>(_ scalar: PrimeFieldElement<U>, _ p: AffineType) -> ProjectiveType
+//    func mul<U>(_ scalar: FieldElement<U>, _ p: AffineType) -> ProjectiveType
 //    func mul(_ scalar: BytesRepresentable, _ p: AffineType) -> ProjectiveType
     func mul(_ scalar: Field.UnderlyingRawType, _ p: AffineType) -> ProjectiveType
     func neg(_ p: ProjectiveType) -> ProjectiveType
@@ -40,8 +37,8 @@ public protocol AffinePointProtocol {
     associatedtype ProjectiveType: ProjectivePointProtocol where ProjectiveType.Curve == Curve
     var curve: Curve {get}
     var isInfinity: Bool {get}
-    var rawX: Curve.FieldElement {get}
-    var rawY: Curve.FieldElement {get}
+    var rawX: Curve.FE {get}
+    var rawY: Curve.FE {get}
     var X: Curve.Field.UnderlyingRawType {get}
     var Y: Curve.Field.UnderlyingRawType {get}
     
@@ -49,7 +46,7 @@ public protocol AffinePointProtocol {
     
     func isEqualTo(_ other: Self) -> Bool
     
-    init(_ rawX: Curve.FieldElement, _ rawY: Curve.FieldElement, _ curve: Curve)
+    init(_ rawX: Curve.FE, _ rawY: Curve.FE, _ curve: Curve)
     
     func toProjective() -> ProjectiveType
 }
@@ -60,15 +57,15 @@ public protocol ProjectivePointProtocol {
     var curve: Curve {get}
     
     var isInfinity: Bool {get}
-    var rawX: Curve.FieldElement {get}
-    var rawY: Curve.FieldElement {get}
-    var rawZ: Curve.FieldElement {get}
+    var rawX: Curve.FE {get}
+    var rawY: Curve.FE {get}
+    var rawZ: Curve.FE {get}
     
     static func infinityPoint(_ curve: Curve) -> Self
     
     func isEqualTo(_ other: Self) -> Bool
     
-    init(_ rawX: Curve.FieldElement, _ rawY: Curve.FieldElement, _ rawZ: Curve.FieldElement, _ curve: Curve)
+    init(_ rawX: Curve.FE, _ rawY: Curve.FE, _ rawZ: Curve.FE, _ curve: Curve)
     
     func toAffine() -> AffineType
 }
