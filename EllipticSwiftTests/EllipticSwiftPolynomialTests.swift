@@ -59,4 +59,105 @@ class EllipticSwiftPolynomialTests: XCTestCase {
         XCTAssert(poly.equals(q))
         XCTAssert(r.isZero)
     }
+    
+    func testQuadraticExtension1() {
+        let field = EllipticSwift.bn256PrimeField
+        let zero = FieldElement.zeroElement(field)
+        let one = FieldElement.fromValue(UInt64(1), field: field)
+        let two = FieldElement.fromValue(UInt64(2), field: field)
+        
+        let quadraticExtField = QuadraticExtensionField((one, zero, one), field: field)
+        
+        let a = QuadraticExtensionFieldElement.init((one, one), extensionField: quadraticExtField)
+        let b = QuadraticExtensionFieldElement.init((two, two), extensionField: quadraticExtField)
+        
+        let mul = a * b
+        print(mul)
+    }
+    
+    func testQuadraticExtensionInternalDivision() {
+        let field = EllipticSwift.bn256PrimeField
+        let zero = FieldElement.zeroElement(field)
+        let one = FieldElement.fromValue(UInt64(1), field: field)
+        let two = FieldElement.fromValue(UInt64(2), field: field)
+        let quadraticExtField = QuadraticExtensionField((one, zero, one), field: field)
+        let t = (two, two, two)
+        let (q, r) = quadraticExtField.div(t, quadraticExtField.reducingPolynomial)
+        XCTAssert(q.2.value == 0)
+        XCTAssert(q.1.value == 0)
+        XCTAssert(q.0.value == 2)
+        
+        XCTAssert(r.2.value == 0)
+        XCTAssert(r.1.value == 2)
+        XCTAssert(r.0.value == 0)
+    }
+    
+    func testQuadraticExtensionInversion() {
+        let field = NaivePrimeField<U256>(BigUInt(7))
+        let zero = FieldElement.zeroElement(field)
+        let one = FieldElement.fromValue(UInt64(1), field: field)
+        let two = FieldElement.fromValue(UInt64(2), field: field)
+        let quadraticExtField = QuadraticExtensionField((one, zero, one), field: field)
+        let a = (two, two)
+        let inv = quadraticExtField.inv(a)
+        print(inv.1.value)
+        print(inv.0.value)
+        let mulBack = quadraticExtField.mul(inv, a)
+        print(mulBack.1.value)
+        print(mulBack.0.value)
+    }
+    
+    func testQuadraticExtensionInversion2() {
+        let field = NaivePrimeField<U256>(BigUInt(7))
+        let zero = FieldElement.zeroElement(field)
+        let one = FieldElement.fromValue(UInt64(1), field: field)
+        let quadraticExtField = QuadraticExtensionField((one, zero, one), field: field)
+        for _ in 0 ..< 10 {
+            let a = FieldElement.fromValue(BigUInt.randomInteger(lessThan: 7), field: field)
+            let b = FieldElement.fromValue(BigUInt.randomInteger(lessThan: 7), field: field)
+            if a.isZero && b.isZero {
+                continue
+            }
+            let A = (a, b) // a + i*b
+            print("A = ")
+            print(A.1.value)
+            print(A.0.value)
+            let modulus = (a * a + b * b).inv()
+            let res = quadraticExtField.inv(A)
+            print("Field inverse")
+            print(res.1.value)
+            print(res.0.value)
+            let manualInverse = (a * modulus, b.negate() * modulus) // (a - i*b)/(a^2 + b^2)
+            print("Manual inverse")
+            print(manualInverse.1.value)
+            print(manualInverse.0.value)
+            let mulBack = quadraticExtField.mul(manualInverse, A)
+            let ident = quadraticExtField.mul(res, A)
+            print("Identity for manual inverse")
+            print(mulBack.1.value)
+            print(mulBack.0.value)
+            print("Identity for field inverse")
+            print(ident.1.value)
+            print(ident.0.value)
+        }
+
+    }
+    
+    func testQuadraticFieldMultiplication() {
+        let field = EllipticSwift.bn256PrimeField
+        let zero = FieldElement.zeroElement(field)
+        let one = FieldElement.fromValue(UInt64(1), field: field)
+        let quadraticExtField = QuadraticExtensionField((one, zero, one), field: field) // x^2 + 1
+        for _ in 0 ..< 10 {
+            let a = FieldElement.fromValue(BigUInt.randomInteger(withMaximumWidth: 250), field: field)
+            let b = FieldElement.fromValue(BigUInt.randomInteger(withMaximumWidth: 250), field: field)
+            let c = FieldElement.fromValue(BigUInt.randomInteger(withMaximumWidth: 250), field: field)
+            let d = FieldElement.fromValue(BigUInt.randomInteger(withMaximumWidth: 250), field: field)
+            let A = (a, b)
+            let B = (c, d)
+            let res = quadraticExtField.mul(A, B)
+            XCTAssert(res.0 == a * c - b * d) // real part
+            XCTAssert(res.1 == a * d + b * c) // imaginary
+        }
+    }
 }

@@ -30,6 +30,7 @@ public protocol BytesInitializable {
     init? (_ bytes: Data)
 }
 
+// bit endian bytes
 public protocol BytesRepresentable {
     var bytes: Data {get}
 }

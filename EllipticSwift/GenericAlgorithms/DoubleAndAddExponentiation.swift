@@ -24,22 +24,22 @@ internal func doubleAndAddExponentiation<T, U>(_ a: T, _ b: U) -> T where T: Ari
     return result
 }
 
-//fileprivate typealias multiplicationFunction
-//
-//internal func doubleAndAddExponentiation<T, U>(_ a: T, _ b: U) -> T where T: Arithmetics, T: UInt64Initializable, U: BitsAndBytes {
-//    var base = a
-//    var result = T.init(UInt64(1))
-//    let bitwidth = b.bitWidth
-//    for i in 0 ..< bitwidth {
-//        if b.bit(i) {
-//            result = result * base
-//        }
-//        if i == b.bitWidth - 1 {
-//            break
-//        }
-//        base = base * base
-//    }
-//    return result
-//}
+fileprivate typealias multiplicationFunction<T> = (T, T) -> T
+
+internal func doubleAndAddExponentiation<T, U>(a: T, power: U, identity: T, multiplicationFunction: (T, T) -> T) -> T where U: BitsAndBytes {
+    var base = a
+    var result = identity
+    let bitwidth = power.bitWidth
+    for i in 0 ..< bitwidth {
+        if power.bit(i) {
+            result = multiplicationFunction(result, base)
+        }
+        if i == bitwidth - 1 {
+            break
+        }
+        base = multiplicationFunction(base, base)
+    }
+    return result
+}
 
 

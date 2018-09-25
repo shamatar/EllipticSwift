@@ -13,7 +13,7 @@ public protocol Arithmetics {
     static func + (lhs: Self, rhs: Self) -> Self
     static func - (lhs: Self, rhs: Self) -> Self
     static func * (lhs: Self, rhs: Self) -> Self
+    var isZero: Bool {get}
     func inv() -> Self
     static func / (lhs: Self, rhs: Self) -> (Self, Self)
-    var isZero: Bool {get}
 }
