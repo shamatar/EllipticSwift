@@ -119,26 +119,13 @@ class EllipticSwiftPolynomialTests: XCTestCase {
                 continue
             }
             let A = (a, b) // a + i*b
-            print("A = ")
-            print(A.1.value)
-            print(A.0.value)
             let modulus = (a * a + b * b).inv()
             let res = quadraticExtField.inv(A)
-            print("Field inverse")
-            print(res.1.value)
-            print(res.0.value)
             let manualInverse = (a * modulus, b.negate() * modulus) // (a - i*b)/(a^2 + b^2)
-            print("Manual inverse")
-            print(manualInverse.1.value)
-            print(manualInverse.0.value)
             let mulBack = quadraticExtField.mul(manualInverse, A)
             let ident = quadraticExtField.mul(res, A)
-            print("Identity for manual inverse")
-            print(mulBack.1.value)
-            print(mulBack.0.value)
-            print("Identity for field inverse")
-            print(ident.1.value)
-            print(ident.0.value)
+            XCTAssert(ident == mulBack)
+            XCTAssert(ident == quadraticExtField.identityElement)
         }
 
     }

@@ -116,37 +116,32 @@ public final class QuadraticExtensionField<F>: ExtensionFieldProtocol where F: F
 //            (t, newt) := (newt, t - quotient * newt)
             
             (q, r) = self.div(q, toInvert)
-            q = toInvert
-            toInvert = r
+//            print("Quot")
+//            self.printElement(q)
+//            print("Rem")
+//            self.printElement(r)
             
-            let qDegree = self.getDegree(q)
-            let newDegree = self.getDegree(new)
-            let resultingDegree = qDegree + newDegree
-            precondition(resultingDegree <= 2)
+            
             h = self.halfMul(q, new)
-//            h = (old.0 + h.0, old.1 + h.1, old.2 + h.2)
             h = (old.0 - h.0, old.1 - h.1, old.2 - h.2)
             old = new
             new = h
             
+            q = toInvert
+            toInvert = r
+            
+
+            let qDegree = self.getDegree(q)
+            let newDegree = self.getDegree(new)
+            let resultingDegree = qDegree + newDegree
+            precondition(resultingDegree <= 2)
+
+            
 //            positive = !positive
         }
         precondition(self.getDegree(q) == 0)
-        let scale = q.0
-        print("Scale")
-        print(scale.value)
-        print("Inverse scale")
-        print(scale.inv().value)
-        print("Inverse scale squared")
-        print((scale * scale).inv().value)
-//        return (old.0, old.1)
-        let inv = (q.0 * q.0).inv()
+        let inv = q.0.inv()
         return (old.0 * inv, old.1 * inv)
-//        if positive {
-//            return (old.0, old.1)
-//        } else {
-//            return (self.reducingPolynomial.0 - old.0, self.reducingPolynomial.1 - old.1)
-//        }
     }
     
     internal func printElement(_ a: ReductionPolynomial) {
@@ -211,21 +206,6 @@ public final class QuadraticExtensionField<F>: ExtensionFieldProtocol where F: F
             remainderDegree = newRemainderDegree
         }
         return (quotient, remainder)
-        
-//        var quotient = FieldPolynomial<F>(field: self.field)
-//        var remainder = self
-//        let divisorDeg = p.degree
-//        let divisorLC = p.coefficients.last!
-//        let zero = FE.zeroElement(self.field)
-//        while remainder.degree >= divisorDeg {
-//            let monomialExponent = remainder.degree - divisorDeg
-//            let monomialZeros = [FieldElement](repeating: zero, count: monomialExponent)
-//            let divs = remainder.coefficients.last! * divisorLC.inv()
-//            let monomialDivisor = FieldPolynomial<F>(monomialZeros + [divs])
-//            quotient = quotient.add(monomialDivisor)
-//            remainder = remainder.sub(monomialDivisor.mul(p))
-//        }
-//        return (quotient, remainder)
     }
     
     public func pow(_ a: ExtensionFieldElement, _ b: ScalarValue) -> ExtensionFieldElement {
@@ -247,6 +227,14 @@ public final class QuadraticExtensionField<F>: ExtensionFieldProtocol where F: F
             base = mul(base, base)
         }
         return result
+    }
+    
+    public func fromScalar(_ a: ScalarValue) -> ExtensionFieldElement {
+        let zero = FieldElement.zeroElement(self.field)
+        return (
+            FieldElement.fromValue(a, field: self.field),
+            zero
+        )
     }
     
     public func fromValue(_ a: RawType) -> ExtensionFieldElement {
