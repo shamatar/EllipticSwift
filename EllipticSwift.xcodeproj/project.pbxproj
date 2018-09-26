@@ -96,6 +96,8 @@
 		81AE0BCC2154361F0019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BCB2154361F0019CA83 /* Accelerate.framework */; };
 		81E5C084215BDFA400BF7D52 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
 		81E5C085215BDFA500BF7D52 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
+		81E5C087215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */; };
+		81E5C088215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */; };
 		81F74E5D21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
 		81F74E5E21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
 		81F74E6021591058006D4E9A /* Secp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5F21591058006D4E9A /* Secp256k1.swift */; };
@@ -194,6 +196,7 @@
 		81AE0BC9215436160019CA83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		81AE0BCB2154361F0019CA83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicExtensionField.swift; sourceTree = "<group>"; };
+		81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaivePrimeFiniteField.swift; sourceTree = "<group>"; };
 		81F74E5C21591041006D4E9A /* BN256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BN256.swift; sourceTree = "<group>"; };
 		81F74E5F21591058006D4E9A /* Secp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secp256k1.swift; sourceTree = "<group>"; };
 		81F74E63215912F4006D4E9A /* FieldPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldPolynomial.swift; sourceTree = "<group>"; };
@@ -365,6 +368,7 @@
 				81AE0B5B215434000019CA83 /* PrimeFieldElement.swift */,
 				81AE0B58215434000019CA83 /* NaivePrimeField.swift */,
 				81AE0B5A215434000019CA83 /* MontPrimeField.swift */,
+				81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */,
 			);
 			path = Field;
 			sourceTree = "<group>";
@@ -777,6 +781,7 @@
 				81F74E8121598F8A006D4E9A /* kSlidingWindowExponentiation.swift in Sources */,
 				81F74E84215990AE006D4E9A /* UInt64+BitsAndBytes.swift in Sources */,
 				81F74E6021591058006D4E9A /* Secp256k1.swift in Sources */,
+				81E5C087215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */,
 				81AE0BC1215434000019CA83 /* U256+Aux.swift in Sources */,
 				8122DE5C215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */,
 				81AE0B9D215434000019CA83 /* U512+Mod.swift in Sources */,
@@ -837,6 +842,7 @@
 				81F74E8221598F8A006D4E9A /* kSlidingWindowExponentiation.swift in Sources */,
 				81F74E85215990AE006D4E9A /* UInt64+BitsAndBytes.swift in Sources */,
 				81F74E6121591058006D4E9A /* Secp256k1.swift in Sources */,
+				81E5C088215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */,
 				81AE0BB4215434000019CA83 /* U256+Mod.swift in Sources */,
 				81AE0BC2215434000019CA83 /* U256+Aux.swift in Sources */,
 				81AE0B9E215434000019CA83 /* U512+Mod.swift in Sources */,

@@ -9,23 +9,55 @@
 import Foundation
 import BigInt
 
-public protocol FieldProtocol {
-    associatedtype UnderlyingRawType: FiniteFieldCompatible // U256, U512...
+public protocol FiniteFieldProtocol {
+    associatedtype ElementType
+    associatedtype RawType
     
-    var modulus: BigUInt {get}
+    var modulus: RawType {get}
     
-    init(_ p: BigUInt)
-    init(_ p: BytesRepresentable)
-    init(_ p: UnderlyingRawType)
+    init(_ p: RawType)
     
     func isEqualTo(_ other: Self) -> Bool
     
+    func areEqual(_ a: ElementType, _ b: ElementType) -> Bool
+    func isZero(_ a: ElementType) -> Bool
+    
+    func add(_ a: ElementType, _ b: ElementType) -> ElementType
+    func sub(_ a: ElementType, _ b: ElementType) -> ElementType
+    func neg(_ a: ElementType) -> ElementType
+    func mul(_ a: ElementType, _ b: ElementType) -> ElementType
+    func pow(_ a: ElementType, _ b: ElementType) -> ElementType
+    func pow(_ a: ElementType, _ b: BytesRepresentable) -> ElementType
+    func inv(_ a: ElementType) -> ElementType
+    func sqrt(_ a: ElementType) -> ElementType
+    
+    func fromValue(_ a: RawType) -> ElementType
+    func fromValue(_ a: UInt64) -> ElementType
+    func fromBytes(_ a: Data) -> ElementType
+    func toValue(_ a: ElementType) -> RawType
+    
+    var identityElement: ElementType {get}
+    var zeroElement: ElementType {get}
+}
+
+
+public protocol FieldProtocol {
+    associatedtype UnderlyingRawType: FiniteFieldCompatible // U256, U512...
+
+    var modulus: BigUInt {get}
+
+    init(_ p: BigUInt)
+    init(_ p: BytesRepresentable)
+    init(_ p: UnderlyingRawType)
+
+    func isEqualTo(_ other: Self) -> Bool
+
     func add(_ a: UnderlyingRawType, _ b: UnderlyingRawType) -> UnderlyingRawType
     func sub(_ a: UnderlyingRawType, _ b: UnderlyingRawType) -> UnderlyingRawType
     func neg(_ a: UnderlyingRawType) -> UnderlyingRawType
     func mul(_ a: UnderlyingRawType, _ b: UnderlyingRawType) -> UnderlyingRawType
     func pow(_ a: UnderlyingRawType, _ b: UnderlyingRawType) -> UnderlyingRawType
-    
+
     func pow(_ a: UnderlyingRawType, _ b: BytesRepresentable) -> UnderlyingRawType
 
     func reduce(_ a: BytesRepresentable) -> UnderlyingRawType
@@ -37,7 +69,7 @@ public protocol FieldProtocol {
     func fromBytes(_ a: Data) -> UnderlyingRawType
     func toValue(_ a: UnderlyingRawType) -> BigUInt
     func toValue(_ a: UnderlyingRawType) -> UnderlyingRawType
-    
+
     var identityElement: UnderlyingRawType {get}
     var zeroElement: UnderlyingRawType {get}
 }
