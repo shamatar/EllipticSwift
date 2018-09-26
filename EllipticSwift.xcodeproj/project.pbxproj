@@ -94,6 +94,8 @@
 		81AE0BC8215434000019CA83 /* U256+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B7A215434000019CA83 /* U256+Mul.swift */; };
 		81AE0BCA215436160019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BC9215436160019CA83 /* Accelerate.framework */; };
 		81AE0BCC2154361F0019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BCB2154361F0019CA83 /* Accelerate.framework */; };
+		81E5C084215BDFA400BF7D52 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
+		81E5C085215BDFA500BF7D52 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
 		81F74E5D21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
 		81F74E5E21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
 		81F74E6021591058006D4E9A /* Secp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5F21591058006D4E9A /* Secp256k1.swift */; };
@@ -109,8 +111,8 @@
 		81F74E7121596A3D006D4E9A /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6F21596A3D006D4E9A /* FieldElement.swift */; };
 		81F74E732159757D006D4E9A /* GroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E722159757D006D4E9A /* GroupProtocol.swift */; };
 		81F74E742159757D006D4E9A /* GroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E722159757D006D4E9A /* GroupProtocol.swift */; };
-		81F74E772159773C006D4E9A /* ExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* ExtensionField.swift */; };
-		81F74E782159773C006D4E9A /* ExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* ExtensionField.swift */; };
+		81F74E772159773C006D4E9A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
+		81F74E782159773C006D4E9A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
 		81F74E7A21597903006D4E9A /* ExtensionFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */; };
 		81F74E7B21597903006D4E9A /* ExtensionFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */; };
 		81F74E7E2159872A006D4E9A /* DoubleAndAddExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */; };
@@ -191,6 +193,7 @@
 		81AE0B7A215434000019CA83 /* U256+Mul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "U256+Mul.swift"; sourceTree = "<group>"; };
 		81AE0BC9215436160019CA83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		81AE0BCB2154361F0019CA83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicExtensionField.swift; sourceTree = "<group>"; };
 		81F74E5C21591041006D4E9A /* BN256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BN256.swift; sourceTree = "<group>"; };
 		81F74E5F21591058006D4E9A /* Secp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secp256k1.swift; sourceTree = "<group>"; };
 		81F74E63215912F4006D4E9A /* FieldPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldPolynomial.swift; sourceTree = "<group>"; };
@@ -199,7 +202,7 @@
 		81F74E6C215965E6006D4E9A /* ArithmeticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticsProtocol.swift; sourceTree = "<group>"; };
 		81F74E6F21596A3D006D4E9A /* FieldElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldElement.swift; sourceTree = "<group>"; };
 		81F74E722159757D006D4E9A /* GroupProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProtocol.swift; sourceTree = "<group>"; };
-		81F74E762159773C006D4E9A /* ExtensionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionField.swift; sourceTree = "<group>"; };
+		81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadraticExtensionField.swift; sourceTree = "<group>"; };
 		81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionFieldProtocol.swift; sourceTree = "<group>"; };
 		81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleAndAddExponentiation.swift; sourceTree = "<group>"; };
 		81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kSlidingWindowExponentiation.swift; sourceTree = "<group>"; };
@@ -480,7 +483,8 @@
 		81F74E7521597725006D4E9A /* ExtensionField */ = {
 			isa = PBXGroup;
 			children = (
-				81F74E762159773C006D4E9A /* ExtensionField.swift */,
+				81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */,
+				81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */,
 				81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */,
 			);
 			path = ExtensionField;
@@ -778,7 +782,7 @@
 				81AE0B9D215434000019CA83 /* U512+Mod.swift in Sources */,
 				81AE0B95215434000019CA83 /* U512+Mul.swift in Sources */,
 				81AE0BBB215434000019CA83 /* U256+Sub.swift in Sources */,
-				81F74E772159773C006D4E9A /* ExtensionField.swift in Sources */,
+				81F74E772159773C006D4E9A /* QuadraticExtensionField.swift in Sources */,
 				81AE0B97215434000019CA83 /* U512.swift in Sources */,
 				81F74E7E2159872A006D4E9A /* DoubleAndAddExponentiation.swift in Sources */,
 				81AE0B8D215434000019CA83 /* FieldProtocols.swift in Sources */,
@@ -807,6 +811,7 @@
 				81AE0B7B215434000019CA83 /* WeirstrassCurve.swift in Sources */,
 				8122DE5A2154420400870D39 /* MontgommeryCurve.swift in Sources */,
 				81AE0BAB215434000019CA83 /* U128+Equatable.swift in Sources */,
+				81E5C084215BDFA400BF7D52 /* CubicExtensionField.swift in Sources */,
 				81AE0BAF215434000019CA83 /* U256+Numeric.swift in Sources */,
 				81F74E6721591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */,
 				81AE0B99215434000019CA83 /* U512+Aux.swift in Sources */,
@@ -837,7 +842,7 @@
 				81AE0B9E215434000019CA83 /* U512+Mod.swift in Sources */,
 				81AE0B96215434000019CA83 /* U512+Mul.swift in Sources */,
 				81AE0BBC215434000019CA83 /* U256+Sub.swift in Sources */,
-				81F74E782159773C006D4E9A /* ExtensionField.swift in Sources */,
+				81F74E782159773C006D4E9A /* QuadraticExtensionField.swift in Sources */,
 				81AE0B98215434000019CA83 /* U512.swift in Sources */,
 				81F74E7F2159872A006D4E9A /* DoubleAndAddExponentiation.swift in Sources */,
 				81AE0B8E215434000019CA83 /* FieldProtocols.swift in Sources */,
@@ -866,6 +871,7 @@
 				81AE0B7C215434000019CA83 /* WeirstrassCurve.swift in Sources */,
 				81AE0BAC215434000019CA83 /* U128+Equatable.swift in Sources */,
 				81AE0BB0215434000019CA83 /* U256+Numeric.swift in Sources */,
+				81E5C085215BDFA500BF7D52 /* CubicExtensionField.swift in Sources */,
 				81AE0B9A215434000019CA83 /* U512+Aux.swift in Sources */,
 				81F74E6821591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */,
 				8122DE5D215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */,

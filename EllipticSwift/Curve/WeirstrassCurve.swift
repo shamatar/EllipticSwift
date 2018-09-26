@@ -23,6 +23,12 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
     
     internal var aIsZero: Bool = false
     internal var bIsZero: Bool = false
+    internal lazy var ONE: FE = { FE.identityElement(self.field) }()
+    internal lazy var TWO: FE = { self.ONE + self.ONE }()
+    internal lazy var THREE: FE = { self.TWO + self.ONE }()
+    internal lazy var FOUR: FE = { self.TWO + self.TWO }()
+    internal lazy var EIGHT: FE = { self.FOUR + self.FOUR }()
+
     
     public init(field: T, order: UnderlyingRawType, A: UnderlyingRawType, B: UnderlyingRawType) {
         self.field = field
@@ -37,11 +43,11 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         }
         self.A = reducedA
         self.B = reducedB
-        let FOUR: FE = FE.fromValue(UInt64(4), field: field)
-        var det = FOUR * self.A * self.A * self.A
-        let TWENTYSEVEN: FE = FE.fromValue(UInt64(27), field: field)
-        det = det + TWENTYSEVEN * self.B * self.B
-        precondition(!det.isZero, "Creating a curve with 0 determinant")
+//        let FOUR: FE = FE.fromValue(UInt64(4), field: field)
+//        var det = FOUR * self.A * self.A * self.A
+//        let TWENTYSEVEN: FE = FE.fromValue(UInt64(27), field: field)
+//        det = det + TWENTYSEVEN * self.B * self.B
+//        precondition(!det.isZero, "Creating a curve with 0 determinant")
         self.curveOrderField = T(self.order)
     }
     
@@ -95,7 +101,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         let bn = UnderlyingRawType(data)
         precondition(bn != nil)
         var seed = FE.fromValue(bn!, field: self.field)
-        let ONE = FE.identityElement(field)
+        let ONE = self.ONE
         for _ in 0 ..< 100 {
             let x = seed
             var y2 = x * x * x
@@ -123,7 +129,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         if q.isInfinity {
             return p
         }
-        let field = self.field
+
         let pz2 = p.rawZ * p.rawZ// Pz^2
         let pz3 = p.rawZ * pz2 // Pz^3
         let qz2 = q.rawZ * q.rawZ // Pz^2
@@ -148,7 +154,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         var rx = r * r // r^2
         rx = rx - h3 // r^2 - h^3
         let uh2 = u1 * h2 // U1*h^2
-        let TWO = FE.fromValue(UInt64(2), field: field)
+        let TWO = self.TWO
         rx = rx - (TWO * uh2) // r^2 - h^3 - 2*U1*h^2
         var ry = uh2 - rx // U1*h^2 - rx
         ry = r * ry // r*(U1*h^2 - rx)
@@ -169,12 +175,12 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         if p.isInfinity {
             return ProjectiveType.infinityPoint(self)
         }
-        let field = self.field
+
         let px = p.rawX
         let py = p.rawY
         let py2 = py * py
-        let FOUR = FE.fromValue(UInt64(4), field: field)
-        let THREE = FE.fromValue(UInt64(3), field: field)
+        let FOUR = self.FOUR
+        let THREE = self.THREE
         var s = FOUR * px
         s = s * py2
         var m = THREE * px
@@ -184,8 +190,8 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
             m = m + z2 * z2 * self.A // m = m + z^4*A
         }
         let qx = m * m - s - s // m^2 - 2*s
-        let TWO = FE.fromValue(UInt64(2), field: field)
-        let EIGHT = FE.fromValue(UInt64(8), field: field)
+        let TWO = self.TWO
+        let EIGHT = self.EIGHT
         let qy = m * (s - qx) - (EIGHT * py2 * py2)
         let qz = TWO * py * p.rawZ
         return ProjectiveType(qx, qy, qz, self)
@@ -198,7 +204,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         if q.isInfinity {
             return p
         }
-        let field = self.field
+
         let pz2 = p.rawZ * p.rawZ // Pz^2
         let pz3 = p.rawZ * pz2 // Pz^3
         
@@ -221,7 +227,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         var rx = r * r // r^2
         rx = rx - h3 // r^2 - h^3
         let uh2 = u1 * h2 // U1*h^2
-        let TWO = FE.fromValue(UInt64(2), field: field)
+        let TWO = self.TWO
         rx = rx - (TWO * uh2) // r^2 - h^3 - 2*U1*h^2
         var ry = uh2 - rx // U1*h^2 - rx
         ry = r * ry // r*(U1*h^2 - rx)
