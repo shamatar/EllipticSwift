@@ -8,6 +8,7 @@
 
 import Foundation
 import Accelerate
+import BigInt
 
 extension U256 {
     public static var one: U256 {
@@ -16,5 +17,11 @@ extension U256 {
     
     public static var zero: U256 {
         return vU256(v: (vZERO, vZERO))
+    }
+}
+
+extension U256: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return String(BigUInt(self.bytes))
     }
 }

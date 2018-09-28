@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alex Vlasov. All rights reserved.
 //
 
-public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: FieldProtocol, F: FieldWithDivisionProtocol {
+public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: FiniteFieldProtocol {
     public typealias Field = F
     public typealias FE = FieldElement<F>
     public typealias ReductionPolynomial = (FE, FE, FE, FE)
@@ -144,7 +144,7 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Field
             precondition(resultingDegree <= 3)
         }
         precondition(self.getDegree(q) == 0)
-        let inv = q.0.inv()
+        let inv: FE = q.0.inv()
         return (old.0 * inv, old.1 * inv, old.2 * inv)
     }
     
@@ -281,10 +281,15 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Field
     
 }
 
-public struct CubicExtensionFieldElement<Q>: Arithmetics where Q: ExtensionFieldProtocol, Q.ExtensionFieldElement == (Q.FE, Q.FE, Q.FE)  {
+public struct CubicExtensionFieldElement<Q>: Arithmetics where Q: ExtensionFieldProtocol, Q.ElementType == (Q.PolynomialCoefficientType, Q.PolynomialCoefficientType, Q.PolynomialCoefficientType)  {
+    public var bytes: Data {
+        // TODO
+        return Data()
+    }
     
+    public typealias Field = Q
     public typealias ExtensionField = Q
-    public typealias FE = Q.FE
+    public typealias FE = Q.PolynomialCoefficientType
     public typealias ElementsType = (FE, FE, FE)
     public typealias RawType = (FE.Field.UnderlyingRawType, FE.Field.UnderlyingRawType, FE.Field.UnderlyingRawType)
     public typealias SelfType = CubicExtensionFieldElement<Q>

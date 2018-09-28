@@ -138,16 +138,16 @@ public struct PrimeFieldElement<U>: PrimeFieldElementProtocol where U: PrimeFiel
     }
 }
 
-extension PrimeFieldElement: Arithmetics {
-    public func pow(_ a: PrimeFieldElement<U>) -> PrimeFieldElement<U> {
-        let raw = self.field.pow(self.rawValue, a.nativeValue)
-        return PrimeFieldElement(raw, self.field)
-    }
-
-    public static func / (lhs: PrimeFieldElement<U>, rhs: PrimeFieldElement<U>) -> (PrimeFieldElement<U>, PrimeFieldElement<U>) {
-        let inverse = rhs.inv()
-        return (lhs*inverse, PrimeFieldElement.zeroElement(lhs.field))
-    }
-}
+//extension PrimeFieldElement: Arithmetics {
+//    public func pow(_ a: PrimeFieldElement<U>) -> PrimeFieldElement<U> {
+//        let raw = self.field.pow(self.rawValue, a.nativeValue)
+//        return PrimeFieldElement(raw, self.field)
+//    }
+//
+//    public static func / (lhs: PrimeFieldElement<U>, rhs: PrimeFieldElement<U>) -> (PrimeFieldElement<U>, PrimeFieldElement<U>) {
+//        let inverse = rhs.inv()
+//        return (lhs*inverse, PrimeFieldElement.zeroElement(lhs.field))
+//    }
+//}
 
 

@@ -149,30 +149,31 @@ extension FieldElement where Field: FieldWithSquareRootProtocol {
     }
 }
 
-extension FieldElement: Arithmetics where Field: FieldWithDivisionProtocol {
-    public func pow(_ a: SelfType) -> SelfType {
-        let raw = self.field.pow(self.rawValue, a.nativeValue)
-        return SelfType(raw, self.field)
-    }
-    public static func / (lhs: SelfType, rhs: SelfType) -> (SelfType, SelfType) {
-        let inverse = lhs.field.inv(rhs.rawValue)
-        let raw = lhs.field.mul(lhs.rawValue, inverse)
-        return (SelfType(raw, lhs.field), SelfType.zeroElement(lhs.field))
-    }
-    public static func == (lhs: SelfType, rhs: SelfType) -> Bool {
-        return lhs.rawValue == rhs.rawValue
-    }
-    public static func + (lhs: SelfType, rhs: SelfType) -> SelfType {
-        let raw = lhs.field.add(lhs.rawValue, rhs.rawValue)
-        return SelfType(raw, lhs.field)
-    }
-    public static func * (lhs: SelfType, rhs: SelfType) -> SelfType {
-        let raw = lhs.field.mul(lhs.rawValue, rhs.rawValue)
-        return SelfType(raw, lhs.field)
-    }
-    public static func - (lhs: SelfType, rhs: SelfType) -> SelfType {
-        let raw = lhs.field.sub(lhs.rawValue, rhs.rawValue)
-        return SelfType(raw, lhs.field)
-    }
+//extension FieldElement: Arithmetics where Field: FieldWithDivisionProtocol {
+//    public typealias Field = U
+//    public func pow(_ a: SelfType) -> SelfType {
+//        let raw = self.field.pow(self.rawValue, a.nativeValue)
+//        return SelfType(raw, self.field)
+//    }
+//    public static func / (lhs: SelfType, rhs: SelfType) -> (SelfType, SelfType) {
+//        let inverse = lhs.field.inv(rhs.rawValue)
+//        let raw = lhs.field.mul(lhs.rawValue, inverse)
+//        return (SelfType(raw, lhs.field), SelfType.zeroElement(lhs.field))
+//    }
+//    public static func == (lhs: SelfType, rhs: SelfType) -> Bool {
+//        return lhs.rawValue == rhs.rawValue
+//    }
+//    public static func + (lhs: SelfType, rhs: SelfType) -> SelfType {
+//        let raw = lhs.field.add(lhs.rawValue, rhs.rawValue)
+//        return SelfType(raw, lhs.field)
+//    }
+//    public static func * (lhs: SelfType, rhs: SelfType) -> SelfType {
+//        let raw = lhs.field.mul(lhs.rawValue, rhs.rawValue)
+//        return SelfType(raw, lhs.field)
+//    }
+//    public static func - (lhs: SelfType, rhs: SelfType) -> SelfType {
+//        let raw = lhs.field.sub(lhs.rawValue, rhs.rawValue)
+//        return SelfType(raw, lhs.field)
+//    }
     
-}
+//}

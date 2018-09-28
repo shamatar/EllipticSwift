@@ -208,12 +208,18 @@ public final class NaivePrimeFiniteField<T>: FiniteFieldProtocol where T: Finite
     }
 }
 
-public struct FiniteFieldElement<F>:Arithmetics where F: FiniteFieldProtocol, F.RawType == F.ElementType {
+public struct FiniteFieldElement<F>:Arithmetics where F: FiniteFieldProtocol {
+    public var bytes: Data {
+        // TODO
+        return Data()
+    }
+    
+    public typealias Field = F
     public typealias RawType = F.RawType
     public typealias SelfType = FiniteFieldElement<F>
     
     public var field: F
-    public var rawValue: F.RawType
+    public var rawValue: F.ElementType
     
     public var value: F.RawType {
         get {
@@ -227,7 +233,7 @@ public struct FiniteFieldElement<F>:Arithmetics where F: FiniteFieldProtocol, F.
         self.rawValue = reduced
     }
     
-    internal init (_ raw: RawType, _ field: F) {
+    internal init (_ raw: F.ElementType, _ field: F) {
         self.rawValue = raw
         self.field = field
     }
@@ -263,5 +269,34 @@ public struct FiniteFieldElement<F>:Arithmetics where F: FiniteFieldProtocol, F.
     public func inv() -> SelfType {
         let newRaw =  self.field.inv(self.rawValue)
         return SelfType(newRaw, self.field)
+    }
+    
+    public var zero: SelfType {
+        let zero = self.field.zeroElement
+        return SelfType(zero, self.field)
+    }
+    
+    public var one: SelfType {
+        let one = self.field.identityElement
+        return SelfType(one, self.field)
+    }
+    
+    public static func identityElement(_ field: F) -> FiniteFieldElement<F> {
+        let reduced = field.identityElement
+        return SelfType(reduced, field)
+    }
+    
+    public static func zeroElement(_ field: F) -> FiniteFieldElement<F> {
+        let reduced = field.zeroElement
+        return SelfType(reduced, field)
+    }
+    
+    public static func fromValue(_ a: F.RawType, field: F) -> FiniteFieldElement<F> {
+        return SelfType(a, field: field)
+    }
+    
+    public func negate() -> FiniteFieldElement<F> {
+        let newRaw = self.field.neg(self.rawValue)
+        return SelfType(newRaw, field)
     }
 }

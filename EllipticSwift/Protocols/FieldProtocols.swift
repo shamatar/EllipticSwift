@@ -12,10 +12,11 @@ import BigInt
 public protocol FiniteFieldProtocol {
     associatedtype ElementType
     associatedtype RawType
+    associatedtype ScalarType
     
-    var modulus: RawType {get}
-    
-    init(_ p: RawType)
+//    var modulus: RawType {get}
+//
+//    init(_ p: RawType)
     
     func isEqualTo(_ other: Self) -> Bool
     
@@ -26,14 +27,15 @@ public protocol FiniteFieldProtocol {
     func sub(_ a: ElementType, _ b: ElementType) -> ElementType
     func neg(_ a: ElementType) -> ElementType
     func mul(_ a: ElementType, _ b: ElementType) -> ElementType
-    func pow(_ a: ElementType, _ b: ElementType) -> ElementType
-    func pow(_ a: ElementType, _ b: BytesRepresentable) -> ElementType
+    func pow(_ a: ElementType, _ b: ScalarType) -> ElementType
+//    func pow(_ a: ElementType, _ b: ElementType) -> ElementType
+//    func pow(_ a: ElementType, _ b: BytesRepresentable) -> ElementType
     func inv(_ a: ElementType) -> ElementType
     func sqrt(_ a: ElementType) -> ElementType
     
     func fromValue(_ a: RawType) -> ElementType
-    func fromValue(_ a: UInt64) -> ElementType
-    func fromBytes(_ a: Data) -> ElementType
+//    func fromValue(_ a: UInt64) -> ElementType
+//    func fromBytes(_ a: Data) -> ElementType
     func toValue(_ a: ElementType) -> RawType
     
     var identityElement: ElementType {get}

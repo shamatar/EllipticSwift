@@ -14,6 +14,10 @@
 		8122DE5C215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */; };
 		8122DE5D215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */; };
 		8122DE5E215447D300870D39 /* MontgommeryCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE592154420400870D39 /* MontgommeryCurve.swift */; };
+		81246A14215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */; };
+		81246A15215E74EF005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */; };
+		81246A17215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81246A16215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift */; };
+		81246A18215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81246A16215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift */; };
 		8165EBC62154337900C7117A /* EllipticSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8165EBB82154337900C7117A /* EllipticSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8165EBD8215433CC00C7117A /* EllipticSwift_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8165EBD6215433CC00C7117A /* EllipticSwift_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81AE0B7B215434000019CA83 /* WeirstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B4D215434000019CA83 /* WeirstrassCurve.swift */; };
@@ -94,8 +98,6 @@
 		81AE0BC8215434000019CA83 /* U256+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B7A215434000019CA83 /* U256+Mul.swift */; };
 		81AE0BCA215436160019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BC9215436160019CA83 /* Accelerate.framework */; };
 		81AE0BCC2154361F0019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BCB2154361F0019CA83 /* Accelerate.framework */; };
-		81E5C084215BDFA400BF7D52 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
-		81E5C085215BDFA500BF7D52 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
 		81E5C087215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */; };
 		81E5C088215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */; };
 		81F74E5D21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
@@ -147,6 +149,8 @@
 		8122DE4D21543A8400870D39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8122DE592154420400870D39 /* MontgommeryCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontgommeryCurve.swift; sourceTree = "<group>"; };
 		8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistedEdwardsCurve.swift; sourceTree = "<group>"; };
+		81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveOverArithmericsProtocol.swift; sourceTree = "<group>"; };
+		81246A16215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendableWeierstrassCurve.swift; sourceTree = "<group>"; };
 		8165EBB52154337900C7117A /* EllipticSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8165EBB82154337900C7117A /* EllipticSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift.h; sourceTree = "<group>"; };
 		8165EBB92154337900C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 				8122DE592154420400870D39 /* MontgommeryCurve.swift */,
 				8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */,
 				81AE0B50215434000019CA83 /* Point.swift */,
+				81246A16215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift */,
 			);
 			path = Curve;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				81F74E6C215965E6006D4E9A /* ArithmeticsProtocol.swift */,
 				81F74E6621591334006D4E9A /* FieldPolynomialProtocol.swift */,
 				81F74E722159757D006D4E9A /* GroupProtocol.swift */,
+				81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -766,10 +772,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81246A17215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift in Sources */,
 				81AE0B9F215434000019CA83 /* U512+Add.swift in Sources */,
 				81AE0BA3215434000019CA83 /* FiniteWidthInteger.swift in Sources */,
 				81AE0B83215434000019CA83 /* CurveProtocols.swift in Sources */,
 				81AE0B85215434000019CA83 /* Data+Bytes.swift in Sources */,
+				81246A14215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */,
 				81AE0B89215434000019CA83 /* WindowMethods.swift in Sources */,
 				81AE0BB7215434000019CA83 /* U256+Equatable.swift in Sources */,
 				81AE0BAD215434000019CA83 /* U128.swift in Sources */,
@@ -816,7 +824,6 @@
 				81AE0B7B215434000019CA83 /* WeirstrassCurve.swift in Sources */,
 				8122DE5A2154420400870D39 /* MontgommeryCurve.swift in Sources */,
 				81AE0BAB215434000019CA83 /* U128+Equatable.swift in Sources */,
-				81E5C084215BDFA400BF7D52 /* CubicExtensionField.swift in Sources */,
 				81AE0BAF215434000019CA83 /* U256+Numeric.swift in Sources */,
 				81F74E6721591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */,
 				81AE0B99215434000019CA83 /* U512+Aux.swift in Sources */,
@@ -827,10 +834,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81246A18215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift in Sources */,
 				81AE0BA0215434000019CA83 /* U512+Add.swift in Sources */,
 				81AE0BA4215434000019CA83 /* FiniteWidthInteger.swift in Sources */,
 				81AE0B84215434000019CA83 /* CurveProtocols.swift in Sources */,
 				8122DE5E215447D300870D39 /* MontgommeryCurve.swift in Sources */,
+				81246A15215E74EF005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */,
 				81AE0B86215434000019CA83 /* Data+Bytes.swift in Sources */,
 				81AE0B8A215434000019CA83 /* WindowMethods.swift in Sources */,
 				81AE0BB8215434000019CA83 /* U256+Equatable.swift in Sources */,
@@ -877,7 +886,6 @@
 				81AE0B7C215434000019CA83 /* WeirstrassCurve.swift in Sources */,
 				81AE0BAC215434000019CA83 /* U128+Equatable.swift in Sources */,
 				81AE0BB0215434000019CA83 /* U256+Numeric.swift in Sources */,
-				81E5C085215BDFA500BF7D52 /* CubicExtensionField.swift in Sources */,
 				81AE0B9A215434000019CA83 /* U512+Aux.swift in Sources */,
 				81F74E6821591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */,
 				8122DE5D215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */,
