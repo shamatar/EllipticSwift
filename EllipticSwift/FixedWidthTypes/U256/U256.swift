@@ -9,12 +9,12 @@
 import Foundation
 import Accelerate
 
-public var U256bitLength = 256
-public var U256byteLength = 32
-public var U256words = 8
-public var U256vectors = 2
-public var U256MAX = U256(Data(repeating: 255, count: U256byteLength))!
-public var U256MIN = U256(Data(repeating: 0, count: U256byteLength))!
+public let U256bitLength = 256
+public let U256byteLength = 32
+public let U256words = 8
+public let U256vectors = 2
+public let U256MAX = U256(Data(repeating: 255, count: U256byteLength))!
+public let U256MIN = U256(Data(repeating: 0, count: U256byteLength))!
 
 extension U256: BytesInitializable, BytesRepresentable {
     

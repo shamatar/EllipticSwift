@@ -250,7 +250,7 @@ public final class QuadraticExtensionField<F>: ExtensionFieldProtocol where F: F
         }
         if self.reducingPolynomial.0 != other.reducingPolynomial.0 ||
             self.reducingPolynomial.1 != other.reducingPolynomial.1 ||
-            self.reducingPolynomial.1 != other.reducingPolynomial.2 {
+            self.reducingPolynomial.2 != other.reducingPolynomial.2 {
             return false
         }
         return true

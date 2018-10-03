@@ -16,7 +16,7 @@ public typealias U1024 = vU1024
 extension U256: FiniteFieldCompatible {
 }
 
-public protocol FiniteFieldCompatible: Comparable, Numeric, ModReducable, BytesInitializable, BitsAndBytes, BitShiftable, EvenOrOdd, UInt64Initializable {
+public protocol FiniteFieldCompatible: Comparable, Numeric, ModReducable, BytesInitializable, BitsAndBytes, BitShiftable, EvenOrOdd, UInt64Initializable, FastZeroInitializable {
 }
 
 public protocol BitsAndBytes: BytesRepresentable, BitAccessible, FixedWidth, Zeroable {
@@ -30,13 +30,16 @@ public protocol BytesInitializable {
     init? (_ bytes: Data)
 }
 
-// bit endian bytes
+// big endian bytes
 public protocol BytesRepresentable {
     var bytes: Data {get}
 }
 
 public protocol Zeroable {
     var isZero: Bool {get}
+}
+
+public protocol FastZeroInitializable {
     static var zero: Self {get}
 }
 

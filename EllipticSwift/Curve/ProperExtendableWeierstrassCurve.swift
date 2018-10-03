@@ -1,21 +1,22 @@
 //
-//  ExtendableWeierstrassCurve.swift
+//  ProperExtendableWeierstrassCurve.swift
 //  EllipticSwift
 //
-//  Created by Alex Vlasov on 28/09/2018.
+//  Created by Alex Vlasov on 03/10/2018.
 //  Copyright © 2018 Alex Vlasov. All rights reserved.
 //
+
 
 import Foundation
 import BigInt
 
-public class ExtendableWeierstrassCurve<T>: CurveProtocol2 where T: Arithmetics {
-    public typealias Field = T.Field
-    public typealias FE = T
-    public typealias RawType = T.RawType
+public class ExtendableWeierstrassCurve<F>: CurveProtocol3 where F: FiniteFieldProtocol {
+    public typealias Field = F
+    public typealias FE = FiniteFieldElement<Field>
+    public typealias RawType = FE.RawType
     public typealias ScalarType = U256
-    public typealias AffineType = ExtendableAffinePoint<ExtendableWeierstrassCurve<T>>
-    public typealias ProjectiveType = ExtendableProjectivePoint<ExtendableWeierstrassCurve<T>>
+    public typealias AffineType = ExtendableAffinePoint<ExtendableWeierstrassCurve<F>>
+    public typealias ProjectiveType = ExtendableProjectivePoint<ExtendableWeierstrassCurve<F>>
     
     public var field: Field
     public var order: ScalarType
@@ -47,22 +48,22 @@ public class ExtendableWeierstrassCurve<T>: CurveProtocol2 where T: Arithmetics 
         self.B = reducedB
     }
     
-//    public func testGenerator(_ p: AffineCoordinates) -> Bool {
-//        if p.isInfinity {
-//            return false
-//        }
-//        let reducedGeneratorX = FE.fromValue(p.X, field: self.field)
-//        let reducedGeneratorY = FE.fromValue(p.Y, field: self.field)
-//        let generatorPoint = AffineType(reducedGeneratorX, reducedGeneratorY, self)
-//        if !checkOnCurve(generatorPoint) {
-//            return false
-//        }
-//        if !self.mul(self.order, generatorPoint).isInfinity {
-//            return false
-//        }
-//        //        self.generator = generatorPoint
-//        return true
-//    }
+    //    public func testGenerator(_ p: AffineCoordinates) -> Bool {
+    //        if p.isInfinity {
+    //            return false
+    //        }
+    //        let reducedGeneratorX = FE.fromValue(p.X, field: self.field)
+    //        let reducedGeneratorY = FE.fromValue(p.Y, field: self.field)
+    //        let generatorPoint = AffineType(reducedGeneratorX, reducedGeneratorY, self)
+    //        if !checkOnCurve(generatorPoint) {
+    //            return false
+    //        }
+    //        if !self.mul(self.order, generatorPoint).isInfinity {
+    //            return false
+    //        }
+    //        //        self.generator = generatorPoint
+    //        return true
+    //    }
     
     public func checkOnCurve(_ p: AffineType) -> Bool {
         if p.isInfinity {
@@ -79,44 +80,44 @@ public class ExtendableWeierstrassCurve<T>: CurveProtocol2 where T: Arithmetics 
         return lhs == rhs
     }
     
-//    public func toPoint(_ x: BigUInt, _ y: BigUInt) -> AffineType? {
-//        return toPoint(AffineCoordinates(x, y))
-//    }
-//
-//    public func toPoint(_ p: AffineCoordinates) -> AffineType? {
-//        let reducedX = FE.fromValue(p.X, field: self.field)
-//        let reducedY = FE.fromValue(p.Y, field: self.field)
-//        let point = AffineType(reducedX, reducedY, self)
-//        if !checkOnCurve(point) {
-//            return nil
-//        }
-//        return point
-//    }
+    //    public func toPoint(_ x: BigUInt, _ y: BigUInt) -> AffineType? {
+    //        return toPoint(AffineCoordinates(x, y))
+    //    }
+    //
+    //    public func toPoint(_ p: AffineCoordinates) -> AffineType? {
+    //        let reducedX = FE.fromValue(p.X, field: self.field)
+    //        let reducedY = FE.fromValue(p.Y, field: self.field)
+    //        let point = AffineType(reducedX, reducedY, self)
+    //        if !checkOnCurve(point) {
+    //            return nil
+    //        }
+    //        return point
+    //    }
     
-//    public func hashInto(_ data: Data) -> AffineType {
-//        let bn = RawType(data)
-//        precondition(bn != nil)
-//        var seed = FE.fromValue(bn!, field: self.field)
-//        let ONE = self.ONE
-//        for _ in 0 ..< 100 {
-//            let x = seed
-//            var y2 = x * x * x
-//            if !self.aIsZero {
-//                y2 = y2 + self.A * x
-//            }
-//            if !self.bIsZero {
-//                y2 = y2 + self.B
-//            }
-//            // TODO
-//            let yReduced = y2.sqrt()
-//            if y2 == yReduced * yReduced {
-//                return AffineType(x, yReduced, self)
-//            }
-//            seed = seed + ONE
-//        }
-//        precondition(false, "Are you using a normal curve?")
-//        return ProjectiveType.infinityPoint(self).toAffine()
-//    }
+    //    public func hashInto(_ data: Data) -> AffineType {
+    //        let bn = RawType(data)
+    //        precondition(bn != nil)
+    //        var seed = FE.fromValue(bn!, field: self.field)
+    //        let ONE = self.ONE
+    //        for _ in 0 ..< 100 {
+    //            let x = seed
+    //            var y2 = x * x * x
+    //            if !self.aIsZero {
+    //                y2 = y2 + self.A * x
+    //            }
+    //            if !self.bIsZero {
+    //                y2 = y2 + self.B
+    //            }
+    //            // TODO
+    //            let yReduced = y2.sqrt()
+    //            if y2 == yReduced * yReduced {
+    //                return AffineType(x, yReduced, self)
+    //            }
+    //            seed = seed + ONE
+    //        }
+    //        precondition(false, "Are you using a normal curve?")
+    //        return ProjectiveType.infinityPoint(self).toAffine()
+    //    }
     
     public func add(_ p: ProjectiveType, _ q: ProjectiveType) -> ProjectiveType {
         if p.isInfinity {
@@ -262,7 +263,7 @@ public class ExtendableWeierstrassCurve<T>: CurveProtocol2 where T: Arithmetics 
     
     public func mul(_ scalar: ScalarType, _ p: AffineType) -> ProjectiveType {
         return doubleAndAddMul(scalar, p)
-//        return wNAFmul(scalar, p)
+        //        return wNAFmul(scalar, p)
     }
     
     func doubleAndAddMul(_ scalar: ScalarType, _ p: AffineType) -> ProjectiveType {
@@ -281,55 +282,55 @@ public class ExtendableWeierstrassCurve<T>: CurveProtocol2 where T: Arithmetics 
         return result
     }
     
-//    func wNAFmul(_ scalar: RawType, _ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
-//        if scalar.isZero {
-//            return ProjectiveType.infinityPoint(self)
-//        }
-//        if p.isInfinity {
-//            return ProjectiveType.infinityPoint(self)
-//        }
-//        let reducedScalar = scalar.mod(self.order)
-//        let projectiveP = p.toProjective()
-//        let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
-//        var precomputations = [ProjectiveType]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
-//        precomputations.append(projectiveP)
-//        let dbl = double(projectiveP)
-//        precomputations.append(mixedAdd(dbl, p))
-//        for i in 2 ..< numPrecomputedElements {
-//            precomputations.append(add(precomputations[i-1], dbl))
-//        }
-//        let lookups = computeWNAF(scalar: reducedScalar, windowSize: windowSize)
-//        var result = ProjectiveType.infinityPoint(self)
-//        let range = (0 ..< lookups.count).reversed()
-//        for i in range {
-//            result = double(result)
-//            let lookup = lookups[i]
-//            if lookup == 0 {
-//                continue
-//            } else if lookup > 0 {
-//                let idx = lookup >> 1
-//                let precomputeToAdd = precomputations[idx]
-//                result = add(result, precomputeToAdd)
-//            } else if lookup < 0 {
-//                let idx = -lookup >> 1
-//                let precomputeToAdd = neg(precomputations[idx])
-//                result = add(result, precomputeToAdd)
-//            }
-//        }
-//        return result
-//    }
+    //    func wNAFmul(_ scalar: RawType, _ p: AffineType, windowSize: Int = DefaultWindowSize) -> ProjectiveType {
+    //        if scalar.isZero {
+    //            return ProjectiveType.infinityPoint(self)
+    //        }
+    //        if p.isInfinity {
+    //            return ProjectiveType.infinityPoint(self)
+    //        }
+    //        let reducedScalar = scalar.mod(self.order)
+    //        let projectiveP = p.toProjective()
+    //        let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
+    //        var precomputations = [ProjectiveType]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
+    //        precomputations.append(projectiveP)
+    //        let dbl = double(projectiveP)
+    //        precomputations.append(mixedAdd(dbl, p))
+    //        for i in 2 ..< numPrecomputedElements {
+    //            precomputations.append(add(precomputations[i-1], dbl))
+    //        }
+    //        let lookups = computeWNAF(scalar: reducedScalar, windowSize: windowSize)
+    //        var result = ProjectiveType.infinityPoint(self)
+    //        let range = (0 ..< lookups.count).reversed()
+    //        for i in range {
+    //            result = double(result)
+    //            let lookup = lookups[i]
+    //            if lookup == 0 {
+    //                continue
+    //            } else if lookup > 0 {
+    //                let idx = lookup >> 1
+    //                let precomputeToAdd = precomputations[idx]
+    //                result = add(result, precomputeToAdd)
+    //            } else if lookup < 0 {
+    //                let idx = -lookup >> 1
+    //                let precomputeToAdd = neg(precomputations[idx])
+    //                result = add(result, precomputeToAdd)
+    //            }
+    //        }
+    //        return result
+    //    }
 }
 
-public struct ExtendableAffinePoint<T>: AffinePointProtocol2 where T: CurveProtocol2 {
+public struct ExtendableAffinePoint<T>: AffinePointProtocol3 where T: CurveProtocol3 {
     public typealias ProjectiveType = ExtendableProjectivePoint<T>
     public typealias Curve = T
     public typealias FE = T.FE
     public typealias RawType = T.Field.RawType
     public typealias SelfType = ExtendableAffinePoint<T>
     
-//    public var description: String {
-//        return self.coordinates.description
-//    }
+    //    public var description: String {
+    //        return self.coordinates.description
+    //    }
     
     public var curve: Curve
     public var isInfinity: Bool = true
@@ -342,15 +343,15 @@ public struct ExtendableAffinePoint<T>: AffinePointProtocol2 where T: CurveProto
         return self.rawY.value
     }
     
-//    public var coordinates: AffineCoordinates {
-//        if !self.isInfinity {
-//            return AffineCoordinates(BigUInt(self.rawX.bytes), BigUInt(self.rawY.bytes))
-//        } else {
-//            var p = AffineCoordinates(0, 0)
-//            p.setInfinity()
-//            return p
-//        }
-//    }
+    //    public var coordinates: AffineCoordinates {
+    //        if !self.isInfinity {
+    //            return AffineCoordinates(BigUInt(self.rawX.bytes), BigUInt(self.rawY.bytes))
+    //        } else {
+    //            var p = AffineCoordinates(0, 0)
+    //            p.setInfinity()
+    //            return p
+    //        }
+    //    }
     
     public init(_ rawX: FE, _ rawY: FE, _ curve: Curve) {
         self.rawX = rawX
@@ -386,7 +387,7 @@ public struct ExtendableAffinePoint<T>: AffinePointProtocol2 where T: CurveProto
     //    }
 }
 
-public struct ExtendableProjectivePoint<T>: ProjectivePointProtocol2 where T: CurveProtocol2 {
+public struct ExtendableProjectivePoint<T>: ProjectivePointProtocol3 where T: CurveProtocol3 {
     // also refered as Jacobian Point
     public typealias Curve = T
     public typealias FE = T.FE
@@ -403,7 +404,7 @@ public struct ExtendableProjectivePoint<T>: ProjectivePointProtocol2 where T: Cu
     public var rawY: FE
     public var rawZ: FE
     
-    public static func infinityPoint<U>(_ curve: U) -> ExtendableProjectivePoint<U> where U: CurveProtocol2 {
+    public static func infinityPoint<U>(_ curve: U) -> ExtendableProjectivePoint<U> where U: CurveProtocol3 {
         let field = curve.field
         let zero = U.FE.zeroElement(field)
         let one = U.FE.identityElement(field)
@@ -460,3 +461,4 @@ public struct ExtendableProjectivePoint<T>: ProjectivePointProtocol2 where T: Cu
     //        return lhs.curve.mixedAdd(lhs, rhs)
     //    }
 }
+

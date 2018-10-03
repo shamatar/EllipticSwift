@@ -7,12 +7,14 @@
 //
 
 public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: FiniteFieldProtocol {
+    
     public typealias Field = F
-    public typealias FE = FieldElement<F>
+    public typealias PolynomialCoefficientType = FiniteFieldElement<F>
+    public typealias FE = PolynomialCoefficientType
     public typealias ReductionPolynomial = (FE, FE, FE, FE)
-    public typealias ExtensionFieldElement = (FE, FE, FE)
-    public typealias ScalarValue = FE.Field.UnderlyingRawType
-    public typealias RawType = (FE.Field.UnderlyingRawType, FE.Field.UnderlyingRawType, FE.Field.UnderlyingRawType)
+    public typealias ScalarType = U256
+    public typealias RawType = (FE, FE, FE)
+    public typealias ElementType = (FE, FE, FE)
     
     public var field: F
     public var degree: Int = 3
@@ -23,28 +25,28 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         self.reducingPolynomial = polynomial
     }
     
-    public func add(_ a: ExtensionFieldElement, _ b: ExtensionFieldElement) -> ExtensionFieldElement {
+    public func add(_ a: ElementType, _ b: ElementType) -> ElementType {
         return (
             a.0 + b.0,
             a.1 + b.1,
             a.2 + b.2
         )
     }
-    public func sub(_ a: ExtensionFieldElement, _ b: ExtensionFieldElement) -> ExtensionFieldElement {
+    public func sub(_ a: ElementType, _ b: ElementType) -> ElementType {
         return (
             a.0 - b.0,
             a.1 - b.1,
             a.2 - b.2
         )
     }
-    public func neg(_ a: ExtensionFieldElement) -> ExtensionFieldElement {
+    public func neg(_ a: ElementType) -> ElementType {
         return (
             a.0.negate(),
             a.1.negate(),
             a.2.negate()
         )
     }
-    public func mul(_ a: ExtensionFieldElement, _ b: ExtensionFieldElement) -> ExtensionFieldElement {
+    public func mul(_ a: ElementType, _ b: ElementType) -> ElementType {
         let intermediate = (
             a.0 * b.0,
             a.0 * b.1 + a.1 * b.0,
@@ -87,7 +89,7 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         return 0
     }
     
-    internal func getDegree(_ a: ExtensionFieldElement) -> Int {
+    internal func getDegree(_ a: ElementType) -> Int {
         if !a.2.isZero {
             return 2
         } else if !a.1.isZero {
@@ -107,7 +109,7 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         return a.0
     }
     
-    internal func getLeadingCoefficient(_ a: ExtensionFieldElement) -> FE {
+    internal func getLeadingCoefficient(_ a: ElementType) -> FE {
         if !a.2.isZero {
             return a.2
         } else if !a.1.isZero {
@@ -116,9 +118,9 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         return a.0
     }
     
-    public func inv(_ a: ExtensionFieldElement) -> ExtensionFieldElement {
-        let zeroFE = FieldElement.zeroElement(self.field)
-        let identityFE = FieldElement.identityElement(self.field)
+    public func inv(_ a: ElementType) -> ElementType {
+        let zeroFE = FE.zeroElement(self.field)
+        let identityFE = FE.identityElement(self.field)
         let zero = (zeroFE, zeroFE, zeroFE, zeroFE)
         var old = zero
         var new = (identityFE, zeroFE, zeroFE, zeroFE)
@@ -148,16 +150,11 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         return (old.0 * inv, old.1 * inv, old.2 * inv)
     }
     
-    internal func printElement(_ a: ReductionPolynomial) {
-        print("C3 = " + String(a.3.value))
-        print("C2 = " + String(a.2.value))
-        print("C1 = " + String(a.1.value))
-        print("C0 = " + String(a.0.value))
-    }
     
     internal func div(_ a: ReductionPolynomial, _ b: ReductionPolynomial) -> (ReductionPolynomial, ReductionPolynomial) {
         // a is of degree 2 at max
-        let zeroFE = FieldElement.zeroElement(self.field)
+        let zeroFE = FE.zeroElement(self.field)
+//        let identityFE = FE.identityElement(self.field)
         var quotient = (zeroFE, zeroFE, zeroFE, zeroFE)
         var remainder = a
         let divisorDeg = self.getDegree(b)
@@ -227,12 +224,12 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         return (quotient, remainder)
     }
     
-    public func pow(_ a: ExtensionFieldElement, _ b: ScalarValue) -> ExtensionFieldElement {
+    public func pow(_ a: ElementType, _ b: ScalarType) -> ElementType {
         let res = self.doubleAndAddExponentiation(a, b)
         return res
     }
     
-    internal func doubleAndAddExponentiation(_ a: ExtensionFieldElement, _ b: ScalarValue) -> ExtensionFieldElement {
+    internal func doubleAndAddExponentiation(_ a: ElementType, _ b: ScalarType) -> ElementType {
         var base = a
         var result = self.identityElement
         let bitwidth = b.bitWidth
@@ -248,124 +245,62 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
         return result
     }
     
-    public func fromScalar(_ a: ScalarValue) -> ExtensionFieldElement {
-        let zero = FieldElement.zeroElement(self.field)
+    public func fromValue(_ a: RawType) -> ElementType {
         return (
-            FieldElement.fromValue(a, field: self.field),
-            zero,
-            zero
+            a.0,
+            a.1,
+            a.2
         )
     }
-    
-    public func fromValue(_ a: RawType) -> ExtensionFieldElement {
-        return (
-            FieldElement.fromValue(a.0, field: self.field),
-            FieldElement.fromValue(a.1, field: self.field),
-            FieldElement.fromValue(a.2, field: self.field)
-        )
-    }
-    public func toValue(_ a: ExtensionFieldElement) -> RawType {
-        return (a.0.nativeValue, a.1.nativeValue, a.2.nativeValue)
+    public func toValue(_ a: ElementType) -> RawType {
+        return (a.0, a.1, a.2)
     }
     
-    public var identityElement: ExtensionFieldElement {
-        let zero = FieldElement.zeroElement(self.field)
-        let identity = FieldElement.identityElement(self.field)
+    public var identityElement: ElementType {
+        let zero = FE.zeroElement(self.field)
+        let identity = FE.identityElement(self.field)
         return (identity, zero, zero)
     }
     
-    public var zeroElement: ExtensionFieldElement {
-        let zero = FieldElement.zeroElement(self.field)
+    public var zeroElement: ElementType {
+        let zero = FE.zeroElement(self.field)
         return (zero, zero, zero)
     }
     
-}
-
-public struct CubicExtensionFieldElement<Q>: Arithmetics where Q: ExtensionFieldProtocol, Q.ElementType == (Q.PolynomialCoefficientType, Q.PolynomialCoefficientType, Q.PolynomialCoefficientType)  {
-    public var bytes: Data {
-        // TODO
-        return Data()
+    public func isEqualTo(_ other: CubicExtensionField<F>) -> Bool {
+        if !self.field.isEqualTo(other.field) {
+            return false
+        }
+        if self.reducingPolynomial.0 != other.reducingPolynomial.0 ||
+            self.reducingPolynomial.1 != other.reducingPolynomial.1 ||
+            self.reducingPolynomial.2 != other.reducingPolynomial.2 ||
+            self.reducingPolynomial.3 != other.reducingPolynomial.3 {
+            return false
+        }
+        return true
     }
     
-    public typealias Field = Q
-    public typealias ExtensionField = Q
-    public typealias FE = Q.PolynomialCoefficientType
-    public typealias ElementsType = (FE, FE, FE)
-    public typealias RawType = (FE.Field.UnderlyingRawType, FE.Field.UnderlyingRawType, FE.Field.UnderlyingRawType)
-    public typealias SelfType = CubicExtensionFieldElement<Q>
-    
-    public var extensionField: Q
-    public var raw: ElementsType
-    
-    public var isZero: Bool {
-        return self.raw.0.isZero && self.raw.1.isZero && self.raw.2.isZero
+    public func areEqual(_ a: (FiniteFieldElement<F>, FiniteFieldElement<F>, FiniteFieldElement<F>), _ b: (FiniteFieldElement<F>, FiniteFieldElement<F>, FiniteFieldElement<F>)) -> Bool {
+        if a.0 != b.0 {
+            return false
+        }
+        if a.1 != b.1 {
+            return false
+        }
+        if a.2 != b.2 {
+            return false
+        }
+        return true
     }
     
-    public init(_ raw: ElementsType, extensionField: ExtensionField) {
-        self.extensionField = extensionField
-        self.raw = raw
+    public func isZero(_ a: (FiniteFieldElement<F>, FiniteFieldElement<F>, FiniteFieldElement<F>)) -> Bool {
+        return a.0.isZero && a.1.isZero && a.2.isZero
     }
     
-    public init(_ raw: RawType, extensionField: ExtensionField) {
-        self.extensionField = extensionField
-        self.raw = (FE.fromValue(raw.0, field: extensionField.field),
-                    FE.fromValue(raw.1, field: extensionField.field),
-                    FE.fromValue(raw.2, field: extensionField.field))
+    public func sqrt(_ a: (FiniteFieldElement<F>, FiniteFieldElement<F>, FiniteFieldElement<F>)) -> (FiniteFieldElement<F>, FiniteFieldElement<F>, FiniteFieldElement<F>) {
+        precondition(false)
+        let zero = self.zeroElement
+        return zero
     }
     
-    public static func + (lhs: SelfType, rhs: SelfType) -> SelfType {
-        let extField = lhs.extensionField
-        let raw = extField.add(lhs.raw, rhs.raw)
-        return SelfType(raw, extensionField: extField)
-    }
-    
-    public static func - (lhs: SelfType, rhs: SelfType) -> SelfType {
-        let extField = lhs.extensionField
-        let raw = extField.sub(lhs.raw, rhs.raw)
-        return SelfType(raw, extensionField: extField)
-    }
-    
-    public static func == (lhs: SelfType, rhs: SelfType) -> Bool {
-        return lhs.raw.0 == rhs.raw.1 && lhs.raw.1 == rhs.raw.1 && lhs.raw.2 == rhs.raw.2
-    }
-    
-    public static func * (lhs: SelfType, rhs: SelfType) -> SelfType {
-        let extField = lhs.extensionField
-        let raw = extField.mul(lhs.raw, rhs.raw)
-        return SelfType(raw, extensionField: extField)
-    }
-    
-    public func pow(_ a: Q.ScalarValue) -> SelfType {
-        let extField = self.extensionField
-        let raw = extField.pow(self.raw, a)
-        return SelfType(raw, extensionField: extField)
-    }
-    
-    public func inv() -> SelfType {
-        let extField = self.extensionField
-        let raw = extField.inv(self.raw)
-        return SelfType(raw, extensionField: extField)
-    }
-    
-    public static func / (lhs: SelfType, rhs: SelfType) -> (SelfType, SelfType) {
-        let extField = lhs.extensionField
-        let inverse = extField.inv(rhs.raw)
-        let raw = extField.mul(lhs.raw, inverse)
-        return (SelfType(raw, extensionField: extField), SelfType.zero(extField))
-    }
-    
-    public static func zero(_ extensionField: ExtensionField) -> SelfType{
-        let raw = extensionField.zeroElement
-        return SelfType(raw, extensionField: extensionField)
-    }
-}
-
-extension CubicExtensionFieldElement: CustomStringConvertible {
-    public var description: String {
-        var descr = ""
-        descr += "Coefficient 2 = \(String(self.raw.2.value))\n"
-        descr += "Coefficient 1 = \(String(self.raw.1.value))\n"
-        descr += "Coefficient 0 = \(String(self.raw.0.value))\n"
-        return descr
-    }
 }
