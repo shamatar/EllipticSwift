@@ -54,13 +54,13 @@ public final class CubicExtensionField<F>: ExtensionFieldProtocol where F: Finit
             a.1 * b.2 + a.2 * b.1,
             a.2 * b.2
         )
-        let leadingCoeff = intermediate.4 * self.reducingPolynomial.3.inv()
-        let subtracted = (intermediate.0 - leadingCoeff * self.reducingPolynomial.0,
-                          intermediate.1 - leadingCoeff * self.reducingPolynomial.1,
-                          intermediate.2 - leadingCoeff * self.reducingPolynomial.2,
-                          intermediate.3 - leadingCoeff * self.reducingPolynomial.3)
-        
-        let leadingCoeff2 = subtracted.3 * self.reducingPolynomial.3.inv()
+        let a3Inv = self.reducingPolynomial.3.inv()
+        let leadingCoeff = intermediate.4 * a3Inv
+        let subtracted = (intermediate.0, // virtual multiplication by one power
+                          intermediate.1 - leadingCoeff * self.reducingPolynomial.0,
+                          intermediate.2 - leadingCoeff * self.reducingPolynomial.1,
+                          intermediate.3 - leadingCoeff * self.reducingPolynomial.2)
+        let leadingCoeff2 = subtracted.3 * a3Inv
         let subtracted2 = (subtracted.0 - leadingCoeff2 * self.reducingPolynomial.0,
                           subtracted.1 - leadingCoeff2 * self.reducingPolynomial.1,
                           subtracted.2 - leadingCoeff2 * self.reducingPolynomial.2)

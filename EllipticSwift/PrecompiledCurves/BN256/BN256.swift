@@ -46,3 +46,12 @@ public let BN256G1Curve: ExtendableWeierstrassCurve<NaivePrimeFiniteField<U256>>
     return curve
 }()
 
+public let BN256G2Curve: ExtendableWeierstrassCurve<QuadraticExtensionField<NaivePrimeFiniteField<U256>>> = {
+    let zero = BN256F2.zeroElement
+    let x0 = U256(BigUInt("19485874751759354771024239261021720505790618469301721065564631296452457478373")!.serialize())!
+    let x1 = U256(BigUInt("266929791119991161246907387137283842545076965332900288569378510910307636690")!.serialize())!
+    let B = (FiniteFieldElement(x0, field: BN256FF), FiniteFieldElement(x1, field: BN256FF))
+    let curve = ExtendableWeierstrassCurve(field: BN256F2, order: BN256CurveOrder, A: zero, B: B)
+    return curve
+}()
+
