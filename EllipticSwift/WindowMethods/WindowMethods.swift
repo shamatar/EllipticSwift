@@ -49,7 +49,7 @@ public func computeWNAF<T: FiniteFieldCompatible>(scalar: T, windowSize: Int = D
     return dCoeffs
 }
 
-// returns [Int] - lookup coefficients in precompute, [BigUInt] - powers to rise the result
+// returns [Int] - lookup coefficients in precompute, [UInt64] - powers to rise the result
 // lookup == -1 -> Just rise in a power
 public func computeSlidingWindow<T: BitsAndBytes> (scalar: T, windowSize: Int = DefaultWindowSize) -> ([Int], [UInt64]){
     // compute left to right

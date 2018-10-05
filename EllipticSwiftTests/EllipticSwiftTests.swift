@@ -293,13 +293,17 @@ class EllipticSwiftTests: XCTestCase {
     func testDifferentExponentiations() {
         let secp256k1Prime = EllipticSwift.secp256k1Prime
         let secp256k1PrimeField = NaivePrimeField<U256>(secp256k1Prime)
-        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
-        let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
-        let br = BigUInt.randomInteger(withExactWidth: 256)
-        let b = U256(br.serialize())!
-        let trivial = a.field.doubleAndAddExponentiation(a.rawValue, b)
-        let sliding = a.field.kSlidingWindowExponentiation(a.rawValue, b, windowSize: 5)
-        XCTAssert(trivial == sliding)
+        for _ in 0 ..< 10 {
+            let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+            let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
+            let br = BigUInt.randomInteger(withExactWidth: 256)
+            let b = U256(br.serialize())!
+            let trivial = a.field.doubleAndAddExponentiation(a.rawValue, b)
+            let sliding = a.field.kSlidingWindowExponentiation(a.rawValue, b, windowSize: 5)
+            let naive = ar.power(br, modulus: secp256k1PrimeBUI)
+            XCTAssert(trivial == U256(naive.serialize())!)
+            XCTAssert(trivial == sliding)
+        }
     }
     
     func testDoubleAndAddExponentiationPerformance() {

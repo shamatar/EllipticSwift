@@ -152,7 +152,6 @@
 		8122DE592154420400870D39 /* MontgommeryCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontgommeryCurve.swift; sourceTree = "<group>"; };
 		8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistedEdwardsCurve.swift; sourceTree = "<group>"; };
 		81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveOverArithmericsProtocol.swift; sourceTree = "<group>"; };
-		81246A16215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendableWeierstrassCurve.swift; sourceTree = "<group>"; };
 		8165EBB52154337900C7117A /* EllipticSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8165EBB82154337900C7117A /* EllipticSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift.h; sourceTree = "<group>"; };
 		8165EBB92154337900C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -346,7 +345,6 @@
 				8122DE592154420400870D39 /* MontgommeryCurve.swift */,
 				8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */,
 				81AE0B50215434000019CA83 /* Point.swift */,
-				81246A16215E76C4005A0B65 /* ExtendableWeierstrassCurve.swift */,
 				81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */,
 			);
 			path = Curve;

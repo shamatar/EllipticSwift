@@ -96,6 +96,7 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     
     @_specialize(exported: false, where T == U256)
     internal func doubleAndAddExponentiation(_ a: T, _ b: T) -> T {
+        return EllipticSwift.doubleAndAddExponentiation(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul)
         var base = a
         var result = self.identityElement
         let bitwidth = b.bitWidth
@@ -113,6 +114,7 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     
     @_specialize(exported: false, where T == U256)
     internal func kSlidingWindowExponentiation(_ a: T, _ b: T, windowSize: Int = DefaultWindowSize) -> T {
+        return EllipticSwift.kSlidingWindowExponentiation(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul, windowSize: windowSize)
         let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
         var precomputations = [T](repeating: self.identityElement, count: numPrecomputedElements)
         precomputations[0] = a

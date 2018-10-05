@@ -16,7 +16,7 @@ internal func doubleAndAddExponentiation<T, U>(_ a: T, _ b: U) -> T where T: Ari
         if b.bit(i) {
             result = result * base
         }
-        if i == b.bitWidth - 1 {
+        if i == bitwidth - 1 {
             break
         }
         base = base * base
