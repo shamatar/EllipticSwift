@@ -12,122 +12,63 @@
 		8122DE4E21543A8400870D39 /* EllipticSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8165EBB52154337900C7117A /* EllipticSwift.framework */; };
 		8122DE5A2154420400870D39 /* MontgommeryCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE592154420400870D39 /* MontgommeryCurve.swift */; };
 		8122DE5C215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */; };
-		8122DE5D215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */; };
-		8122DE5E215447D300870D39 /* MontgommeryCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122DE592154420400870D39 /* MontgommeryCurve.swift */; };
 		81246A14215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */; };
-		81246A15215E74EF005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */; };
 		8165EBC62154337900C7117A /* EllipticSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8165EBB82154337900C7117A /* EllipticSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8165EBD8215433CC00C7117A /* EllipticSwift_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8165EBD6215433CC00C7117A /* EllipticSwift_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81AE0B7B215434000019CA83 /* WeirstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B4D215434000019CA83 /* WeirstrassCurve.swift */; };
-		81AE0B7C215434000019CA83 /* WeirstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B4D215434000019CA83 /* WeirstrassCurve.swift */; };
 		81AE0B7F215434000019CA83 /* AffineCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B4F215434000019CA83 /* AffineCoordinates.swift */; };
-		81AE0B80215434000019CA83 /* AffineCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B4F215434000019CA83 /* AffineCoordinates.swift */; };
 		81AE0B81215434000019CA83 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B50215434000019CA83 /* Point.swift */; };
-		81AE0B82215434000019CA83 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B50215434000019CA83 /* Point.swift */; };
 		81AE0B83215434000019CA83 /* CurveProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B51215434000019CA83 /* CurveProtocols.swift */; };
-		81AE0B84215434000019CA83 /* CurveProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B51215434000019CA83 /* CurveProtocols.swift */; };
 		81AE0B85215434000019CA83 /* Data+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B53215434000019CA83 /* Data+Bytes.swift */; };
-		81AE0B86215434000019CA83 /* Data+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B53215434000019CA83 /* Data+Bytes.swift */; };
 		81AE0B87215434000019CA83 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B55215434000019CA83 /* Constants.swift */; };
-		81AE0B88215434000019CA83 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B55215434000019CA83 /* Constants.swift */; };
 		81AE0B89215434000019CA83 /* WindowMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B56215434000019CA83 /* WindowMethods.swift */; };
-		81AE0B8A215434000019CA83 /* WindowMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B56215434000019CA83 /* WindowMethods.swift */; };
 		81AE0B8B215434000019CA83 /* NaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B58215434000019CA83 /* NaivePrimeField.swift */; };
-		81AE0B8C215434000019CA83 /* NaivePrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B58215434000019CA83 /* NaivePrimeField.swift */; };
 		81AE0B8D215434000019CA83 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B59215434000019CA83 /* FieldProtocols.swift */; };
-		81AE0B8E215434000019CA83 /* FieldProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B59215434000019CA83 /* FieldProtocols.swift */; };
 		81AE0B8F215434000019CA83 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5A215434000019CA83 /* MontPrimeField.swift */; };
-		81AE0B90215434000019CA83 /* MontPrimeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5A215434000019CA83 /* MontPrimeField.swift */; };
 		81AE0B91215434000019CA83 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5B215434000019CA83 /* PrimeFieldElement.swift */; };
-		81AE0B92215434000019CA83 /* PrimeFieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5B215434000019CA83 /* PrimeFieldElement.swift */; };
 		81AE0B93215434000019CA83 /* U512+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5E215434000019CA83 /* U512+Div.swift */; };
-		81AE0B94215434000019CA83 /* U512+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5E215434000019CA83 /* U512+Div.swift */; };
 		81AE0B95215434000019CA83 /* U512+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5F215434000019CA83 /* U512+Mul.swift */; };
-		81AE0B96215434000019CA83 /* U512+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B5F215434000019CA83 /* U512+Mul.swift */; };
 		81AE0B97215434000019CA83 /* U512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B60215434000019CA83 /* U512.swift */; };
-		81AE0B98215434000019CA83 /* U512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B60215434000019CA83 /* U512.swift */; };
 		81AE0B99215434000019CA83 /* U512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B61215434000019CA83 /* U512+Aux.swift */; };
-		81AE0B9A215434000019CA83 /* U512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B61215434000019CA83 /* U512+Aux.swift */; };
 		81AE0B9B215434000019CA83 /* U512+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B62215434000019CA83 /* U512+Sub.swift */; };
-		81AE0B9C215434000019CA83 /* U512+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B62215434000019CA83 /* U512+Sub.swift */; };
 		81AE0B9D215434000019CA83 /* U512+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B63215434000019CA83 /* U512+Mod.swift */; };
-		81AE0B9E215434000019CA83 /* U512+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B63215434000019CA83 /* U512+Mod.swift */; };
 		81AE0B9F215434000019CA83 /* U512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B64215434000019CA83 /* U512+Add.swift */; };
-		81AE0BA0215434000019CA83 /* U512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B64215434000019CA83 /* U512+Add.swift */; };
 		81AE0BA1215434000019CA83 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B65215434000019CA83 /* UInt32.swift */; };
-		81AE0BA2215434000019CA83 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B65215434000019CA83 /* UInt32.swift */; };
 		81AE0BA3215434000019CA83 /* FiniteWidthInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B66215434000019CA83 /* FiniteWidthInteger.swift */; };
-		81AE0BA4215434000019CA83 /* FiniteWidthInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B66215434000019CA83 /* FiniteWidthInteger.swift */; };
 		81AE0BA5215434000019CA83 /* vUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B67215434000019CA83 /* vUInt32.swift */; };
-		81AE0BA6215434000019CA83 /* vUInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B67215434000019CA83 /* vUInt32.swift */; };
 		81AE0BA7215434000019CA83 /* U128+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B69215434000019CA83 /* U128+Comparable.swift */; };
-		81AE0BA8215434000019CA83 /* U128+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B69215434000019CA83 /* U128+Comparable.swift */; };
 		81AE0BA9215434000019CA83 /* U128+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6A215434000019CA83 /* U128+BitAccessible.swift */; };
-		81AE0BAA215434000019CA83 /* U128+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6A215434000019CA83 /* U128+BitAccessible.swift */; };
 		81AE0BAB215434000019CA83 /* U128+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6B215434000019CA83 /* U128+Equatable.swift */; };
-		81AE0BAC215434000019CA83 /* U128+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6B215434000019CA83 /* U128+Equatable.swift */; };
 		81AE0BAD215434000019CA83 /* U128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6C215434000019CA83 /* U128.swift */; };
-		81AE0BAE215434000019CA83 /* U128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6C215434000019CA83 /* U128.swift */; };
 		81AE0BAF215434000019CA83 /* U256+Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6E215434000019CA83 /* U256+Numeric.swift */; };
-		81AE0BB0215434000019CA83 /* U256+Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6E215434000019CA83 /* U256+Numeric.swift */; };
 		81AE0BB1215434000019CA83 /* U256+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6F215434000019CA83 /* U256+Comparable.swift */; };
-		81AE0BB2215434000019CA83 /* U256+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B6F215434000019CA83 /* U256+Comparable.swift */; };
 		81AE0BB3215434000019CA83 /* U256+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B70215434000019CA83 /* U256+Mod.swift */; };
-		81AE0BB4215434000019CA83 /* U256+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B70215434000019CA83 /* U256+Mod.swift */; };
 		81AE0BB5215434000019CA83 /* U256+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B71215434000019CA83 /* U256+Add.swift */; };
-		81AE0BB6215434000019CA83 /* U256+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B71215434000019CA83 /* U256+Add.swift */; };
 		81AE0BB7215434000019CA83 /* U256+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B72215434000019CA83 /* U256+Equatable.swift */; };
-		81AE0BB8215434000019CA83 /* U256+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B72215434000019CA83 /* U256+Equatable.swift */; };
 		81AE0BB9215434000019CA83 /* U256+BitOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B73215434000019CA83 /* U256+BitOps.swift */; };
-		81AE0BBA215434000019CA83 /* U256+BitOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B73215434000019CA83 /* U256+BitOps.swift */; };
 		81AE0BBB215434000019CA83 /* U256+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B74215434000019CA83 /* U256+Sub.swift */; };
-		81AE0BBC215434000019CA83 /* U256+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B74215434000019CA83 /* U256+Sub.swift */; };
 		81AE0BBD215434000019CA83 /* U256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B75215434000019CA83 /* U256.swift */; };
-		81AE0BBE215434000019CA83 /* U256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B75215434000019CA83 /* U256.swift */; };
 		81AE0BBF215434000019CA83 /* U256+Mont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B76215434000019CA83 /* U256+Mont.swift */; };
-		81AE0BC0215434000019CA83 /* U256+Mont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B76215434000019CA83 /* U256+Mont.swift */; };
 		81AE0BC1215434000019CA83 /* U256+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B77215434000019CA83 /* U256+Aux.swift */; };
-		81AE0BC2215434000019CA83 /* U256+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B77215434000019CA83 /* U256+Aux.swift */; };
 		81AE0BC3215434000019CA83 /* U256+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B78215434000019CA83 /* U256+Div.swift */; };
-		81AE0BC4215434000019CA83 /* U256+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B78215434000019CA83 /* U256+Div.swift */; };
 		81AE0BC5215434000019CA83 /* U256+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B79215434000019CA83 /* U256+BitAccessible.swift */; };
-		81AE0BC6215434000019CA83 /* U256+BitAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B79215434000019CA83 /* U256+BitAccessible.swift */; };
 		81AE0BC7215434000019CA83 /* U256+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B7A215434000019CA83 /* U256+Mul.swift */; };
-		81AE0BC8215434000019CA83 /* U256+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AE0B7A215434000019CA83 /* U256+Mul.swift */; };
 		81AE0BCA215436160019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BC9215436160019CA83 /* Accelerate.framework */; };
-		81AE0BCC2154361F0019CA83 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE0BCB2154361F0019CA83 /* Accelerate.framework */; };
 		81E5C087215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */; };
-		81E5C088215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */; };
 		81EB29972165277700E8E3C2 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
-		81EB29982165277700E8E3C2 /* CubicExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */; };
 		81EB299B21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */; };
-		81EB299C21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */; };
 		81F74E5D21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
-		81F74E5E21591041006D4E9A /* BN256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5C21591041006D4E9A /* BN256.swift */; };
 		81F74E6021591058006D4E9A /* Secp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5F21591058006D4E9A /* Secp256k1.swift */; };
-		81F74E6121591058006D4E9A /* Secp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E5F21591058006D4E9A /* Secp256k1.swift */; };
 		81F74E64215912F4006D4E9A /* FieldPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E63215912F4006D4E9A /* FieldPolynomial.swift */; };
-		81F74E65215912F4006D4E9A /* FieldPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E63215912F4006D4E9A /* FieldPolynomial.swift */; };
 		81F74E6721591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6621591334006D4E9A /* FieldPolynomialProtocol.swift */; };
-		81F74E6821591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6621591334006D4E9A /* FieldPolynomialProtocol.swift */; };
 		81F74E6A21591E11006D4E9A /* EllipticSwiftPolynomialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6921591E11006D4E9A /* EllipticSwiftPolynomialTests.swift */; };
 		81F74E6D215965E6006D4E9A /* ArithmeticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6C215965E6006D4E9A /* ArithmeticsProtocol.swift */; };
-		81F74E6E215965E6006D4E9A /* ArithmeticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6C215965E6006D4E9A /* ArithmeticsProtocol.swift */; };
 		81F74E7021596A3D006D4E9A /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6F21596A3D006D4E9A /* FieldElement.swift */; };
-		81F74E7121596A3D006D4E9A /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6F21596A3D006D4E9A /* FieldElement.swift */; };
 		81F74E732159757D006D4E9A /* GroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E722159757D006D4E9A /* GroupProtocol.swift */; };
-		81F74E742159757D006D4E9A /* GroupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E722159757D006D4E9A /* GroupProtocol.swift */; };
 		81F74E772159773C006D4E9A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
-		81F74E782159773C006D4E9A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
 		81F74E7A21597903006D4E9A /* ExtensionFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */; };
-		81F74E7B21597903006D4E9A /* ExtensionFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */; };
 		81F74E7E2159872A006D4E9A /* DoubleAndAddExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */; };
-		81F74E7F2159872A006D4E9A /* DoubleAndAddExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */; };
 		81F74E8121598F8A006D4E9A /* kSlidingWindowExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */; };
-		81F74E8221598F8A006D4E9A /* kSlidingWindowExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */; };
 		81F74E84215990AE006D4E9A /* UInt64+BitsAndBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E83215990AE006D4E9A /* UInt64+BitsAndBytes.swift */; };
-		81F74E85215990AE006D4E9A /* UInt64+BitsAndBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E83215990AE006D4E9A /* UInt64+BitsAndBytes.swift */; };
-		DFA16E70679BCDDE7252FDCF /* Pods_EllipticSwift_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BA8928F002F9DEBEC86D0F /* Pods_EllipticSwift_iOS.framework */; };
 		F9F701DF4008E1E6BE0EFDD3 /* Pods_EllipticSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40792BF309C45D0D4C35AA1D /* Pods_EllipticSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -157,9 +98,6 @@
 		8165EBB92154337900C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8165EBC32154337900C7117A /* EllipticSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftTests.swift; sourceTree = "<group>"; };
 		8165EBC52154337900C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8165EBD4215433CC00C7117A /* EllipticSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8165EBD6215433CC00C7117A /* EllipticSwift_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift_iOS.h; sourceTree = "<group>"; };
-		8165EBD7215433CC00C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81AE0B4D215434000019CA83 /* WeirstrassCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeirstrassCurve.swift; sourceTree = "<group>"; };
 		81AE0B4F215434000019CA83 /* AffineCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffineCoordinates.swift; sourceTree = "<group>"; };
 		81AE0B50215434000019CA83 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -242,15 +180,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8165EBD1215433CC00C7117A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81AE0BCC2154361F0019CA83 /* Accelerate.framework in Frameworks */,
-				DFA16E70679BCDDE7252FDCF /* Pods_EllipticSwift_iOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -281,7 +210,6 @@
 			children = (
 				8165EBB72154337900C7117A /* EllipticSwift */,
 				8165EBC22154337900C7117A /* EllipticSwiftTests */,
-				8165EBD5215433CC00C7117A /* EllipticSwift_iOS */,
 				8122DE4A21543A8400870D39 /* EllipticSwiftTests */,
 				8165EBB62154337900C7117A /* Products */,
 				77B4EF01108EC3871CD7F91D /* Pods */,
@@ -293,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				8165EBB52154337900C7117A /* EllipticSwift.framework */,
-				8165EBD4215433CC00C7117A /* EllipticSwift_iOS.framework */,
 				8122DE4921543A8400870D39 /* EllipticSwiftTests.xctest */,
 			);
 			name = Products;
@@ -326,15 +253,6 @@
 				8165EBC52154337900C7117A /* Info.plist */,
 			);
 			path = EllipticSwiftTests;
-			sourceTree = "<group>";
-		};
-		8165EBD5215433CC00C7117A /* EllipticSwift_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				8165EBD6215433CC00C7117A /* EllipticSwift_iOS.h */,
-				8165EBD7215433CC00C7117A /* Info.plist */,
-			);
-			path = EllipticSwift_iOS;
 			sourceTree = "<group>";
 		};
 		81AE0B4C215434000019CA83 /* Curve */ = {
@@ -534,14 +452,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8165EBCF215433CC00C7117A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8165EBD8215433CC00C7117A /* EllipticSwift_iOS.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -584,25 +494,6 @@
 			productReference = 8165EBB52154337900C7117A /* EllipticSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8165EBD3215433CC00C7117A /* EllipticSwift_iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8165EBDB215433CC00C7117A /* Build configuration list for PBXNativeTarget "EllipticSwift_iOS" */;
-			buildPhases = (
-				40A93B7748000EF5DA274F9D /* [CP] Check Pods Manifest.lock */,
-				8165EBCF215433CC00C7117A /* Headers */,
-				8165EBD0215433CC00C7117A /* Sources */,
-				8165EBD1215433CC00C7117A /* Frameworks */,
-				8165EBD2215433CC00C7117A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = EllipticSwift_iOS;
-			productName = EllipticSwift_iOS;
-			productReference = 8165EBD4215433CC00C7117A /* EllipticSwift_iOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -617,9 +508,6 @@
 						CreatedOnToolsVersion = 10.0;
 					};
 					8165EBB42154337900C7117A = {
-						CreatedOnToolsVersion = 10.0;
-					};
-					8165EBD3215433CC00C7117A = {
 						CreatedOnToolsVersion = 10.0;
 					};
 				};
@@ -637,7 +525,6 @@
 			projectRoot = "";
 			targets = (
 				8165EBB42154337900C7117A /* EllipticSwift */,
-				8165EBD3215433CC00C7117A /* EllipticSwift_iOS */,
 				8122DE4821543A8400870D39 /* EllipticSwiftTests */,
 			);
 		};
@@ -658,38 +545,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8165EBD2215433CC00C7117A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		40A93B7748000EF5DA274F9D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EllipticSwift_iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5FC1210624A23186C7B41BD1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -830,69 +688,6 @@
 				81AE0BAF215434000019CA83 /* U256+Numeric.swift in Sources */,
 				81F74E6721591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */,
 				81AE0B99215434000019CA83 /* U512+Aux.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8165EBD0215433CC00C7117A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81AE0BA0215434000019CA83 /* U512+Add.swift in Sources */,
-				81AE0BA4215434000019CA83 /* FiniteWidthInteger.swift in Sources */,
-				81AE0B84215434000019CA83 /* CurveProtocols.swift in Sources */,
-				8122DE5E215447D300870D39 /* MontgommeryCurve.swift in Sources */,
-				81246A15215E74EF005A0B65 /* CurveOverArithmericsProtocol.swift in Sources */,
-				81AE0B86215434000019CA83 /* Data+Bytes.swift in Sources */,
-				81AE0B8A215434000019CA83 /* WindowMethods.swift in Sources */,
-				81AE0BB8215434000019CA83 /* U256+Equatable.swift in Sources */,
-				81AE0BAE215434000019CA83 /* U128.swift in Sources */,
-				81AE0BA2215434000019CA83 /* UInt32.swift in Sources */,
-				81EB29982165277700E8E3C2 /* CubicExtensionField.swift in Sources */,
-				81AE0BB2215434000019CA83 /* U256+Comparable.swift in Sources */,
-				81AE0BC6215434000019CA83 /* U256+BitAccessible.swift in Sources */,
-				81AE0B90215434000019CA83 /* MontPrimeField.swift in Sources */,
-				81F74E8221598F8A006D4E9A /* kSlidingWindowExponentiation.swift in Sources */,
-				81F74E85215990AE006D4E9A /* UInt64+BitsAndBytes.swift in Sources */,
-				81F74E6121591058006D4E9A /* Secp256k1.swift in Sources */,
-				81E5C088215BF27B00BF7D52 /* NaivePrimeFiniteField.swift in Sources */,
-				81AE0BB4215434000019CA83 /* U256+Mod.swift in Sources */,
-				81AE0BC2215434000019CA83 /* U256+Aux.swift in Sources */,
-				81AE0B9E215434000019CA83 /* U512+Mod.swift in Sources */,
-				81AE0B96215434000019CA83 /* U512+Mul.swift in Sources */,
-				81AE0BBC215434000019CA83 /* U256+Sub.swift in Sources */,
-				81F74E782159773C006D4E9A /* QuadraticExtensionField.swift in Sources */,
-				81AE0B98215434000019CA83 /* U512.swift in Sources */,
-				81F74E7F2159872A006D4E9A /* DoubleAndAddExponentiation.swift in Sources */,
-				81AE0B8E215434000019CA83 /* FieldProtocols.swift in Sources */,
-				81AE0BC4215434000019CA83 /* U256+Div.swift in Sources */,
-				81AE0BBE215434000019CA83 /* U256.swift in Sources */,
-				81AE0B82215434000019CA83 /* Point.swift in Sources */,
-				81AE0B88215434000019CA83 /* Constants.swift in Sources */,
-				81AE0BC8215434000019CA83 /* U256+Mul.swift in Sources */,
-				81F74E6E215965E6006D4E9A /* ArithmeticsProtocol.swift in Sources */,
-				81F74E65215912F4006D4E9A /* FieldPolynomial.swift in Sources */,
-				81AE0BC0215434000019CA83 /* U256+Mont.swift in Sources */,
-				81F74E742159757D006D4E9A /* GroupProtocol.swift in Sources */,
-				81AE0B8C215434000019CA83 /* NaivePrimeField.swift in Sources */,
-				81F74E7B21597903006D4E9A /* ExtensionFieldProtocol.swift in Sources */,
-				81F74E7121596A3D006D4E9A /* FieldElement.swift in Sources */,
-				81F74E5E21591041006D4E9A /* BN256.swift in Sources */,
-				81EB299C21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift in Sources */,
-				81AE0B9C215434000019CA83 /* U512+Sub.swift in Sources */,
-				81AE0B80215434000019CA83 /* AffineCoordinates.swift in Sources */,
-				81AE0BA8215434000019CA83 /* U128+Comparable.swift in Sources */,
-				81AE0B94215434000019CA83 /* U512+Div.swift in Sources */,
-				81AE0BAA215434000019CA83 /* U128+BitAccessible.swift in Sources */,
-				81AE0BB6215434000019CA83 /* U256+Add.swift in Sources */,
-				81AE0B92215434000019CA83 /* PrimeFieldElement.swift in Sources */,
-				81AE0BBA215434000019CA83 /* U256+BitOps.swift in Sources */,
-				81AE0BA6215434000019CA83 /* vUInt32.swift in Sources */,
-				81AE0B7C215434000019CA83 /* WeirstrassCurve.swift in Sources */,
-				81AE0BAC215434000019CA83 /* U128+Equatable.swift in Sources */,
-				81AE0BB0215434000019CA83 /* U256+Numeric.swift in Sources */,
-				81AE0B9A215434000019CA83 /* U512+Aux.swift in Sources */,
-				81F74E6821591334006D4E9A /* FieldPolynomialProtocol.swift in Sources */,
-				8122DE5D215447D100870D39 /* TwistedEdwardsCurve.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,63 +918,6 @@
 			};
 			name = Release;
 		};
-		8165EBD9215433CC00C7117A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8211FE381B08CE983FD86E8 /* Pods-EllipticSwift_iOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 62V9CKQN89;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = EllipticSwift_iOS/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shamatar.EllipticSwift-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		8165EBDA215433CC00C7117A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1115AED3A4B27A038C78B34A /* Pods-EllipticSwift_iOS.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 62V9CKQN89;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = EllipticSwift_iOS/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "shamatar.EllipticSwift-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1206,15 +944,6 @@
 			buildConfigurations = (
 				8165EBCA2154337900C7117A /* Debug */,
 				8165EBCB2154337900C7117A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8165EBDB215433CC00C7117A /* Build configuration list for PBXNativeTarget "EllipticSwift_iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8165EBD9215433CC00C7117A /* Debug */,
-				8165EBDA215433CC00C7117A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
