@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>EllipticSwift_iOS_Tests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>8165EBB42154337900C7117A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>817A16352167AEA5009C7B2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

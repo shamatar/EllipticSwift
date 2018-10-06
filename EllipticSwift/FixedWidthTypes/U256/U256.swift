@@ -16,6 +16,9 @@ public let U256vectors = 2
 public let U256MAX = U256(Data(repeating: 255, count: U256byteLength))!
 public let U256MIN = U256(Data(repeating: 0, count: U256byteLength))!
 
+extension U256: FiniteFieldCompatible {
+}
+
 extension U256: BytesInitializable, BytesRepresentable {
     
     public init?(_ bytes: Data) {

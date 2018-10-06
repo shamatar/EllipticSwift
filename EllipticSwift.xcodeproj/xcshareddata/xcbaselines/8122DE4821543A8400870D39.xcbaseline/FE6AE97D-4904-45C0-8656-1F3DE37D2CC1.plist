@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classNames</key>
+	<dict>
+		<key>EllipticSwiftNativeUIntsTests</key>
+		<dict>
+			<key>testAdditionPerformance0()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>7.2116e-06</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testAdditionPerformance1()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>2.2516e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testAdditionPerformance2()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1.6381e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>EllipticSwiftTests</key>
+		<dict>
+			<key>testDivisionPerf()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>8.1496e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testDivisionPerf128()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>4.64e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testDivisionPerfTinyUInt128()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.00046149</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testDivisionPerfTinyUInt256()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.025566</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testExpPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.023896</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testExpPerformanceTinyUInt()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>2.345</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testExpPerformanceTinyUIntMontForm()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.41225</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testModMulPerf()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.0001921</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testModMulPerfTinuUInt256()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>7.7582</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testModMulPerfTinuUInt256InMont()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.0015907</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testMulPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>3.9078e-05</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testMulPerformanceTinyUInt()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.00068805</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

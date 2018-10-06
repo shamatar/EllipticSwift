@@ -14,7 +14,7 @@ public final class QuadraticExtensionField<F>: ExtensionFieldProtocol where F: F
     public typealias PolynomialCoefficientType = FiniteFieldElement<F>
     public typealias FE = PolynomialCoefficientType
     public typealias ReductionPolynomial = (FE, FE, FE)
-    public typealias ScalarType = U256
+//    public typealias ScalarType = U256
     public typealias RawType = (FE, FE)
     public typealias ElementType = (FE, FE)
     
@@ -200,12 +200,12 @@ public final class QuadraticExtensionField<F>: ExtensionFieldProtocol where F: F
         return (quotient, remainder)
     }
     
-    public func pow(_ a: ElementType, _ b: ScalarType) -> ElementType {
+    public func pow(_ a: ElementType, _ b: BitsAndBytes) -> ElementType {
         let res = self.doubleAndAddExponentiation(a, b)
         return res
     }
     
-    internal func doubleAndAddExponentiation(_ a: ElementType, _ b: ScalarType) -> ElementType {
+    internal func doubleAndAddExponentiation(_ a: ElementType, _ b: BitsAndBytes) -> ElementType {
         var base = a
         var result = self.identityElement
         let bitwidth = b.bitWidth

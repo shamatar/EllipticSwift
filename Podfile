@@ -22,4 +22,11 @@ target 'EllipticSwift_iOS' do
   use_frameworks!
 #  use_modular_headers!
   import_pods
+  target 'EllipticSwift_iOS_Tests' do
+    use_frameworks!
+    platform :ios, '9.0'
+    inherit! :search_paths
+    import_pods
+    # Pods for testing
+  end
 end

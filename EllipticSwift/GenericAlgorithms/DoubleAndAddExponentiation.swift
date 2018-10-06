@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal func doubleAndAddExponentiation<T, U>(_ a: T, _ b: U) -> T where T: Arithmetics, T: UInt64Initializable, U: BitsAndBytes {
+internal func DoubleAndAddExponentiationGeneric<T, U>(_ a: T, _ b: U) -> T where T: Arithmetics, T: UInt64Initializable, U: BitsAndBytes {
     var base = a
     var result = T.init(UInt64(1))
     let bitwidth = b.bitWidth
@@ -24,9 +24,9 @@ internal func doubleAndAddExponentiation<T, U>(_ a: T, _ b: U) -> T where T: Ari
     return result
 }
 
-fileprivate typealias multiplicationFunction<T> = (T, T) -> T
+//fileprivate typealias multiplicationFunction<T> = (T, T) -> T
 
-internal func doubleAndAddExponentiation<T, U>(a: T, power: U, identity: T, multiplicationFunction: (T, T) -> T) -> T where U: BitsAndBytes {
+internal func DoubleAndAddExponentiationGeneric<T, U>(a: T, power: U, identity: T, multiplicationFunction: (T, T) -> T) -> T where U: BitsAndBytes {
     var base = a
     var result = identity
     let bitwidth = power.bitWidth

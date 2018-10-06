@@ -12,10 +12,10 @@ import BigInt
 // bn256
 internal let bn256PrimeBUI = BigUInt("21888242871839275222246405745257275088696311157297823662689037894645226208583", radix: 10)!
 public let bn256Prime = U256(bn256PrimeBUI.serialize())!
-public let bn256PrimeField = MontPrimeField<U256>(bn256PrimeBUI)
+public let bn256PrimeField = NaivePrimeField<U256>(bn256PrimeBUI)
 internal let bn256CurveOrderBUI = BigUInt("21888242871839275222246405745257275088548364400416034343698204186575808495617", radix: 10)!
 public let bn256CurveOrder = U256(bn256CurveOrderBUI.serialize())!
-public let bn256Curve: WeierstrassCurve<MontPrimeField<U256>> = {
+public let bn256Curve: WeierstrassCurve<NaivePrimeField<U256>> = {
     let curve = WeierstrassCurve(field: bn256PrimeField, order: bn256CurveOrder, A: U256(0), B: U256(3))
     let generatorX = BigUInt("1", radix: 10)!
     let generatorY = BigUInt("2", radix: 10)!
@@ -24,6 +24,7 @@ public let bn256Curve: WeierstrassCurve<MontPrimeField<U256>> = {
     return curve
 }()
 
+#if os(OSX)
 public let BN256Prime = U256(bn256PrimeBUI.serialize())!
 public let BN256FF = NaivePrimeFiniteField<U256>.init(BN256Prime)
 internal let BN256FFzero = FiniteFieldElement.zeroElement(BN256FF)
@@ -54,4 +55,6 @@ public let BN256G2Curve: ExtendableWeierstrassCurve<QuadraticExtensionField<Naiv
     let curve = ExtendableWeierstrassCurve(field: BN256F2, order: BN256CurveOrder, A: zero, B: B)
     return curve
 }()
+#endif
+
 

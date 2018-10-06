@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal func kSlidingWindowExponentiation<T, U>(a: T, power: U, identity: T, multiplicationFunction: (T, T) -> T, windowSize: Int = DefaultWindowSize) -> T where U: BitsAndBytes {
+internal func kSlidingWindowExponentiationGeneric<T, U>(a: T, power: U, identity: T, multiplicationFunction: (T, T) -> T, windowSize: Int = DefaultWindowSize) -> T where U: BitsAndBytes {
     let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
     var precomputations = [T](repeating: identity, count: numPrecomputedElements)
     precomputations[0] = a
@@ -24,7 +24,7 @@ internal func kSlidingWindowExponentiation<T, U>(a: T, power: U, identity: T, mu
             result = multiplicationFunction(result, result)
         } else {
             let chosenPower = powers[i]
-            let intermediatePower = doubleAndAddExponentiation(a: result, power: chosenPower, identity: identity, multiplicationFunction: multiplicationFunction) // use trivial form to don't go recursion
+            let intermediatePower = DoubleAndAddExponentiationGeneric(a: result, power: chosenPower, identity: identity, multiplicationFunction: multiplicationFunction) // use trivial form to don't go recursion
             result = multiplicationFunction(intermediatePower, precomputations[lookupCoeff])
         }
     }

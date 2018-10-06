@@ -7,14 +7,18 @@
 //
 
 import Foundation
-import Accelerate
 
+#if os(OSX)
+import Accelerate
 public typealias U256 = vU256
 public typealias U512 = vU512
 public typealias U1024 = vU1024
+#elseif os(iOS)
+public typealias U256 = TinyUInt256
+public typealias U512 = TinyUInt512
+public typealias U1024 = TinyUInt1024
+#endif
 
-extension U256: FiniteFieldCompatible {
-}
 
 public protocol FiniteFieldCompatible: Comparable, Numeric, ModReducable, BytesInitializable, BitsAndBytes, BitShiftable, EvenOrOdd, UInt64Initializable, FastZeroInitializable {
 }

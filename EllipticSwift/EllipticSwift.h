@@ -5,11 +5,12 @@
 //  Created by Alex Vlasov on 20.09.2018.
 //  Copyright © 2018 Alex Vlasov. All rights reserved.
 //
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
+//#if TARGET_OS_IPHONE
+//#import <UIKit/UIKit.h>
+//#else
+//#import <Cocoa/Cocoa.h>
+//#endif
 #import <Cocoa/Cocoa.h>
-#endif
 //! Project version number for EllipticSwift.
 FOUNDATION_EXPORT double EllipticSwiftVersionNumber;
 

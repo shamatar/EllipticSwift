@@ -53,45 +53,45 @@ public final class NaivePrimeFiniteField<T>: FiniteFieldProtocol where T: Finite
     
     @_specialize(exported: false, where T == U256)
     internal func doubleAndAddExponentiation(_ a: ElementType, _ b: ElementType) -> ElementType {
-        return EllipticSwift.doubleAndAddExponentiation(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul)
-        var base = a
-        var result = self.identityElement
-        let bitwidth = b.bitWidth
-        for i in 0 ..< bitwidth {
-            if b.bit(i) {
-                result = self.mul(result, base)
-            }
-            if i == bitwidth - 1 {
-                break
-            }
-            base = mul(base, base)
-        }
-        return result
+        return DoubleAndAddExponentiationGeneric(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul)
+//        var base = a
+//        var result = self.identityElement
+//        let bitwidth = b.bitWidth
+//        for i in 0 ..< bitwidth {
+//            if b.bit(i) {
+//                result = self.mul(result, base)
+//            }
+//            if i == bitwidth - 1 {
+//                break
+//            }
+//            base = mul(base, base)
+//        }
+//        return result
     }
     
     @_specialize(exported: false, where T == U256)
     internal func kSlidingWindowExponentiation(_ a: T, _ b: T, windowSize: Int = DefaultWindowSize) -> T {
-        return EllipticSwift.kSlidingWindowExponentiation(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul, windowSize: windowSize)
-        let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
-        var precomputations = [T](repeating: self.identityElement, count: numPrecomputedElements)
-        precomputations[0] = a
-        precomputations[1] = self.mul(a, a)
-        for i in 2 ..< numPrecomputedElements {
-            precomputations[i] = self.mul(precomputations[i-2], precomputations[1])
-        }
-        var result = self.identityElement
-        let (lookups, powers) = computeSlidingWindow(scalar: b, windowSize: windowSize)
-        for i in 0 ..< lookups.count {
-            let lookupCoeff = lookups[i]
-            if lookupCoeff == -1 {
-                result = self.mul(result, result)
-            } else {
-                let power = powers[i]
-                let intermediatePower = self.doubleAndAddExponentiation(result, T(power)) // use trivial form to don't go recursion
-                result = self.mul(intermediatePower, precomputations[lookupCoeff])
-            }
-        }
-        return result
+        return kSlidingWindowExponentiationGeneric(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul, windowSize: windowSize)
+//        let numPrecomputedElements = (1 << windowSize) - 1 // 2**k - 1
+//        var precomputations = [T](repeating: self.identityElement, count: numPrecomputedElements)
+//        precomputations[0] = a
+//        precomputations[1] = self.mul(a, a)
+//        for i in 2 ..< numPrecomputedElements {
+//            precomputations[i] = self.mul(precomputations[i-2], precomputations[1])
+//        }
+//        var result = self.identityElement
+//        let (lookups, powers) = computeSlidingWindow(scalar: b, windowSize: windowSize)
+//        for i in 0 ..< lookups.count {
+//            let lookupCoeff = lookups[i]
+//            if lookupCoeff == -1 {
+//                result = self.mul(result, result)
+//            } else {
+//                let power = powers[i]
+//                let intermediatePower = self.doubleAndAddExponentiation(result, T(power)) // use trivial form to don't go recursion
+//                result = self.mul(intermediatePower, precomputations[lookupCoeff])
+//            }
+//        }
+//        return result
     }
     
     @_specialize(exported: true, where T == U256)
@@ -120,7 +120,7 @@ public final class NaivePrimeFiniteField<T>: FiniteFieldProtocol where T: Finite
     }
     
     @_specialize(exported: true, where T == U256)
-    public func pow(_ a: ElementType, _ b: BytesRepresentable) -> ElementType {
+    public func pow(_ a: ElementType, _ b: BitsAndBytes) -> ElementType {
         let t = ElementType(b.bytes)
         precondition(t != nil)
         return self.pow(a, t!)

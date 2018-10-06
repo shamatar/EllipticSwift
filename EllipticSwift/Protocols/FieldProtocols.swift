@@ -12,7 +12,7 @@ import BigInt
 public protocol FiniteFieldProtocol {
     associatedtype ElementType
     associatedtype RawType
-    associatedtype ScalarType
+//    associatedtype ScalarType
     
 //    var modulus: RawType {get}
 //
@@ -27,9 +27,9 @@ public protocol FiniteFieldProtocol {
     func sub(_ a: ElementType, _ b: ElementType) -> ElementType
     func neg(_ a: ElementType) -> ElementType
     func mul(_ a: ElementType, _ b: ElementType) -> ElementType
-    func pow(_ a: ElementType, _ b: ScalarType) -> ElementType
+//    func pow(_ a: ElementType, _ b: ScalarType) -> ElementType
 //    func pow(_ a: ElementType, _ b: ElementType) -> ElementType
-//    func pow(_ a: ElementType, _ b: BytesRepresentable) -> ElementType
+    func pow(_ a: ElementType, _ b: BitsAndBytes) -> ElementType
     func inv(_ a: ElementType) -> ElementType
     func sqrt(_ a: ElementType) -> ElementType
     

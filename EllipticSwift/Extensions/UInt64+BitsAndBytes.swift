@@ -37,6 +37,4 @@ extension UInt64: BitsAndBytes {
     public static var zero: UInt64 {
         return UInt64(0)
     }
-    
-    
 }

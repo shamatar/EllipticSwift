@@ -19,6 +19,185 @@ class EllipticSwiftTests: XCTestCase {
         XCTAssert(c != nil)
     }
     
+    func testFullMul() {
+        let ar = BigUInt.randomInteger(withMaximumWidth: 256)
+        let a = TinyUInt256(ar.serialize())!
+        let br = BigUInt.randomInteger(withMaximumWidth: 256)
+        let b = TinyUInt256(br.serialize())!
+        let res = a.multipliedFullWidth(by: b)
+        let data = res.high.bytes + res.low.bytes
+        let serialized = (ar * br).serialize()
+        XCTAssert(serialized == Data(data[64 - serialized.count ..< 64]))
+    }
+    
+    func testMulPerformance() {
+        let ar = BigUInt.randomInteger(withMaximumWidth: 256)
+        let br = BigUInt.randomInteger(withMaximumWidth: 256)
+        measure {
+            let _ = ar * br
+        }
+    }
+    
+    func testMulPerformanceTinyUInt() {
+        let ar = BigUInt.randomInteger(withMaximumWidth: 256)
+        let a = TinyUInt256(ar.serialize())!
+        let br = BigUInt.randomInteger(withMaximumWidth: 256)
+        let b = TinyUInt256(br.serialize())!
+        measure {
+            let _ = a.multipliedFullWidth(by: b)
+        }
+    }
+    
+    func testModMul() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let modulus = TinyUInt256(secp256k1PrimeBUI.serialize())!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        let res = a.modMultiply(b, modulus)
+        let naive = (ar * br) % secp256k1PrimeBUI
+        XCTAssert(String(naive) == String(res))
+    }
+    
+    func testDivision128() {
+        let ar = BigUInt.randomInteger(withExactWidth: 128)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        let a = TinyUInt128(ar.serialize())!
+        let b = TinyUInt128(br.serialize())!
+        let (q, r) = a.quotientAndRemainder(dividingBy: b)
+        let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
+        print(String(q))
+        print(String(qr))
+        XCTAssert(String(q) == String(qr))
+        XCTAssert(String(r) == String(rr))
+    }
+    
+    func testDivision() {
+        let ar = BigUInt.randomInteger(withExactWidth: 256)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        let (q, r) = a.quotientAndRemainder(dividingBy: b)
+        let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
+        XCTAssert(String(q) == String(qr))
+        XCTAssert(String(r) == String(rr))
+    }
+    
+    func testDivisionPerf() {
+        let ar = BigUInt.randomInteger(withExactWidth: 256)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        measure {
+            let _ = ar.quotientAndRemainder(dividingBy: br)
+        }
+    }
+    
+    func testDivisionPerf128() {
+        let ar = BigUInt.randomInteger(withExactWidth: 128)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        measure {
+            let _ = ar.quotientAndRemainder(dividingBy: br)
+        }
+    }
+    
+    func testDivisionPerfTinyUInt128() {
+        let ar = BigUInt.randomInteger(withExactWidth: 128)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        let a = TinyUInt128(ar.serialize())!
+        let b = TinyUInt128(br.serialize())!
+        measure {
+            let _ = a.quotientAndRemainder(dividingBy: b)
+        }
+    }
+    
+    func testDivisionPerfTinyUInt256() {
+        let ar = BigUInt.randomInteger(withExactWidth: 256)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        measure {
+            let _ = a.quotientAndRemainder(dividingBy: b)
+        }
+    }
+    
+    func testModMulPerf() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        measure {
+            let _ = (ar * br) % secp256k1PrimeBUI
+        }
+    }
+    
+    func testModMulPerfTinuUInt256() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let modulus = TinyUInt256(secp256k1PrimeBUI.serialize())!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        measure {
+            let _ = a.modMultiply(b, modulus)
+        }
+    }
+    
+    func testModMulPerfTinuUInt256InMont() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let secp256k1PrimeField = MontPrimeField<TinyUInt256>.init(secp256k1PrimeBUI)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        let A = FieldElement.fromValue(a, field: secp256k1PrimeField)
+        let B = FieldElement.fromValue(b, field: secp256k1PrimeField)
+        measure {
+            let _ = A * B
+        }
+    }
+    
+    func testProfileModExp() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        let secp256k1PrimeField = NaivePrimeField<TinyUInt256>.init(secp256k1PrimeBUI)
+        let _ = secp256k1PrimeField.pow(a, b)
+    }
+    
+    func testExpPerformance() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        measure {
+            let _ = ar.power(br, modulus: secp256k1PrimeBUI)
+        }
+    }
+    
+    func testExpPerformanceTinyUInt() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        let secp256k1PrimeField = NaivePrimeField<TinyUInt256>.init(secp256k1PrimeBUI)
+        measure {
+            let _ = secp256k1PrimeField.pow(a, b)
+        }
+    }
+    
+    func testExpPerformanceTinyUIntMontForm() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = TinyUInt256(ar.serialize())!
+        let b = TinyUInt256(br.serialize())!
+        let secp256k1PrimeField = MontPrimeField<TinyUInt256>.init(secp256k1PrimeBUI)
+        measure {
+            let _ = secp256k1PrimeField.pow(a, b)
+        }
+    }
+    
     func testPointDoublingAndMultiplication() {
         let c = EllipticSwift.secp256k1Curve
         let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
