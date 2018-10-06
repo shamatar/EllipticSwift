@@ -134,22 +134,32 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
     }
     
     func testU256Division() {
-        let ar = BigUInt.randomInteger(withMaximumWidth: 256)
-        let br = BigUInt.randomInteger(lessThan: ar)
-        let a = NativeU256(ar)
-        let b = NativeU256(br)
-        let (q, r) = a.divide(by: b)
-        let (qq, rr) = ar.quotientAndRemainder(dividingBy: br)
-        for i in 0 ..< 4 {
-            XCTAssert(q.words[i] == qq.words[i])
-            XCTAssert(r.words[i] == rr.words[i])
-            print("Q")
-            print(q.words[i])
-            print(qq.words[i])
-            
-            print("R")
-            print(r.words[i])
-            print(rr.words[i])
+        for _ in 0 ..< 10 {
+            let ar = BigUInt.randomInteger(withMaximumWidth: 256)
+            let br = BigUInt.randomInteger(lessThan: ar)
+            let a = NativeU256(ar)
+            let b = NativeU256(br)
+            let (q, r) = a.divide(by: b)
+            let (qq, rr) = ar.quotientAndRemainder(dividingBy: br)
+            for i in 0 ..< 4 {
+                XCTAssert(q.words[i] == qq.words[i])
+                XCTAssert(r.words[i] == rr.words[i])
+            }
+        }
+    }
+    
+    func testU256Division2() {
+        for _ in 0 ..< 10 {
+            let ar = BigUInt.randomInteger(withMaximumWidth: 256)
+            let br = BigUInt.randomInteger(withMaximumWidth: 256)
+            let a = NativeU256(ar)
+            let b = NativeU256(br)
+            let (q, r) = a.divide(by: b)
+            let (qq, rr) = ar.quotientAndRemainder(dividingBy: br)
+            for i in 0 ..< 4 {
+                XCTAssert(q.words[i] == qq.words[i])
+                XCTAssert(r.words[i] == rr.words[i])
+            }
         }
     }
     

@@ -332,30 +332,21 @@ extension NativeU256 {
         return (div, mod)
     }
     
-    public func divide(by y: NativeU256) -> (NativeU256, NativeU256) {
+    public func divide(by b: NativeU256) -> (NativeU256, NativeU256) {
         // This is a Swift adaptation of "divmnu" from Hacker's Delight, which is in
         // turn a C adaptation of Knuth's Algorithm D (TAOCP vol 2, 4.3.1).
         
-        precondition(!y.isZero)
+        precondition(!b.isZero)
         
-        let x = NativeU256()
-        x.storage.copyMemory(from: self.storage, byteCount: U256ByteLength)
+        let x = NativeU256(self)
         
         // First, let's take care of the easy cases.
-        if x < y {
+        if x < b {
             return (NativeU256(), x)
         }
         
-        let leadingZeroes = x.leadingZeroBitCount
+        let y = NativeU256(b)
         let quotient = NativeU256()
-        let tmpStorage = x.storage.assumingMemoryBound(to: UInt64.self)
-        if leadingZeroes != 0 {
-            for i in (1 ..< U256WordWidth).reversed() {
-                tmpStorage[i] = (tmpStorage[i] << leadingZeroes) | (tmpStorage[i-1] >> (64 - leadingZeroes))
-            }
-            tmpStorage[0] = tmpStorage[0] << leadingZeroes
-        }
-        precondition(x.leadingZeroBitCount == 0)
         let dc = y.wordCount
         let xWordCount = x.wordCount
         if dc >= 2 && xWordCount >= 3 {
@@ -383,12 +374,6 @@ extension NativeU256 {
             }
         } else {
             precondition(false)
-        }
-        if leadingZeroes != 0 {
-            for i in (0 ..< U256WordWidth-1) {
-                tmpStorage[i] = (tmpStorage[i] >> leadingZeroes) | (tmpStorage[i+1] << (64 - leadingZeroes))
-            }
-            tmpStorage[U256WordWidth-1] = tmpStorage[U256WordWidth-1] >> leadingZeroes
         }
         return (quotient, x)
     }
