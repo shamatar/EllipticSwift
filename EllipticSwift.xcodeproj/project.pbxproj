@@ -203,6 +203,8 @@
 		817A176D2168C014009C7B2A /* NativeU256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A176C2168C014009C7B2A /* NativeU256.swift */; };
 		817A176E2168C014009C7B2A /* NativeU256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A176C2168C014009C7B2A /* NativeU256.swift */; };
 		817A17712168C5C6009C7B2A /* EllipticSwiftNativeUIntsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A17702168C5C6009C7B2A /* EllipticSwiftNativeUIntsTests.swift */; };
+		817A177321690225009C7B2A /* NativeU512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A177221690225009C7B2A /* NativeU512.swift */; };
+		817A177421690225009C7B2A /* NativeU512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A177221690225009C7B2A /* NativeU512.swift */; };
 		81F74E6A21591E11006D4E9A /* EllipticSwiftPolynomialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6921591E11006D4E9A /* EllipticSwiftPolynomialTests.swift */; };
 		F9F701DF4008E1E6BE0EFDD3 /* Pods_EllipticSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40792BF309C45D0D4C35AA1D /* Pods_EllipticSwiftTests.framework */; };
 /* End PBXBuildFile section */
@@ -290,6 +292,7 @@
 		817A17682168AD5A009C7B2A /* TinyUInt512+FF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TinyUInt512+FF.swift"; sourceTree = "<group>"; };
 		817A176C2168C014009C7B2A /* NativeU256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeU256.swift; sourceTree = "<group>"; };
 		817A17702168C5C6009C7B2A /* EllipticSwiftNativeUIntsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftNativeUIntsTests.swift; sourceTree = "<group>"; };
+		817A177221690225009C7B2A /* NativeU512.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeU512.swift; sourceTree = "<group>"; };
 		81AE0B4D215434000019CA83 /* WeirstrassCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeirstrassCurve.swift; sourceTree = "<group>"; };
 		81AE0B4F215434000019CA83 /* AffineCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffineCoordinates.swift; sourceTree = "<group>"; };
 		81AE0B50215434000019CA83 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -581,6 +584,7 @@
 		817A176F2168C124009C7B2A /* NativeU512 */ = {
 			isa = PBXGroup;
 			children = (
+				817A177221690225009C7B2A /* NativeU512.swift */,
 			);
 			path = NativeU512;
 			sourceTree = "<group>";
@@ -1153,6 +1157,7 @@
 				817A17192167C3A5009C7B2A /* TinyUInt1024Hashable.swift in Sources */,
 				817A16FC2167C3A5009C7B2A /* TinyUInt256CustomStringConvertible.swift in Sources */,
 				817A164A2167AECA009C7B2A /* FieldPolynomial.swift in Sources */,
+				817A177321690225009C7B2A /* NativeU512.swift in Sources */,
 				817A171B2167C3A5009C7B2A /* TinyUInt1024Comparable.swift in Sources */,
 				817A16562167AEE1009C7B2A /* PrimeFieldElement.swift in Sources */,
 				817A16582167AEE1009C7B2A /* MontPrimeField.swift in Sources */,
@@ -1300,6 +1305,7 @@
 				817A16B62167AFA1009C7B2A /* FieldPolynomialProtocol.swift in Sources */,
 				817A17472167DCF8009C7B2A /* TinyUInt256ExpressibleByIntegerLiteral.swift in Sources */,
 				817A16B72167AFA1009C7B2A /* U512+Aux.swift in Sources */,
+				817A177421690225009C7B2A /* NativeU512.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
