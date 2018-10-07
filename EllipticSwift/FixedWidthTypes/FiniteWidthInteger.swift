@@ -15,7 +15,7 @@ public typealias U512 = vU512
 public typealias U1024 = vU1024
 #elseif os(iOS)
 public typealias U256 = TinyUInt256
-public typealias U512 = TinyUInt512
+public typealias U512 = NativeU256
 public typealias U1024 = TinyUInt1024
 #endif
 

@@ -65,7 +65,7 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
         let a = NativeU256(ar)
         let b = NativeU256(br)
         measure {
-            let _ = a.addMod64(b)
+            let _ = a.addMod(b)
         }
     }
     
@@ -74,7 +74,7 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
         let br = BigUInt.randomInteger(lessThan: ar)
         let a = NativeU256(ar)
         let b = NativeU256(br)
-        let c = b.subMod64(a)
+        let c = b.subMod(a)
         let mod = BigUInt(1) << 256
         let cr = br + mod - ar
         print(cr.serialize().bytes)
@@ -191,5 +191,84 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
         measure {
             let _ = a.divide(by: b)
         }
+    }
+    
+    func testArithmeticsU512() {
+        let ar = BigUInt.randomInteger(withMaximumWidth: 512)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        let a = NativeU512(ar)
+        let b = NativeU512(br)
+        let mod = BigUInt(1) << 512
+        let sumr = (ar + br) % mod
+        let sum = a.addMod(b)
+        XCTAssert(compareEq(sum, sumr))
+        let subr = (ar - br) % mod
+        let sub = a.subMod(b)
+        XCTAssert(compareEq(sub, subr))
+        let mulr = (ar * br) % mod
+        let mul = a.halfMul(b)
+        XCTAssert(compareEq(mul, mulr))
+        var copy = NativeU512(a)
+        copy.inplaceHalfMul(b)
+        XCTAssert(compareEq(copy, mulr))
+        
+        copy = NativeU512(a)
+        copy.inplaceAddMod(b)
+        XCTAssert(compareEq(copy, sumr))
+        
+        copy = NativeU512(a)
+        copy.inplaceSubMod(b)
+        XCTAssert(compareEq(copy, subr))
+        
+        let (q, r) = a.divide(by: b)
+        let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
+        XCTAssert(compareEq(q, qr))
+        XCTAssert(compareEq(r, rr))
+    }
+    
+    func testArithmeticsU256() {
+        let mr = secp256k1PrimeBUI
+        let ar = BigUInt.randomInteger(lessThan: mr)
+        let br = BigUInt.randomInteger(lessThan: ar)
+        let a = NativeU256(ar)
+        let b = NativeU256(br)
+        let m = NativeU256(mr)
+        let mod = BigUInt(1) << 256
+        let sumr = (ar + br) % mod
+        let sum = a + b
+        XCTAssert(compareEq(sum, sumr))
+        let subr = (ar - br) % mod
+        let sub = a - b
+        XCTAssert(compareEq(sub, subr))
+        let mulr = (ar * br) % mod
+        let mul = a.halfMul(b)
+        XCTAssert(compareEq(mul, mulr))
+        
+        let (q, r) = a.div(b)
+        let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
+        XCTAssert(compareEq(q, qr))
+        XCTAssert(compareEq(r, rr))
+        
+        let modmul = a.modMultiply(b, m)
+        let modmulr = (ar * br) % mr
+        XCTAssert(compareEq(modmul, modmulr))
+    }
+    
+    func compareEq(_ a: NativeU256, _ b: BigUInt) -> Bool {
+        for i in 0 ..< 4 {
+            if a.words[i] != b.words[i] {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func compareEq(_ a: NativeU512, _ b: BigUInt) -> Bool {
+        for i in 0 ..< 8 {
+            if a.words[i] != b.words[i] {
+                return false
+            }
+        }
+        return true
     }
 }

@@ -71,6 +71,6 @@ extension TinyUInt128: BitsAndBytes {
 
 extension TinyUInt128: EvenOrOdd {
     public var isEven: Bool {
-        return self.storage.secondHalf & UInt64(1) > 0
+        return self.storage.secondHalf & UInt64(1) == 0
     }
 }

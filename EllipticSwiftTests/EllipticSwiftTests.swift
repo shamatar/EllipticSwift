@@ -141,6 +141,18 @@ class EllipticSwiftTests: XCTestCase {
         }
     }
     
+    func testModMulPerfNativeU256() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        let modulus = NativeU256(secp256k1PrimeBUI.serialize())!
+        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+        let a = NativeU256(ar.serialize())!
+        let b = NativeU256(br.serialize())!
+        measure {
+            let _ = a.modMultiply(b, modulus)
+        }
+    }
+    
     func testModMulPerfTinuUInt256InMont() {
         let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
         let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
@@ -621,6 +633,30 @@ class EllipticSwiftTests: XCTestCase {
         let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
         XCTAssert(p != nil)
         let res = c.mul(U256(scalar.serialize())! , p!)
+        let resAff = res.toAffine().coordinates
+        XCTAssert(!resAff.isInfinity)
+        XCTAssert(resAff.X == BigUInt("e2b1976566023f61f70893549a497dbf68f14e6cb44ba1b3bbe8c438a172a7b0", radix: 16)!)
+        XCTAssert(resAff.Y == BigUInt("d088864d26ac7c96690ebc652b2906e8f2b85bccfb27b181d587899ccab4b442", radix: 16)!)
+    }
+    
+    func testPointMulInGenericsNativeU256() {
+        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+        //        let secp256k1PrimeField = MontPrimeField<U256>.init(secp256k1PrimeBUI)
+        let secp256k1PrimeField = NaivePrimeField<NativeU256>.init(secp256k1PrimeBUI)
+        let secp256k1CurveOrderBUI = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
+        let secp256k1CurveOrder = NativeU256(secp256k1CurveOrderBUI.serialize())!
+        let secp256k1WeierstrassCurve = WeierstrassCurve(field: secp256k1PrimeField, order: secp256k1CurveOrder, A: NativeU256(UInt64(0)), B: NativeU256(UInt64(0)))
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        let success = secp256k1WeierstrassCurve.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(success, "Failed to init secp256k1 curve!")
+        
+        let scalar = BigUInt("e853ff4cc88e32bc6c2b74ffaca14a7e4b118686e77eefb086cb0ae298811127", radix: 16)!
+        let c = secp256k1WeierstrassCurve
+        let p = c.toPoint(BigUInt("5cfdf0eaa22d4d954067ab6f348e400f97357e2703821195131bfe78f7c92b38", radix: 16)!, BigUInt("584171d79868d22fae4442faede6d2c4972a35d1699453254d1b0df029225032", radix: 16)!)
+        XCTAssert(p != nil)
+        let ss = NativeU256(scalar.serialize())!
+        let res = c.mul(ss, p!)
         let resAff = res.toAffine().coordinates
         XCTAssert(!resAff.isInfinity)
         XCTAssert(resAff.X == BigUInt("e2b1976566023f61f70893549a497dbf68f14e6cb44ba1b3bbe8c438a172a7b0", radix: 16)!)
