@@ -270,25 +270,36 @@ extension NativeU512 {
         self.storage.copyMemory(from: mulResult.storage, byteCount: U512ByteLength)
     }
     
-    func inplaceMultiply(byWord: UInt64) {
-        let mulResult = NativeU512()
-        let tempStorage = mulResult.storage.assumingMemoryBound(to: UInt64.self)
+    @inline(__always) func inplaceMultiply(byWord: UInt64, shiftedBy: Int = 0) -> UInt64 {
+        if byWord == 0 {
+            let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
+            for i in 0 ..< 4 {
+                typedStorage[i] = 0
+            }
+            return 0
+        } else if byWord == 1 {
+            if shiftedBy == 0 {
+                return 0
+            }
+        }
+        let mulResult = UnsafeMutableRawPointer.allocate(byteCount: U512ByteLength + 8, alignment: 64)
+        mulResult.initializeMemory(as: UInt64.self, repeating: 0, count: U512WordWidth + 1)
+        let tempStorage = mulResult.assumingMemoryBound(to: UInt64.self)
         let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
         var carry = UInt64(0) // carry is like a "double word carry"
         let (b_top, b_bottom) = splitUInt64(byWord)
-        for j in 0 ..< U512WordWidth {
+        for j in 0 ..< (U512WordWidth - shiftedBy) {
             if typedStorage[j] != 0 || carry != 0 {
                 let a = splitUInt64(typedStorage[j])
-                let (of_bottom, c_bottom) = mixedMulAdd(a, b_bottom, tempStorage[j])
+                let m = j + shiftedBy
+                let (of_bottom, c_bottom) = mixedMulAdd(a, b_bottom, tempStorage[m])
                 let (of_top, c_top) = mixedMulAdd(a, b_top, c_bottom >> 32)
-                tempStorage[j]  = (c_bottom & maskLowerBits) &+ (c_top << 32);
+                tempStorage[m]  = (c_bottom & maskLowerBits) &+ (c_top << 32);
                 var res = (c_top >> 32) + (of_top << 32);
                 var o1 = false
                 var o2 = false
                 (res, o1) = res.addingReportingOverflow(of_bottom &+ carry)
-                if j + 1 < U512WordWidth {
-                    (tempStorage[j + 1], o2) = res.addingReportingOverflow(tempStorage[j + 1])
-                }
+                (tempStorage[m + 1], o2) = res.addingReportingOverflow(tempStorage[m + 1])
                 if o1 || o2 {
                     carry = 1
                 } else {
@@ -296,7 +307,12 @@ extension NativeU512 {
                 }
             }
         }
-        self.storage.copyMemory(from: mulResult.storage, byteCount: U512ByteLength)
+        if carry != 0 {
+            precondition(false)
+            tempStorage[U512WordWidth] = tempStorage[U512WordWidth] + 1
+        }
+        self.storage.copyMemory(from: mulResult, byteCount: U512ByteLength)
+        return tempStorage[U512WordWidth]
     }
     
     @inline(__always) internal func divide(byWord y: UInt64) -> UInt64 {
@@ -321,44 +337,74 @@ extension NativeU512 {
     public func divide(by b: NativeU512) -> (NativeU512, NativeU512) {
         precondition(!b.isZero)
         
-        let x = NativeU512(self.storage)
+        var x = NativeU512(self)
         
         // First, let's take care of the easy cases.
         if x < b {
             return (NativeU512(), x)
         }
-        
-        let y = NativeU512(b)
-        let quotient = NativeU512()
-        let dc = y.wordCount
-        let xWordCount = x.wordCount
-        if dc >= 2 && xWordCount >= 3 {
-            let d1 = y[dc - 1]
-            let d0 = y[dc - 2]
-            let product = NativeU512()
-            for j in (dc ... xWordCount).reversed() {
-                
-                let r2 = x[j]
-                let r1 = x[j - 1]
-                let r0 = x[j - 2]
-                let q = approximateQuotient(dividing: (r2, r1, r0), by: (d1, d0))
-                product.storage.copyMemory(from: y.storage, byteCount: U512ByteLength)
-                product.inplaceMultiply(byWord: q)
-                let partial = x.extract(j - dc ..< j + 1)
-                if product <= partial {
-                    x.inplaceSubMod(NativeU512(product.storage, shiftedBy: j - dc))
-                    quotient[j - dc] = q
-                }
-                else {
-//                    precondition(false)
-                    x.inplaceAddMod(NativeU512(y.storage, shiftedBy: j - dc))
-                    x.inplaceSubMod(NativeU512(product.storage, shiftedBy: j - dc))
-                    quotient[j - dc] = q - 1
-                }
-            }
-        } else {
-            precondition(false)
+        let dc = b.wordCount
+        if dc == 1 {
+            let (q, r) = self.quotientAndRemainder(dividingByWord: b[0])
+            return (q, NativeU512(r))
         }
+        
+        var y = NativeU512(b)
+        let leadingZeroes = UInt32(y[dc - 1].leadingZeroBitCount)
+        let quotient = NativeU512()
+        let xWordCount = x.wordCount
+        var xTopBits = x[U512WordWidth - 1] >> (64 - leadingZeroes)
+        x <<= leadingZeroes
+        y <<= leadingZeroes
+        let d1 = y[dc - 1]
+        let d0 = y[dc - 2]
+        let product = NativeU512()
+        for j in (dc ... xWordCount).reversed() {
+            let m = j - dc
+            // pad with 0 highest word
+            var r2 = x[j]
+            if j == xWordCount {
+                r2 = xTopBits
+            }
+            let r1 = x[j - 1]
+            let r0 = x[j - 2]
+            // we have properly reduced the highest word
+            let q = approximateQuotient(dividing: (r2, r1, r0), by: (d1, d0))
+            product.storage.copyMemory(from: y.storage, byteCount: U512ByteLength)
+            let of = product.inplaceMultiply(byWord: q, shiftedBy: m)
+            if j == xWordCount {
+                if xTopBits > of {
+                    // product is definatelly less than x
+                    xTopBits = xTopBits - of
+                    x.inplaceSubMod(NativeU512(product.storage))
+                    quotient[m] = q
+                } else if xTopBits == of {
+                    // extended word bits are equal
+                    xTopBits = 0
+                    if product <= x {
+                        x.inplaceSubMod(NativeU512(product.storage))
+                        quotient[m] = q
+                    } else {
+                        x.inplaceAddMod(NativeU512(y.storage))
+                        x.inplaceSubMod(NativeU512(product.storage))
+                        quotient[m] = q - 1
+                    }
+                } else {
+                    // we need to virtually borrow due to q being overshoot
+                    x.inplaceAddMod(NativeU512(y.storage))
+                    x.inplaceSubMod(NativeU512(product.storage))
+                    quotient[m] = q - 1
+                }
+            } else if product <= x {
+                x.inplaceSubMod(NativeU512(product.storage))
+                quotient[m] = q
+            } else {
+                x.inplaceAddMod(NativeU512(y.storage))
+                x.inplaceSubMod(NativeU512(product.storage))
+                quotient[m] = q - 1
+            }
+        }
+        x >>= leadingZeroes
         return (quotient, x)
     }
 }
@@ -496,8 +542,8 @@ extension NativeU512 {
     func extract(_ range: CountableRange<Int>) -> NativeU512 {
         let new = NativeU512()
         var bytesToCopy = 8 * range.distance(from: range.lowerBound, to: range.upperBound)
-        if bytesToCopy > U512WordWidth {
-            bytesToCopy = U512WordWidth
+        if bytesToCopy > U512ByteLength {
+            bytesToCopy = U512ByteLength
         }
         new.storage.copyMemory(from: self.storage.advanced(by: 8 * range.lowerBound), byteCount: bytesToCopy)
         return new
@@ -529,5 +575,55 @@ extension NativeU512 {
         } else {
             return modulus.subMod(old)
         }
+    }
+}
+
+extension NativeU512: BitShiftable {
+    public static func << (lhs: NativeU512, rhs: UInt32) -> NativeU512 {
+        precondition(rhs <= 64)
+        let new = NativeU512()
+        let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
+        let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
+        for i in (1 ..< U512WordWidth).reversed() {
+            typedStorage[i] = (originalStorage[i] << rhs) | (originalStorage[i-1] >> (64 - rhs))
+        }
+        typedStorage[0] = originalStorage[0] << rhs
+        return new
+    }
+    
+    public static func <<= (lhs: inout NativeU512, rhs: UInt32) {
+        precondition(rhs <= 64)
+        let new = NativeU512()
+        let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
+        let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
+        for i in (1 ..< U512WordWidth).reversed() {
+            typedStorage[i] = (originalStorage[i] << rhs) | (originalStorage[i-1] >> (64 - rhs))
+        }
+        typedStorage[0] = originalStorage[0] << rhs
+        lhs.storage.copyMemory(from: new.storage, byteCount: U512ByteLength)
+    }
+    
+    public static func >> (lhs: NativeU512, rhs: UInt32) -> NativeU512 {
+        precondition(rhs <= 64)
+        let new = NativeU512()
+        let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
+        let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
+        for i in (0 ..< U512WordWidth-1).reversed() {
+            typedStorage[i] = (originalStorage[i] >> rhs) | (originalStorage[i+1] << (64 - rhs))
+        }
+        typedStorage[U512WordWidth-1] = originalStorage[U512WordWidth-1] >> rhs
+        return new
+    }
+    
+    public static func >>= (lhs: inout NativeU512, rhs: UInt32) {
+        precondition(rhs <= 64)
+        let new = NativeU512()
+        let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
+        let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
+        for i in (0 ..< U512WordWidth-1).reversed() {
+            typedStorage[i] = (originalStorage[i] >> rhs) | (originalStorage[i+1] << (64 - rhs))
+        }
+        typedStorage[U512WordWidth-1] = originalStorage[U512WordWidth-1] >> rhs
+        lhs.storage.copyMemory(from: new.storage, byteCount: U512ByteLength)
     }
 }

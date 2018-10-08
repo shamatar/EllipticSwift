@@ -62,6 +62,9 @@ public final class NativeU256 {
         for i in 0 ..< max {
             typedStorage[i] = UInt64(a.words[i])
         }
+        for i in max ..< U256WordWidth {
+             typedStorage[i] = 0
+        }
     }
     
     deinit {
@@ -71,20 +74,6 @@ public final class NativeU256 {
 }
 
 extension NativeU256 {
-
-//    public func addMod(_ a: NativeU256) -> NativeU256 {
-//        let addResult = NativeU256()
-//        let tempStorage = addResult.storage.assumingMemoryBound(to: UInt32.self)
-//        let typedStorage = self.storage.assumingMemoryBound(to: UInt32.self)
-//        let otherStorage = a.storage.assumingMemoryBound(to: UInt32.self)
-//        var carry = UInt64(0)
-//        for i in 0 ..< U256WordWidth*2 {
-//            let result = UInt64(typedStorage[i]) &+ UInt64(otherStorage[i]) &+ carry
-//            carry = result >> 32
-//            tempStorage[i] = UInt32(result & maskLowerBits)
-//        }
-//        return addResult
-//    }
     
     public func addMod(_ a: NativeU256) -> NativeU256 {
         let addResult = NativeU256()
@@ -284,25 +273,36 @@ extension NativeU256 {
         self.storage.copyMemory(from: mulResult.storage, byteCount: U256ByteLength)
     }
     
-    func inplaceMultiply(byWord: UInt64) {
-        let mulResult = NativeU256()
-        let tempStorage = mulResult.storage.assumingMemoryBound(to: UInt64.self)
+    @inline(__always) func inplaceMultiply(byWord: UInt64, shiftedBy: Int = 0) -> UInt64 {
+        if byWord == 0 {
+            let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
+            for i in 0 ..< 4 {
+                typedStorage[i] = 0
+            }
+            return 0
+        } else if byWord == 1 {
+            if shiftedBy == 0 {
+                return 0
+            }
+        }
+        let mulResult = UnsafeMutableRawPointer.allocate(byteCount: U256ByteLength + 8, alignment: 64)
+        mulResult.initializeMemory(as: UInt64.self, repeating: 0, count: 5)
+        let tempStorage = mulResult.assumingMemoryBound(to: UInt64.self)
         let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
         var carry = UInt64(0) // carry is like a "double word carry"
         let (b_top, b_bottom) = splitUInt64(byWord)
-        for j in 0 ..< U256WordWidth {
+        for j in 0 ..< (U256WordWidth - shiftedBy) {
             if typedStorage[j] != 0 || carry != 0 {
                 let a = splitUInt64(typedStorage[j])
-                let (of_bottom, c_bottom) = mixedMulAdd(a, b_bottom, tempStorage[j])
+                let m = j + shiftedBy
+                let (of_bottom, c_bottom) = mixedMulAdd(a, b_bottom, tempStorage[m])
                 let (of_top, c_top) = mixedMulAdd(a, b_top, c_bottom >> 32)
-                tempStorage[j]  = (c_bottom & maskLowerBits) &+ (c_top << 32);
+                tempStorage[m]  = (c_bottom & maskLowerBits) &+ (c_top << 32);
                 var res = (c_top >> 32) + (of_top << 32);
                 var o1 = false
                 var o2 = false
                 (res, o1) = res.addingReportingOverflow(of_bottom &+ carry)
-                if j + 1 < U256WordWidth {
-                    (tempStorage[j + 1], o2) = res.addingReportingOverflow(tempStorage[j + 1])
-                }
+                (tempStorage[m + 1], o2) = res.addingReportingOverflow(tempStorage[m + 1])
                 if o1 || o2 {
                     carry = 1
                 } else {
@@ -310,7 +310,12 @@ extension NativeU256 {
                 }
             }
         }
-        self.storage.copyMemory(from: mulResult.storage, byteCount: U256ByteLength)
+        if carry != 0 {
+            precondition(false)
+            tempStorage[4] = tempStorage[4] + 1
+        }
+        self.storage.copyMemory(from: mulResult, byteCount: U256ByteLength)
+        return tempStorage[4]
     }
     
     @inline(__always) internal func divide(byWord y: UInt64) -> UInt64 {
@@ -335,46 +340,77 @@ extension NativeU256 {
     public func divide(by b: NativeU256) -> (NativeU256, NativeU256) {
         precondition(!b.isZero)
         
-        let x = NativeU256(self)
+        var x = NativeU256(self)
         
         // First, let's take care of the easy cases.
         if x < b {
             return (NativeU256(), x)
         }
-        
-        let y = NativeU256(b)
-        let quotient = NativeU256()
-        let dc = y.wordCount
-        let xWordCount = x.wordCount
-        if dc >= 2 && xWordCount >= 3 {
-            let d1 = y[dc - 1]
-            let d0 = y[dc - 2]
-            let product = NativeU256()
-            for j in (dc ... xWordCount).reversed() {
-
-                let r2 = x[j]
-                let r1 = x[j - 1]
-                let r0 = x[j - 2]
-                let q = approximateQuotient(dividing: (r2, r1, r0), by: (d1, d0))
-                product.storage.copyMemory(from: y.storage, byteCount: U256ByteLength)
-                product.inplaceMultiply(byWord: q)
-                let partial = x.extract(j - dc ..< j + 1)
-                if product <= partial {
-                    x.inplaceSubMod(NativeU256(product.storage, shiftedBy: j - dc))
-                    quotient[j - dc] = q
-                }
-                else {
-                    precondition(false)
-                    x.inplaceAddMod(NativeU256(y.storage, shiftedBy: j - dc))
-                    x.inplaceSubMod(NativeU256(product.storage, shiftedBy: j - dc))
-                    quotient[j - dc] = q - 1
-                }
-            }
-        } else {
-            precondition(false)
+        let dc = b.wordCount
+        if dc == 1 {
+            let (q, r) = self.quotientAndRemainder(dividingByWord: b[0])
+            return (q, NativeU256(r))
         }
+
+        var y = NativeU256(b)
+        let leadingZeroes = UInt32(y[dc - 1].leadingZeroBitCount)
+        let quotient = NativeU256()
+        let xWordCount = x.wordCount
+        var xTopBits = x[U256WordWidth - 1] >> (64 - leadingZeroes)
+        x <<= leadingZeroes
+        y <<= leadingZeroes
+        let d1 = y[dc - 1]
+        let d0 = y[dc - 2]
+        let product = NativeU256()
+        for j in (dc ... xWordCount).reversed() {
+            let m = j - dc
+            // pad with 0 highest word
+            var r2 = x[j]
+            if j == xWordCount {
+                r2 = xTopBits
+            }
+            let r1 = x[j - 1]
+            let r0 = x[j - 2]
+            // we have properly reduced the highest word
+            let q = approximateQuotient(dividing: (r2, r1, r0), by: (d1, d0))
+            product.storage.copyMemory(from: y.storage, byteCount: U256ByteLength)
+            let of = product.inplaceMultiply(byWord: q, shiftedBy: m)
+            if j == xWordCount {
+                if xTopBits > of {
+                    // product is definatelly less than x
+                    xTopBits = xTopBits - of
+                    x.inplaceSubMod(NativeU256(product.storage))
+                    quotient[m] = q
+                } else if xTopBits == of {
+                    // extended word bits are equal
+                    xTopBits = 0
+                    if product <= x {
+                        x.inplaceSubMod(NativeU256(product.storage))
+                        quotient[m] = q
+                    } else {
+                        x.inplaceAddMod(NativeU256(y.storage))
+                        x.inplaceSubMod(NativeU256(product.storage))
+                        quotient[m] = q - 1
+                    }
+                } else {
+                    // we need to virtually borrow due to q being overshoot
+                    x.inplaceAddMod(NativeU256(y.storage))
+                    x.inplaceSubMod(NativeU256(product.storage))
+                    quotient[m] = q - 1
+                }
+            } else if product <= x {
+                x.inplaceSubMod(NativeU256(product.storage))
+                quotient[m] = q
+            } else {
+                x.inplaceAddMod(NativeU256(y.storage))
+                x.inplaceSubMod(NativeU256(product.storage))
+                quotient[m] = q - 1
+            }
+        }
+        x >>= leadingZeroes
         return (quotient, x)
     }
+    
 }
 
 extension NativeU256: CustomDebugStringConvertible {
@@ -491,5 +527,17 @@ extension NativeU256 {
         }
         new.storage.copyMemory(from: self.storage.advanced(by: 8 * range.lowerBound), byteCount: bytesToCopy)
         return new
+    }
+}
+
+extension NativeU256 {
+    func toBigUInt() -> BigUInt {
+
+        var words = [BigUInt.Word]()
+        for i in 0 ..< U256WordWidth {
+            words.append(BigUInt.Word(self[i]))
+        }
+        let b = BigUInt.init(words: words)
+        return b
     }
 }

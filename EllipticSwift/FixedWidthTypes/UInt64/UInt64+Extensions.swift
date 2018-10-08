@@ -117,21 +117,62 @@ extension UInt64 {
         let (s, o) = x.0.addingReportingOverflow(x.1)
         if o { return q }
         r = s
-    }
-    else {
+    } else {
         (q, r) = fastDividingFullWidth((x.0, x.1), y.0)
     }
     // Now refine q by considering x.2 and y.1.
     // Note that since y is normalized, q * y - x is between 0 and 2.
     let (ph, pl) = q.multipliedFullWidth(by: y.1)
     if ph < r || (ph == r && pl <= x.2) { return q }
-    
+
     let (r1, ro) = r.addingReportingOverflow(y.0)
     if ro { return q - 1 }
+
+    let (pl1, so) = pl.subtractingReportingOverflow(y.1)
+    let ph1 = (so ? ph - 1 : ph)
+
+    if ph1 < r1 || (ph1 == r1 && pl1 <= x.2) { return q - 1 }
+    return q - 2
+}
+
+@inline(__always) func approximateQuotientNotNormalized(dividing x: (UInt64, UInt64, UInt64), by y: (UInt64, UInt64)) -> (UInt64, Bool) {
+    // ideally 3 by 2 division algorithm requires y.high > 2^(n-1) (no leading zeroes)
+    var q: UInt64
+    var r: UInt64
+    
+    if x.0 > y.0 {
+//        print("A")
+//        print(x.0)
+//        print("B")
+//        print(y.0)
+        (q, r) = x.0.quotientAndRemainder(dividingBy: y.0)
+//        print("Q")
+//        print(q)
+//        print("R")
+//        print(r)
+//        let (qr, rr) = fastDividingFullWidth((r, x.1), y.0)
+//        return (q, false)
+//        return (x.0/y.0, true)
+        // now refine
+    } else if x.0 == y.0 {
+        q = UInt64.max
+        let (s, o) = x.0.addingReportingOverflow(x.1)
+        if o { return (q, false) }
+        r = s
+    } else {
+        (q, r) = fastDividingFullWidth((x.0, x.1), y.0)
+    }
+    // Now refine q by considering x.2 and y.1.
+    // Note that since y is normalized, q * y - x is between 0 and 2.
+    let (ph, pl) = q.multipliedFullWidth(by: y.1)
+    if ph < r || (ph == r && pl <= x.2) { return (q, false)}
+    
+    let (r1, ro) = r.addingReportingOverflow(y.0)
+    if ro { return (q - 1, false) }
     
     let (pl1, so) = pl.subtractingReportingOverflow(y.1)
     let ph1 = (so ? ph - 1 : ph)
     
-    if ph1 < r1 || (ph1 == r1 && pl1 <= x.2) { return q - 1 }
-    return q - 2
+    if ph1 < r1 || (ph1 == r1 && pl1 <= x.2) { return (q - 1, false) }
+    return (q - 2, false)
 }

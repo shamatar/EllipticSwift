@@ -60,11 +60,9 @@ extension NativeU256: Numeric {
 
 extension NativeU256: ModReducable {
     public func modMultiply(_ a: NativeU256, _ modulus: NativeU256) -> NativeU256 {
-        let fullMul =  self.fullMultiply(a)
-        // second half is lower bits in BE
-        let extended = NativeU512((fullMul.0, fullMul.1))
+        let fullMul = self.fullMul(a)
         let extendedModulus = NativeU512((NativeU256(), modulus))
-        let (_, reduced) = extended.divide(by: extendedModulus)
+        let (_, reduced) = fullMul.divide(by: extendedModulus)
         let (_, b) = reduced.split()
         return b
     }
@@ -116,10 +114,15 @@ extension NativeU256: BytesInitializable {
         if bytes.count > 32 {
             return nil
         }
-        var d = Data(bytes.reversed())
+        let d = Data(repeating: 0, count: 32 - bytes.count) + bytes
         d.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> Void in
-            let ptr = UnsafeRawPointer(ptr)
-            self.storage.copyMemory(from: ptr, byteCount: d.count)
+            let ptr = UnsafeRawPointer(ptr).assumingMemoryBound(to: UInt64.self)
+            let typedPointer = self.storage.assumingMemoryBound(to: UInt64.self)
+            for i in 0 ..< U256WordWidth {
+                let t = ptr[i]
+                let swapped = t.byteSwapped
+                typedPointer[U256WordWidth - 1 - i] = swapped
+            }
         }
     }
 }
@@ -163,16 +166,40 @@ extension NativeU256: BitShiftable {
         return new
     }
     
+    public static func <<= (lhs: inout NativeU256, rhs: UInt32) {
+        precondition(rhs <= 64)
+        let new = NativeU256()
+        let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
+        let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
+        for i in (1 ..< U256WordWidth).reversed() {
+            typedStorage[i] = (originalStorage[i] << rhs) | (originalStorage[i-1] >> (64 - rhs))
+        }
+        typedStorage[0] = originalStorage[0] << rhs
+        lhs.storage.copyMemory(from: new.storage, byteCount: U256ByteLength)
+    }
+    
     public static func >> (lhs: NativeU256, rhs: UInt32) -> NativeU256 {
         precondition(rhs <= 64)
         let new = NativeU256()
         let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
         let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
         for i in (0 ..< U256WordWidth-1).reversed() {
-            typedStorage[i] = (originalStorage[i] >> rhs) | (originalStorage[i+11] << (64 - rhs))
+            typedStorage[i] = (originalStorage[i] >> rhs) | (originalStorage[i+1] << (64 - rhs))
         }
         typedStorage[U256WordWidth-1] = originalStorage[U256WordWidth-1] >> rhs
         return new
+    }
+    
+    public static func >>= (lhs: inout NativeU256, rhs: UInt32) {
+        precondition(rhs <= 64)
+        let new = NativeU256()
+        let typedStorage = new.storage.assumingMemoryBound(to: UInt64.self)
+        let originalStorage = lhs.storage.assumingMemoryBound(to: UInt64.self)
+        for i in (0 ..< U256WordWidth-1).reversed() {
+            typedStorage[i] = (originalStorage[i] >> rhs) | (originalStorage[i+1] << (64 - rhs))
+        }
+        typedStorage[U256WordWidth-1] = originalStorage[U256WordWidth-1] >> rhs
+        lhs.storage.copyMemory(from: new.storage, byteCount: U256ByteLength)
     }
 }
 
