@@ -8,7 +8,7 @@
 
 import Foundation
 
-let maskLowerBits = UInt64(0xffffffff)
+let maskLowerBits = (UInt64(1) << 32) - 1
 let maskHigherBits = maskLowerBits << 32
 
 @inline(__always) func splitUInt64(_ a: UInt64) -> (UInt64, UInt64) {

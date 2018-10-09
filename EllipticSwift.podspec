@@ -15,17 +15,13 @@ s.social_media_url = 'https://twitter.com/shamatar'
 
 s.swift_version = '4.1'
 s.module_name = 'EllipticSwift'
-s.source_files = 'EllipticSwift/**/*.swift', 'EllipticSwift/PrecompiledCurves/**/*.swift', 'EllipticSwift/EllipticSwift.h'
-
+s.source_files = 'EllipticSwift/Common/**/*.swift', 'EllipticSwift/Common/PrecompiledCurves/**/*.swift', 'EllipticSwift/EllipticSwift.h'
 s.ios.deployment_target = "9.0"
+s.ios.source_files = 'EllipticSwift/iOS/**/*.swift'
 
-s.ios.source_files = 'EllipticSwift/FixedWidthTypes/UInt64/*.swift', 'EllipticSwift/FixedWidthTypes/NativeU256/*.swift', 'EllipticSwift/FixedWidthTypes/NativeU512/*.swift'
+s.osx.deployment_target = "10.11"
 
-
-#s.osx.deployment_target = "10.11"
-
-#s.osx.source_files = 'EllipticSwift/*/*.{swift}', 'EllipticSwift/PrecompiledCurves/{BN256, Secp256k1}/*.{swift}', 'EllipticSwift/EllipticSwift.h', 'EllipticSwift/FixedWidthTypes/vUInt32/*.{swift}', 'EllipticSwift/FixedWidthTypes/U128/*.{swift}', 'EllipticSwift/FixedWidthTypes/U256/*.{swift}', 'EllipticSwift/FixedWidthTypes/U512/*.{swift}'
-
+s.osx.source_files = 'EllipticSwift/MacOS/**/*.swift'
 s.osx.frameworks = 'Accelerate'
 
 s.public_header_files = 'EllipticSwift/EllipticSwift.h'
