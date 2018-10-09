@@ -11,9 +11,6 @@
 import Foundation
 import BigInt
 
-let U512ByteLength = 64
-let U512WordWidth = 8
-
 public final class NativeU512 {
     
     // store as limbs with lower bits in [0]
@@ -67,30 +64,17 @@ public final class NativeU512 {
         for i in 0 ..< max {
             typedStorage[i] = UInt64(a.words[i])
         }
+        for i in max ..< U512WordWidth {
+            typedStorage[i] = 0
+        }
     }
     
-//    deinit {
-//        self.storage.deallocate()
-//    }
+    deinit {
+        self.storage.deallocate()
+    }
 }
 
 extension NativeU512 {
-    
-//    public func addMod(_ a: NativeU512) -> NativeU512 {
-//        let addResult = NativeU512()
-//        let tempStorage = addResult.storage.assumingMemoryBound(to: UInt32.self)
-//        let typedStorage = self.storage.assumingMemoryBound(to: UInt32.self)
-//        let otherStorage = a.storage.assumingMemoryBound(to: UInt32.self)
-//        var carry = UInt64(0)
-//        let maskLowerBits = UInt64(0xffffffff)
-//        let maskHigherBits = maskLowerBits << 32
-//        for i in 0 ..< U512WordWidth*2 {
-//            let result = UInt64(typedStorage[i]) &+ UInt64(otherStorage[i]) &+ carry
-//            carry = (result & maskHigherBits) >> 32
-//            tempStorage[i] = UInt32(result & maskLowerBits)
-//        }
-//        return addResult
-//    }
     
     public func addMod(_ a: NativeU512) -> NativeU512 {
         let addResult = NativeU512()
@@ -273,7 +257,7 @@ extension NativeU512 {
     @inline(__always) func inplaceMultiply(byWord: UInt64, shiftedBy: Int = 0) -> UInt64 {
         if byWord == 0 {
             let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
-            for i in 0 ..< 4 {
+            for i in 0 ..< U512WordWidth {
                 typedStorage[i] = 0
             }
             return 0
@@ -283,6 +267,9 @@ extension NativeU512 {
             }
         }
         let mulResult = UnsafeMutableRawPointer.allocate(byteCount: U512ByteLength + 8, alignment: 64)
+        defer {
+            mulResult.deallocate()
+        }
         mulResult.initializeMemory(as: UInt64.self, repeating: 0, count: U512WordWidth + 1)
         let tempStorage = mulResult.assumingMemoryBound(to: UInt64.self)
         let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
@@ -312,7 +299,8 @@ extension NativeU512 {
             tempStorage[U512WordWidth] = tempStorage[U512WordWidth] + 1
         }
         self.storage.copyMemory(from: mulResult, byteCount: U512ByteLength)
-        return tempStorage[U512WordWidth]
+        let retval = tempStorage[U512WordWidth]
+        return retval
     }
     
     @inline(__always) internal func divide(byWord y: UInt64) -> UInt64 {
@@ -525,7 +513,7 @@ extension NativeU512 {
 extension NativeU512 {
     subscript (_ i: Int) -> UInt64 {
         get {
-            if i > 7 {
+            if i >= U512WordWidth {
                 return 0
             }
             let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)

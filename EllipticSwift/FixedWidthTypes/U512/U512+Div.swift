@@ -9,10 +9,10 @@
 import Foundation
 import Accelerate
 
-extension U512 {
-    public func div(_ a: U512) -> (U512, U512) {
-        var result = U512()
-        var remainder = U512()
+extension vU512 {
+    public func div(_ a: vU512) -> (vU512, vU512) {
+        var result = vU512()
+        var remainder = vU512()
         var aCopy = a
         var selfCopy = self
         vU512Divide(&selfCopy, &aCopy, &result, &remainder)

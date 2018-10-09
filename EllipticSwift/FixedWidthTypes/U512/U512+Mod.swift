@@ -9,14 +9,14 @@
 import Foundation
 import Accelerate
 
-extension U512 {
-    public func modInv(_ modulus: U512) -> U512 {
+extension vU512 {
+    public func modInv(_ modulus: vU512) -> vU512 {
         var a = self
-        var new = U512.one
-        var old = U512.zero
+        var new = vU512.one
+        var old = vU512.zero
         var q = modulus
-        var r = U512.zero
-        var h = U512.zero
+        var r = vU512.zero
+        var h = vU512.zero
         var positive = false
         while !a.isZero {
             (q, r) = q.div(a)

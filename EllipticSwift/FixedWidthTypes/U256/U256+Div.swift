@@ -9,10 +9,10 @@
 import Foundation
 import Accelerate
 
-extension U256 {
-    public func div(_ a: U256) -> (U256, U256) {
-        var result = U256()
-        var remainder = U256()
+extension vU256 {
+    public func div(_ a: vU256) -> (vU256, vU256) {
+        var result = vU256()
+        var remainder = vU256()
         var aCopy = a
         var selfCopy = self
         vU256Divide(&selfCopy, &aCopy, &result, &remainder)

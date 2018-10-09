@@ -299,15 +299,6 @@
 		817A177221690225009C7B2A /* NativeU512.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeU512.swift; sourceTree = "<group>"; };
 		817A177621695AE7009C7B2A /* UInt64+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Extensions.swift"; sourceTree = "<group>"; };
 		817A1779216962D2009C7B2A /* NativeU256+FF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NativeU256+FF.swift"; sourceTree = "<group>"; };
-		817A177D216A3321009C7B2A /* dem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dem.swift; sourceTree = "<group>"; };
-		817A177E216A3322009C7B2A /* fragments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fragments.swift; sourceTree = "<group>"; };
-		817A177F216A3322009C7B2A /* pre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pre.swift; sourceTree = "<group>"; };
-		817A1780216A3322009C7B2A /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
-		817A1781216A3322009C7B2A /* keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = keys.swift; sourceTree = "<group>"; };
-		817A1782216A3322009C7B2A /* params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = params.swift; sourceTree = "<group>"; };
-		817A1783216A3322009C7B2A /* signing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signing.swift; sourceTree = "<group>"; };
-		817A1784216A3322009C7B2A /* point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = point.swift; sourceTree = "<group>"; };
-		817A1785216A3322009C7B2A /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		81AE0B4D215434000019CA83 /* WeirstrassCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeirstrassCurve.swift; sourceTree = "<group>"; };
 		81AE0B4F215434000019CA83 /* AffineCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffineCoordinates.swift; sourceTree = "<group>"; };
 		81AE0B50215434000019CA83 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -455,7 +446,6 @@
 		8165EBB72154337900C7117A /* EllipticSwift */ = {
 			isa = PBXGroup;
 			children = (
-				817A177C216A330D009C7B2A /* Umbral */,
 				81F74E7C21598711006D4E9A /* GenericAlgorithms */,
 				81F74E7521597725006D4E9A /* ExtensionField */,
 				81F74E6B215965D7006D4E9A /* Protocols */,
@@ -612,22 +602,6 @@
 				817A177621695AE7009C7B2A /* UInt64+Extensions.swift */,
 			);
 			path = UInt64;
-			sourceTree = "<group>";
-		};
-		817A177C216A330D009C7B2A /* Umbral */ = {
-			isa = PBXGroup;
-			children = (
-				817A1780216A3322009C7B2A /* config.swift */,
-				817A177D216A3321009C7B2A /* dem.swift */,
-				817A177E216A3322009C7B2A /* fragments.swift */,
-				817A1781216A3322009C7B2A /* keys.swift */,
-				817A1782216A3322009C7B2A /* params.swift */,
-				817A1784216A3322009C7B2A /* point.swift */,
-				817A177F216A3322009C7B2A /* pre.swift */,
-				817A1783216A3322009C7B2A /* signing.swift */,
-				817A1785216A3322009C7B2A /* utils.swift */,
-			);
-			path = Umbral;
 			sourceTree = "<group>";
 		};
 		81AE0B4C215434000019CA83 /* Curve */ = {

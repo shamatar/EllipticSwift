@@ -9,8 +9,8 @@
 import Foundation
 import Accelerate
 
-extension U256: Comparable {
-    public static func < (lhs: U256, rhs: U256) -> Bool {
+extension vU256: Comparable {
+    public static func < (lhs: vU256, rhs: vU256) -> Bool {
         if lhs.v.1 < rhs.v.1 {
             return true
         } else if lhs.v.1 > rhs.v.1 {
@@ -23,7 +23,7 @@ extension U256: Comparable {
     }
 }
 
-extension U256: EvenOrOdd {
+extension vU256: EvenOrOdd {
     public var isEven: Bool {
         return self.v.0.isEven
     }

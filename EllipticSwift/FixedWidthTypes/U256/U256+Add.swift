@@ -9,16 +9,16 @@
 import Foundation
 import Accelerate
 
-extension U256 {
-    public func addMod(_ a: U256) -> U256 {
-        var result = U256()
+extension vU256 {
+    public func addMod(_ a: vU256) -> vU256 {
+        var result = vU256()
         var aCopy = a
         var selfCopy = self
         vU256Add(&selfCopy, &aCopy, &result)
         return result
     }
     
-    public mutating func inplaceAddMod(_ a: U256) {
+    public mutating func inplaceAddMod(_ a: vU256) {
         var aCopy = a
         var selfCopy = self
         vU256Add(&selfCopy, &aCopy, &self)

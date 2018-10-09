@@ -9,18 +9,15 @@
 import Foundation
 import Accelerate
 
-public var U512bitLength = 512
-public var U512byteLength = 64
-
-extension U512 {
+extension vU512 {
     public init?(_ bytes: Data) {
-        if bytes.count <= U512byteLength {
-            let padding = Data(repeating: 0, count: U512byteLength - bytes.count)
+        if bytes.count <= U512ByteLength {
+            let padding = Data(repeating: 0, count: U512ByteLength - bytes.count)
             var fullData = (padding + bytes).bytes
-            let v3 = U128(Data(fullData[0 ..< U128byteLength]))!
-            let v2 = U128(Data(fullData[U128byteLength ..< U128byteLength*2]))!
-            let v1 = U128(Data(fullData[U128byteLength*2 ..< U128byteLength*3]))!
-            let v0 = U128(Data(fullData[U128byteLength*3 ..< U512byteLength]))!
+            let v3 = vU128(Data(fullData[0 ..< U128byteLength]))!
+            let v2 = vU128(Data(fullData[U128byteLength ..< U128byteLength*2]))!
+            let v1 = vU128(Data(fullData[U128byteLength*2 ..< U128byteLength*3]))!
+            let v0 = vU128(Data(fullData[U128byteLength*3 ..< U512ByteLength]))!
             self = vU512(v: (v0.v, v1.v, v2.v, v3.v))
         } else {
             return nil
@@ -31,10 +28,10 @@ extension U512 {
         return self.v.3.bigEndianBytes + self.v.2.bigEndianBytes + self.v.1.bigEndianBytes + self.v.0.bigEndianBytes
     }
         
-    public func split() -> (U256, U256) {
+    public func split() -> (vU256, vU256) {
         let vs = self.v
-        let top = U256(v: (vs.2, vs.3))
-        let bottom = U256(v: (vs.0, vs.1))
+        let top = vU256(v: (vs.2, vs.3))
+        let bottom = vU256(v: (vs.0, vs.1))
         return (top, bottom)
     }
     

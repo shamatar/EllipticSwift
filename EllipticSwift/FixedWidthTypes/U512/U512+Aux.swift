@@ -9,12 +9,12 @@
 import Foundation
 import Accelerate
 
-extension U512 {
-    public static var one: U512 {
+extension vU512 {
+    public static var one: vU512 {
         return vU512(v: (vUInt32(1), vUInt32(0), vUInt32(0), vUInt32(0)))
     }
     
-    public static var zero: U512 {
+    public static var zero: vU512 {
         return vU512(v: (vZERO, vZERO, vZERO, vZERO))
     }
 }

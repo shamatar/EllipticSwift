@@ -9,9 +9,9 @@
 import Foundation
 import Accelerate
 
-extension U128: Comparable {
+extension vU128: Comparable {
 
-    public static func < (lhs: U128, rhs: U128) -> Bool {
+    public static func < (lhs: vU128, rhs: vU128) -> Bool {
         return lhs.v < rhs.v
     }
 }

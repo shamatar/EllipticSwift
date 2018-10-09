@@ -9,8 +9,8 @@
 import Foundation
 import Accelerate
 
-extension U128: Equatable {
-    public static func == (lhs: U128, rhs: U128) -> Bool {
+extension vU128: Equatable {
+    public static func == (lhs: vU128, rhs: vU128) -> Bool {
         return lhs.v == rhs.v
     }
 }

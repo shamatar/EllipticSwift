@@ -9,28 +9,28 @@
 import Foundation
 import Accelerate
 
-extension U256: ModReducable {
-    public func mod(_ modulus: U256) -> U256 {
-        var result = U256()
+extension vU256: ModReducable {
+    public func mod(_ modulus: vU256) -> vU256 {
+        var result = vU256()
         var modCopy = modulus
         var selfCopy = self
         vU256Mod(&selfCopy, &modCopy, &result)
         return result
     }
     
-    public mutating func inplaceMod(_ modulus: U256) {
+    public mutating func inplaceMod(_ modulus: vU256) {
         var modCopy = modulus
         var selfCopy = self
         vU256Mod(&selfCopy, &modCopy, &self)
     }
     
-    public func modInv(_ modulus: U256) -> U256 {
+    public func modInv(_ modulus: vU256) -> vU256 {
         var a = self
-        var new = U256.one
-        var old = U256.zero
+        var new = vU256.one
+        var old = vU256.zero
         var q = modulus
-        var r = U256.zero
-        var h = U256.zero
+        var r = vU256.zero
+        var h = vU256.zero
         var positive = false
         while !a.isZero {
             (q, r) = q.div(a)
@@ -48,37 +48,21 @@ extension U256: ModReducable {
         }
     }
     
-    public func modMultiply(_ a: U256, _ modulus: U256) -> U256 {
-        var result = U512()
+    public func modMultiply(_ a: vU256, _ modulus: vU256) -> vU256 {
+        var result = vU512()
         var aCopy = a
         var selfCopy = self
         vU256FullMultiply(&selfCopy, &aCopy, &result)
-        var extendedModulus = U512(v: (modulus.v.0, modulus.v.1, vUInt32(0), vUInt32(0)))
-        var extendedRes = U512()
+        var extendedModulus = vU512(v: (modulus.v.0, modulus.v.1, vUInt32(0), vUInt32(0)))
+        var extendedRes = vU512()
         vU512Mod(&result, &extendedModulus, &extendedRes)
         let (_, bottom) = extendedRes.split()
         return bottom
     }
     
-    public func fullMultiply(_ a: U256) -> (U256, U256) {
-//        var result = U512()
-//        var aCopy = a
-//        var selfCopy = self
-//        vU256FullMultiply(&selfCopy, &aCopy, &result)
-        let result: U512 = self.fullMul(a)
+    public func fullMultiply(_ a: vU256) -> (vU256, vU256) {
+        let result: vU512 = self.fullMul(a)
         return result.split()
     }
-    
-//    public func modAdd(_ a: U256, _ modulus: U256) -> U256 {
-//        var result = U256()
-//        var aCopy = a
-//        var selfCopy = self
-//        vU256FullMultiply(&selfCopy, &aCopy, &result)
-//        var extendedModulus = U512(v: (modulus.v.0, modulus.v.1, vUInt32(0), vUInt32(0)))
-//        var extendedRes = U512()
-//        vU512Mod(&result, &extendedModulus, &extendedRes)
-//        let (_, bottom) = extendedRes.split()
-//        return bottom
-//    }
     
 }

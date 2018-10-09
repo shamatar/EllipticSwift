@@ -9,24 +9,22 @@
 import Foundation
 import Accelerate
 
-public let U256bitLength = 256
-public let U256byteLength = 32
-public let U256words = 8
-public let U256vectors = 2
-public let U256MAX = U256(Data(repeating: 255, count: U256byteLength))!
-public let U256MIN = U256(Data(repeating: 0, count: U256byteLength))!
+let U256words = 8
+let U256vectors = 2
+let vU256MAX = vU256(Data(repeating: 255, count: U256ByteLength))!
+let vU256MIN = vU256(Data(repeating: 0, count: U256ByteLength))!
 
-extension U256: FiniteFieldCompatible {
+extension vU256: FiniteFieldCompatible {
 }
 
-extension U256: BytesInitializable, BytesRepresentable {
+extension vU256: BytesInitializable, BytesRepresentable {
     
     public init?(_ bytes: Data) {
-        if bytes.count <= U256byteLength {
-            let padding = Data(repeating: 0, count: U256byteLength - bytes.count)
+        if bytes.count <= U256ByteLength {
+            let padding = Data(repeating: 0, count: U256ByteLength - bytes.count)
             var fullData = (padding + bytes).bytes
-            let top = U128(Data(fullData[0 ..< U128byteLength]))!
-            let bottom = U128(Data(fullData[U128byteLength ..< U256byteLength]))!
+            let top = vU128(Data(fullData[0 ..< U128byteLength]))!
+            let bottom = vU128(Data(fullData[U128byteLength ..< U256ByteLength]))!
             self = vU256(v: (bottom.v, top.v))
         } else {
             return nil
@@ -51,8 +49,8 @@ extension U256: BytesInitializable, BytesRepresentable {
         return arr
     }
     
-    public func split() -> (U128, U128) {
-        return (U128(v: self.v.1), U128(v: self.v.0))
+    public func split() -> (vU128, vU128) {
+        return (vU128(v: self.v.1), vU128(v: self.v.0))
     }
     
     public var isZero: Bool {
@@ -60,11 +58,11 @@ extension U256: BytesInitializable, BytesRepresentable {
     }
 }
 
-extension U256: UInt64Initializable {
+extension vU256: UInt64Initializable {
     public init(_ value: UInt64) {
         let top = value >> 32
         let bot = value & 0xffffffff
-        let u256 = U256(v: (vUInt32(x: UInt32(bot), y: UInt32(top), z: 0, w: 0), vZERO))
+        let u256 = vU256(v: (vUInt32(x: UInt32(bot), y: UInt32(top), z: 0, w: 0), vZERO))
         self = u256
     }
 }

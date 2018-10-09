@@ -267,20 +267,12 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
         let c = NativeU512(cr)
         
         let (q1, r1) = a.divide(by: c)
+
         let (qr1, rr1) = ar.quotientAndRemainder(dividingBy: cr)
         let backMul2 = q1.halfMul(c).addMod(r1)
         XCTAssert(backMul2 == a)
-        for i in 0 ..< 8 {
-            print(q1.words[i])
-            print(qr1.words[i])
-        }
-        for i in 0 ..< 8 {
-            print(r1.words[i])
-            print(rr1.words[i])
-        }
         XCTAssert(compareEq(q1, qr1))
         XCTAssert(compareEq(r1, rr1))
-        
     }
     
     func testDivideAndConquer3by2() {

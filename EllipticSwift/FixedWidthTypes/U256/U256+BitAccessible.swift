@@ -9,7 +9,7 @@
 import Foundation
 import Accelerate
 
-extension U256: BitAccessible {
+extension vU256: BitAccessible {
     public func bit(_ i: Int) -> Bool {
         if i < 0 {
             return false
@@ -22,7 +22,7 @@ extension U256: BitAccessible {
     }
 }
 
-extension U256: FixedWidth {
+extension vU256: FixedWidth {
     public var leadingZeroBitCount: Int {
         if self.v.1.leadingZeroBitCount != 128 {
             return self.v.1.leadingZeroBitCount

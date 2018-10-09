@@ -9,52 +9,52 @@
 import Foundation
 import Accelerate
 
-extension U256: Numeric {
+extension vU256: Numeric {
     public typealias IntegerLiteralType = UInt64
     
-    public init(integerLiteral: U256.IntegerLiteralType) {
+    public init(integerLiteral: vU256.IntegerLiteralType) {
         let top = integerLiteral >> 32
         let bot = integerLiteral & 0xffffffff
-        let u256 = U256(v: (vUInt32(x: UInt32(bot), y: UInt32(top), z: 0, w: 0), vZERO))
+        let u256 = vU256(v: (vUInt32(x: UInt32(bot), y: UInt32(top), z: 0, w: 0), vZERO))
         self = u256
     }
     
     
-    public typealias Magnitude = U256
-    public var magnitude: U256 {
+    public typealias Magnitude = vU256
+    public var magnitude: vU256 {
         return self
     }
     
     public init?<T>(exactly: T) {
         return nil
     }
-    public static var bitWidth: Int = U256bitLength
-    public static var max: U256 = U256MAX
-    public static var min: U256 = U256MIN
+    public static var bitWidth: Int = U256BitLength
+    public static var max: vU256 = vU256MAX
+    public static var min: vU256 = vU256MIN
     
     
-    public static func * (lhs: U256, rhs: U256) -> U256 {
+    public static func * (lhs: vU256, rhs: vU256) -> vU256 {
         let (_, bottom) = lhs.fullMultiply(rhs)
         return bottom
     }
     
-    public static func *= (lhs: inout U256, rhs: U256) {
+    public static func *= (lhs: inout vU256, rhs: vU256) {
         lhs.inplaceHalfMul(rhs)
     }
     
-    public static func + (lhs: U256, rhs: U256) -> U256 {
+    public static func + (lhs: vU256, rhs: vU256) -> vU256 {
         return lhs.addMod(rhs)
     }
     
-    public static func += (lhs: inout U256, rhs: U256) {
+    public static func += (lhs: inout vU256, rhs: vU256) {
         lhs.inplaceAddMod(rhs)
     }
     
-    public static func - (lhs: U256, rhs: U256) -> U256 {
+    public static func - (lhs: vU256, rhs: vU256) -> vU256 {
         return lhs.subMod(rhs)
     }
     
-    public static func -= (lhs: inout U256, rhs: U256) {
+    public static func -= (lhs: inout vU256, rhs: vU256) {
         lhs.inplaceSubMod(rhs)
     }
 }

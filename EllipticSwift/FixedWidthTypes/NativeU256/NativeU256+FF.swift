@@ -19,7 +19,7 @@ extension NativeU256: FiniteFieldCompatible {
         self.init(UInt64(source))
     }
     
-    public typealias IntegerLiteralType = UInt
+    public typealias IntegerLiteralType = UInt64
 }
 
 
@@ -52,8 +52,8 @@ extension NativeU256: Numeric {
         lhs.inplaceHalfMul(rhs)
     }
     
-    public convenience init(integerLiteral value: UInt) {
-        self.init(UInt64(value))
+    public convenience init(integerLiteral value: UInt64) {
+        self.init(value)
     }
 }
 

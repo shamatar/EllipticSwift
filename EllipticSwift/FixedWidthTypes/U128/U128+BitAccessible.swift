@@ -9,7 +9,7 @@
 import Foundation
 import Accelerate
 
-extension U128: BitAccessible {
+extension vU128: BitAccessible {
     public func bit(_ i: Int) -> Bool {
         if i < 0 {
             return false

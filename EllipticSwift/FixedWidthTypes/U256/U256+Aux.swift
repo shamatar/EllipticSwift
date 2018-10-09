@@ -10,17 +10,17 @@ import Foundation
 import Accelerate
 import BigInt
 
-extension U256 {
-    public static var one: U256 {
+extension vU256 {
+    public static var one: vU256 {
         return vU256(v: (vUInt32(1), vUInt32(0)))
     }
     
-    public static var zero: U256 {
+    public static var zero: vU256 {
         return vU256(v: (vZERO, vZERO))
     }
 }
 
-extension U256: CustomDebugStringConvertible {
+extension vU256: CustomDebugStringConvertible {
     public var debugDescription: String {
         return String(BigUInt(self.bytes))
     }

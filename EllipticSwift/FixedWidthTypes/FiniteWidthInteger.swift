@@ -8,15 +8,23 @@
 
 import Foundation
 
+public let U256ByteLength = 32
+public let U256BitLength = 256
+public let U256WordWidth = 4
+
+public let U512WordWidth = 8
+public let U512BitLength = 512
+public let U512ByteLength = 64
+
 #if os(OSX)
 import Accelerate
 public typealias U256 = vU256
-public typealias U512 = vU512
-public typealias U1024 = vU1024
+//public typealias U512 = vU512
+//public typealias U1024 = vU1024
 #elseif os(iOS)
-public typealias U256 = TinyUInt256
-public typealias U512 = NativeU256
-public typealias U1024 = TinyUInt1024
+public typealias U256 = NativeU256
+//public typealias U512 = NativeU512
+//public typealias U1024 = TinyUInt1024
 #endif
 
 

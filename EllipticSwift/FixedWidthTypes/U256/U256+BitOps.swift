@@ -9,8 +9,8 @@
 import Foundation
 import Accelerate
 
-extension U256: BitShiftable {
-    public func leftShifted(_ a: UInt32) -> U256 {
+extension vU256: BitShiftable {
+    public func leftShifted(_ a: UInt32) -> vU256 {
         var result = U256()
         var selfCopy = self
         withUnsafePointer(to: &selfCopy) { (selfPtr: UnsafePointer<vU256>) -> Void in
@@ -30,7 +30,7 @@ extension U256: BitShiftable {
         }
     }
     
-    public func rightShifted(_ a: UInt32) -> U256 {
+    public func rightShifted(_ a: UInt32) -> vU256 {
         var result = U256()
         var selfCopy = self
         withUnsafePointer(to: &selfCopy) { (selfPtr: UnsafePointer<vU256>) -> Void in
@@ -50,11 +50,11 @@ extension U256: BitShiftable {
         }
     }
     
-    public static func >> (lhs: U256, rhs: UInt32) -> U256 {
+    public static func >> (lhs: vU256, rhs: UInt32) -> vU256 {
         return lhs.rightShifted(rhs)
     }
     
-    public static func << (lhs: U256, rhs: UInt32) -> U256 {
+    public static func << (lhs: vU256, rhs: UInt32) -> vU256 {
         return lhs.leftShifted(rhs)
     }
     

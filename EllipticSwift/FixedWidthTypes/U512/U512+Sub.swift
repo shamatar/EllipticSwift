@@ -9,16 +9,16 @@
 import Foundation
 import Accelerate
 
-extension U512 {
-    public func subMod(_ a: U512) -> U512 {
-        var result = U512()
+extension vU512 {
+    public func subMod(_ a: vU512) -> vU512 {
+        var result = vU512()
         var aCopy = a
         var selfCopy = self
         vU512Sub(&selfCopy, &aCopy, &result)
         return result
     }
     
-    public mutating func inplaceSubMod(_ a: U512) {
+    public mutating func inplaceSubMod(_ a: vU512) {
         var aCopy = a
         var selfCopy = self
         vU512Sub(&selfCopy, &aCopy, &self)

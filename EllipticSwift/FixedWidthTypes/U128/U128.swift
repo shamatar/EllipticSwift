@@ -8,23 +8,21 @@
 
 import Foundation
 import Accelerate
-import simd
 
-public typealias U128 = vU128
-public var U128bitLength = 128
-public var U128byteLength = 16
-public var U128words = 4
-public var U128vectors = 1
-public var U128MAX = U128(Data(repeating: 255, count: U128byteLength))!
-public var U128MIN = U128(Data(repeating: 0, count: U128byteLength))!
+let U128bitLength = 128
+let U128byteLength = 16
+let U128words = 4
+let U128vectors = 1
+let U128MAX = vU128(Data(repeating: 255, count: U128byteLength))!
+let U128MIN = vU128(Data(repeating: 0, count: U128byteLength))!
 
-extension U128 {
+extension vU128 {
     public static var bitWidth: Int = U128bitLength
-    public static var max: U128 = U128MAX
-    public static var min: U128 = U128MIN
+    public static var max: vU128 = U128MAX
+    public static var min: vU128 = U128MIN
     
     public init(_ value: UInt32) {
-        self = U128(v: vUInt32(x: value, y: 0, z: 0, w: 0))
+        self = vU128(v: vUInt32(x: value, y: 0, z: 0, w: 0))
     }
     
     public init?(_ bytes: Data) { // assumes BE bytes
@@ -52,20 +50,20 @@ extension U128 {
         }
     }
     
-    public func add(_ a: U128) -> U128 {
-        return U128(v: vU128Add(self.v, a.v))
+    public func add(_ a: vU128) -> vU128 {
+        return vU128(v: vU128Add(self.v, a.v))
     }
     
-    public func mul(_ a: U128) -> U256 {
-        var result = U256()
+    public func mul(_ a: vU128) -> vU256 {
+        var result = vU256()
         var aCopy = a
         var selfCopy = self
         vU128FullMultiply(&selfCopy, &aCopy, &result)
         return result
     }
     
-    public func halfMul(_ a: U128) -> U128 {
-        return U128(v: vU128HalfMultiply(self.v, a.v))
+    public func halfMul(_ a: vU128) -> vU128 {
+        return vU128(v: vU128HalfMultiply(self.v, a.v))
     }
     
     public func memoryStructure(_ radix: Int = 16) -> [UInt32] {

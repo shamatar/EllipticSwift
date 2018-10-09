@@ -9,24 +9,24 @@
 import Foundation
 import Accelerate
 
-extension U512 {
-    public func fullMul(_ a: U512) -> U1024 {
-        var result = U1024()
+extension vU512 {
+    public func fullMul(_ a: vU512) -> vU1024 {
+        var result = vU1024()
         var aCopy = a
         var selfCopy = self
         vU512FullMultiply(&selfCopy, &aCopy, &result)
         return result
     }
     
-    public func halfMul(_ a: U512) -> U512 {
-        var result = U512()
+    public func halfMul(_ a: vU512) -> vU512 {
+        var result = vU512()
         var aCopy = a
         var selfCopy = self
         vU512HalfMultiply(&selfCopy, &aCopy, &result)
         return result
     }
     
-    public mutating func inplaceHalfMul(_ a: U512) {
+    public mutating func inplaceHalfMul(_ a: vU512) {
         var aCopy = a
         var selfCopy = self
         vU512HalfMultiply(&selfCopy, &aCopy, &self)

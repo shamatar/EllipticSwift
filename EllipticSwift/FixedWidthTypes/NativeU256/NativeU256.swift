@@ -11,9 +11,6 @@
 import Foundation
 import BigInt
 
-let U256ByteLength = 32
-let U256WordWidth = 4
-
 public final class NativeU256 {
    
     // store as limbs with lower bits in [0]
@@ -68,7 +65,7 @@ public final class NativeU256 {
     }
     
     deinit {
-//        self.storage.deallocate()
+        self.storage.deallocate()
     }
     
 }
@@ -276,7 +273,7 @@ extension NativeU256 {
     @inline(__always) func inplaceMultiply(byWord: UInt64, shiftedBy: Int = 0) -> UInt64 {
         if byWord == 0 {
             let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
-            for i in 0 ..< 4 {
+            for i in 0 ..< U256WordWidth {
                 typedStorage[i] = 0
             }
             return 0
@@ -286,6 +283,9 @@ extension NativeU256 {
             }
         }
         let mulResult = UnsafeMutableRawPointer.allocate(byteCount: U256ByteLength + 8, alignment: 64)
+        defer {
+            mulResult.deallocate()
+        }
         mulResult.initializeMemory(as: UInt64.self, repeating: 0, count: 5)
         let tempStorage = mulResult.assumingMemoryBound(to: UInt64.self)
         let typedStorage = self.storage.assumingMemoryBound(to: UInt64.self)
@@ -312,10 +312,11 @@ extension NativeU256 {
         }
         if carry != 0 {
             precondition(false)
-            tempStorage[4] = tempStorage[4] + 1
+            tempStorage[U256WordWidth] = tempStorage[U256WordWidth] + 1
         }
         self.storage.copyMemory(from: mulResult, byteCount: U256ByteLength)
-        return tempStorage[4]
+        let retval = tempStorage[U256WordWidth]
+        return retval
     }
     
     @inline(__always) internal func divide(byWord y: UInt64) -> UInt64 {
