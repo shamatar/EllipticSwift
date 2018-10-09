@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		761AE9285F20DE675807C213 /* Pods_EllipticSwift_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B37997A0478ED5F992EAFA /* Pods_EllipticSwift_iOS_Tests.framework */; };
-		817A163A2167AEA5009C7B2A /* EllipticSwift_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 817A16382167AEA5009C7B2A /* EllipticSwift_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		817A163F2167AEBD009C7B2A /* DoubleAndAddExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */; };
 		817A16402167AEBD009C7B2A /* kSlidingWindowExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */; };
 		817A16412167AEC4009C7B2A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
@@ -209,6 +208,9 @@
 		817A177821695AE7009C7B2A /* UInt64+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A177621695AE7009C7B2A /* UInt64+Extensions.swift */; };
 		817A177A216962D2009C7B2A /* NativeU256+FF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A1779216962D2009C7B2A /* NativeU256+FF.swift */; };
 		817A177B216962D2009C7B2A /* NativeU256+FF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A1779216962D2009C7B2A /* NativeU256+FF.swift */; };
+		81F00510216CB34400770786 /* EllipticSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8165EBB82154337900C7117A /* EllipticSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81F00513216CB58E00770786 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00512216CB58E00770786 /* Aliases.swift */; };
+		81F00514216CB58E00770786 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00512216CB58E00770786 /* Aliases.swift */; };
 		81F74E6A21591E11006D4E9A /* EllipticSwiftPolynomialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6921591E11006D4E9A /* EllipticSwiftPolynomialTests.swift */; };
 		F9F701DF4008E1E6BE0EFDD3 /* Pods_EllipticSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40792BF309C45D0D4C35AA1D /* Pods_EllipticSwiftTests.framework */; };
 /* End PBXBuildFile section */
@@ -342,6 +344,7 @@
 		81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicExtensionField.swift; sourceTree = "<group>"; };
 		81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaivePrimeFiniteField.swift; sourceTree = "<group>"; };
 		81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProperExtendableWeierstrassCurve.swift; sourceTree = "<group>"; };
+		81F00512216CB58E00770786 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		81F74E5C21591041006D4E9A /* BN256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BN256.swift; sourceTree = "<group>"; };
 		81F74E5F21591058006D4E9A /* Secp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secp256k1.swift; sourceTree = "<group>"; };
 		81F74E63215912F4006D4E9A /* FieldPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldPolynomial.swift; sourceTree = "<group>"; };
@@ -446,16 +449,10 @@
 		8165EBB72154337900C7117A /* EllipticSwift */ = {
 			isa = PBXGroup;
 			children = (
-				81F74E7C21598711006D4E9A /* GenericAlgorithms */,
-				81F74E7521597725006D4E9A /* ExtensionField */,
-				81F74E6B215965D7006D4E9A /* Protocols */,
-				81F74E62215912D2006D4E9A /* FieldPolynomial */,
-				81F74E5821591008006D4E9A /* PrecompiledCurves */,
-				81AE0B4C215434000019CA83 /* Curve */,
-				81AE0B52215434000019CA83 /* Extensions */,
-				81AE0B57215434000019CA83 /* Field */,
+				81F00535216CC87100770786 /* iOS */,
+				81F00534216CC86B00770786 /* MacOS */,
+				81F00533216CC85C00770786 /* Common */,
 				81AE0B5C215434000019CA83 /* FixedWidthTypes */,
-				81AE0B54215434000019CA83 /* WindowMethods */,
 				8165EBB82154337900C7117A /* EllipticSwift.h */,
 				8165EBB92154337900C7117A /* Info.plist */,
 			);
@@ -493,6 +490,7 @@
 		817A16C22167C3A4009C7B2A /* TinyUInt256 */ = {
 			isa = PBXGroup;
 			children = (
+				817A17212167C47C009C7B2A /* TinyUInt256+FF.swift */,
 				817A16C32167C3A4009C7B2A /* TinyUInt256UnsignedInteger.swift */,
 				817A16C42167C3A4009C7B2A /* TinyUInt256BinaryInteger.swift */,
 				817A16C52167C3A4009C7B2A /* TinyUInt256Comparable.swift */,
@@ -511,6 +509,7 @@
 		817A16CE2167C3A4009C7B2A /* TinyUInt128 */ = {
 			isa = PBXGroup;
 			children = (
+				817A17232167C4EA009C7B2A /* TinyUInt128+FF.swift */,
 				817A16CF2167C3A4009C7B2A /* TinyUInt128ExpressibleByStringLiteral.swift */,
 				817A16D02167C3A4009C7B2A /* TinyUInt128FixedWidthInteger.swift */,
 				817A16D12167C3A4009C7B2A /* TinyUInt128Errors.swift */,
@@ -529,6 +528,7 @@
 		817A16DA2167C3A4009C7B2A /* TinyUInt512 */ = {
 			isa = PBXGroup;
 			children = (
+				817A17682168AD5A009C7B2A /* TinyUInt512+FF.swift */,
 				817A16DB2167C3A4009C7B2A /* TinyUInt512BinaryInteger.swift */,
 				817A16DC2167C3A4009C7B2A /* TinyUInt512Hashable.swift */,
 				817A16DD2167C3A4009C7B2A /* TinyUInt512UnsignedInteger.swift */,
@@ -612,7 +612,6 @@
 				8122DE592154420400870D39 /* MontgommeryCurve.swift */,
 				8122DE5B215447D100870D39 /* TwistedEdwardsCurve.swift */,
 				81AE0B50215434000019CA83 /* Point.swift */,
-				81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */,
 			);
 			path = Curve;
 			sourceTree = "<group>";
@@ -651,22 +650,11 @@
 		81AE0B5C215434000019CA83 /* FixedWidthTypes */ = {
 			isa = PBXGroup;
 			children = (
-				817A177521695AC4009C7B2A /* UInt64 */,
-				817A176F2168C124009C7B2A /* NativeU512 */,
-				817A176B2168BFF6009C7B2A /* NativeU256 */,
 				817A16E62167C3A5009C7B2A /* StandartTypesTinyBigIntExtensions */,
 				817A16CE2167C3A4009C7B2A /* TinyUInt128 */,
 				817A16C22167C3A4009C7B2A /* TinyUInt256 */,
 				817A16DA2167C3A4009C7B2A /* TinyUInt512 */,
 				817A16E82167C3A5009C7B2A /* TinyUInt1024 */,
-				81AE0B66215434000019CA83 /* FiniteWidthInteger.swift */,
-				817A16C12167B3E3009C7B2A /* vUInt32 */,
-				81AE0B5D215434000019CA83 /* U512 */,
-				81AE0B68215434000019CA83 /* U128 */,
-				81AE0B6D215434000019CA83 /* U256 */,
-				817A17212167C47C009C7B2A /* TinyUInt256+FF.swift */,
-				817A17682168AD5A009C7B2A /* TinyUInt512+FF.swift */,
-				817A17232167C4EA009C7B2A /* TinyUInt128+FF.swift */,
 			);
 			path = FixedWidthTypes;
 			sourceTree = "<group>";
@@ -716,6 +704,52 @@
 			path = U256;
 			sourceTree = "<group>";
 		};
+		81F00511216CB57C00770786 /* Aliases */ = {
+			isa = PBXGroup;
+			children = (
+				81F00512216CB58E00770786 /* Aliases.swift */,
+			);
+			path = Aliases;
+			sourceTree = "<group>";
+		};
+		81F00533216CC85C00770786 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				81AE0B54215434000019CA83 /* WindowMethods */,
+				81F00511216CB57C00770786 /* Aliases */,
+				81F74E7C21598711006D4E9A /* GenericAlgorithms */,
+				81F74E7521597725006D4E9A /* ExtensionField */,
+				81F74E6B215965D7006D4E9A /* Protocols */,
+				81F74E62215912D2006D4E9A /* FieldPolynomial */,
+				81F74E5821591008006D4E9A /* PrecompiledCurves */,
+				81AE0B4C215434000019CA83 /* Curve */,
+				81AE0B52215434000019CA83 /* Extensions */,
+				81AE0B57215434000019CA83 /* Field */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		81F00534216CC86B00770786 /* MacOS */ = {
+			isa = PBXGroup;
+			children = (
+				817A16C12167B3E3009C7B2A /* vUInt32 */,
+				81AE0B5D215434000019CA83 /* U512 */,
+				81AE0B68215434000019CA83 /* U128 */,
+				81AE0B6D215434000019CA83 /* U256 */,
+			);
+			path = MacOS;
+			sourceTree = "<group>";
+		};
+		81F00535216CC87100770786 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				817A177521695AC4009C7B2A /* UInt64 */,
+				817A176F2168C124009C7B2A /* NativeU512 */,
+				817A176B2168BFF6009C7B2A /* NativeU256 */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		81F74E5821591008006D4E9A /* PrecompiledCurves */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,12 +794,12 @@
 		81F74E6B215965D7006D4E9A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				81AE0B66215434000019CA83 /* FiniteWidthInteger.swift */,
 				81AE0B59215434000019CA83 /* FieldProtocols.swift */,
 				81AE0B51215434000019CA83 /* CurveProtocols.swift */,
 				81F74E6C215965E6006D4E9A /* ArithmeticsProtocol.swift */,
 				81F74E6621591334006D4E9A /* FieldPolynomialProtocol.swift */,
 				81F74E722159757D006D4E9A /* GroupProtocol.swift */,
-				81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -776,6 +810,8 @@
 				81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */,
 				81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */,
 				81F74E7921597903006D4E9A /* ExtensionFieldProtocol.swift */,
+				81246A13215E74EC005A0B65 /* CurveOverArithmericsProtocol.swift */,
+				81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */,
 			);
 			path = ExtensionField;
 			sourceTree = "<group>";
@@ -810,7 +846,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				817A163A2167AEA5009C7B2A /* EllipticSwift_iOS.h in Headers */,
+				81F00510216CB34400770786 /* EllipticSwift.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1166,6 +1202,7 @@
 				817A17172167C3A5009C7B2A /* TinyUInt1024Errors.swift in Sources */,
 				817A170D2167C3A5009C7B2A /* TinyUInt512ExpressibleByStringLiteral.swift in Sources */,
 				817A17222167C47C009C7B2A /* TinyUInt256+FF.swift in Sources */,
+				81F00513216CB58E00770786 /* Aliases.swift in Sources */,
 				817A17092167C3A5009C7B2A /* TinyUInt128ExpressibleByIntegerLiteral.swift in Sources */,
 				817A17242167C4EA009C7B2A /* TinyUInt128+FF.swift in Sources */,
 				817A171E2167C3A5009C7B2A /* TinyUInt1024Equatable.swift in Sources */,
@@ -1242,6 +1279,7 @@
 				817A168A2167AFA1009C7B2A /* CubicExtensionField.swift in Sources */,
 				817A17582167DD02009C7B2A /* TinyUInt1024ExpressibleByIntegerLiteral.swift in Sources */,
 				817A168B2167AFA1009C7B2A /* U256+BitAccessible.swift in Sources */,
+				81F00514216CB58E00770786 /* Aliases.swift in Sources */,
 				817A168C2167AFA1009C7B2A /* MontPrimeField.swift in Sources */,
 				817A168D2167AFA1009C7B2A /* U256+Mod.swift in Sources */,
 				817A168E2167AFA1009C7B2A /* kSlidingWindowExponentiation.swift in Sources */,

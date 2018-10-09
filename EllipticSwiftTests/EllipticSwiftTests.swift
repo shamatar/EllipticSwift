@@ -829,4 +829,28 @@ class EllipticSwiftTests: XCTestCase {
             let _ = c.doubleAndAddMul(NativeU256(scalar.serialize())! , p!)
         }
     }
+    
+    func testUsage() {
+        let curve = secp256k1Curve
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        let success = curve.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(success, "Failed to init secp256k1 curve!")
+        
+        // this is basically a private key - large random scalar
+        let randomScalar = BigUInt.randomInteger(lessThan: 256)
+        guard let privateKey = U256(randomScalar.serialize()) else { return XCTFail()}
+        
+        // make point. Point is made from affine coordinates in normal (not Montgomery) representation
+        guard let G = curve.toPoint(generatorX, generatorY) else {return XCTFail()}
+        
+        // calculate a public key
+        let publicKey = privateKey * G
+        XCTAssert(!publicKey.isInfinity)
+        
+        // also try to multiply by group order
+        let groupOrder = curve.order
+        let expectInfinity = groupOrder * G
+        XCTAssert(expectInfinity.isInfinity)
+    }
 }
