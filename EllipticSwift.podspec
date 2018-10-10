@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "EllipticSwift"
-s.version          = "2.0"
+s.version          = "2.0.1"
 s.summary          = "Elliptic curve arithmetics in vanilla Swift for iOS ans macOS"
 
 s.description      = <<-DESC

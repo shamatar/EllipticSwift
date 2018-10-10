@@ -16,13 +16,13 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     public func reduce(_ a: BytesRepresentable) -> T {
         let t = T(a.bytes)
         precondition(t != nil)
-        let reduced = t!
+        let reduced = t!.mod(self.prime)
         return reduced
     }
     
     @_specialize(exported: true, where T == U256)
     public func reduce(_ a: T) -> T {
-        let reduced = a
+        let reduced = a.mod(self.prime)
         return reduced
     }
     
@@ -199,7 +199,7 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     public func fromValue(_ a: BytesRepresentable) -> UnderlyingRawType {
         let t = T(a.bytes)
         precondition(t != nil)
-        let reduced = t!
+        let reduced = self.reduce(t!)
         return reduced
     }
     
@@ -207,20 +207,20 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     public func fromValue(_ a: BigUInt) -> UnderlyingRawType {
         let t = T(a.serialize())
         precondition(t != nil)
-        let reduced = t!
+        let reduced = self.reduce(t!)
         return reduced
     }
     
     @_specialize(exported: true, where T == U256)
     public func fromValue(_ a: T) -> UnderlyingRawType {
-        let reduced = a
+        let reduced = self.reduce(a)
         return reduced
     }
     
     @_specialize(exported: true, where T == U256)
     public func fromValue(_ a: UInt64) -> UnderlyingRawType {
         let t = T(a)
-        let reduced = t
+        let reduced = self.reduce(t)
         return reduced
     }
     
@@ -228,7 +228,7 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     public func fromBytes(_ a: Data) -> UnderlyingRawType {
         let t = T(a)
         precondition(t != nil)
-        let reduced = t!
+        let reduced = self.reduce(t!)
         return reduced
     }
     

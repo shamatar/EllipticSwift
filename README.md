@@ -11,7 +11,7 @@ Add the following line to your Podfile
 ## Example
 
 ```
-		let curve = secp256k1Curve
+let curve = secp256k1Curve
         let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
         let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
         let success = curve.testGenerator(AffineCoordinates(generatorX, generatorY))
