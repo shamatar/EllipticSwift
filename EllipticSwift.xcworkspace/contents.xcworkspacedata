@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/alexvlasov/Blockchain/EllipticSwift/EllipticSwift/tmp/EllipticSwift/EllipticSwiftTests/EllipticSwiftTupleU256Tests.swift">
+   </FileRef>
+   <FileRef
       location = "group:EllipticSwift.xcodeproj">
    </FileRef>
    <FileRef

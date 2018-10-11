@@ -9,10 +9,15 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>EllipticSwiftTests_Performance.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>EllipticSwift_iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>1</integer>
 		</dict>
 		<key>EllipticSwift_iOS_Tests.xcscheme</key>
 		<dict>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>8165EBB42154337900C7117A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>816A4D14216FC60100C52480</key>
 		<dict>
 			<key>primary</key>
 			<true/>

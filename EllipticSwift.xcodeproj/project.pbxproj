@@ -8,6 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		761AE9285F20DE675807C213 /* Pods_EllipticSwift_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B37997A0478ED5F992EAFA /* Pods_EllipticSwift_iOS_Tests.framework */; };
+		816A4D18216FC60100C52480 /* EllipticSwiftTests_Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D17216FC60100C52480 /* EllipticSwiftTests_Performance.swift */; };
+		816A4D1A216FC60100C52480 /* EllipticSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 817A16BF2167AFA1009C7B2A /* EllipticSwift.framework */; };
+		816A4D22216FC86500C52480 /* TupleU256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D21216FC86500C52480 /* TupleU256.swift */; };
+		816A4D23216FC86500C52480 /* TupleU256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D21216FC86500C52480 /* TupleU256.swift */; };
+		816A4D25216FCF9900C52480 /* TupleU256+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D24216FCF9900C52480 /* TupleU256+Add.swift */; };
+		816A4D26216FCF9900C52480 /* TupleU256+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D24216FCF9900C52480 /* TupleU256+Add.swift */; };
+		816A4D28216FCFDA00C52480 /* TupleU256+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D27216FCFDA00C52480 /* TupleU256+Sub.swift */; };
+		816A4D29216FCFDA00C52480 /* TupleU256+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D27216FCFDA00C52480 /* TupleU256+Sub.swift */; };
+		816A4D2C216FD0D800C52480 /* TupleU512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D2B216FD0D800C52480 /* TupleU512.swift */; };
+		816A4D2D216FD0D800C52480 /* TupleU512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D2B216FD0D800C52480 /* TupleU512.swift */; };
+		816A4D2F216FD17300C52480 /* TupleU256+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D2E216FD17300C52480 /* TupleU256+Mul.swift */; };
+		816A4D30216FD17300C52480 /* TupleU256+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D2E216FD17300C52480 /* TupleU256+Mul.swift */; };
+		816A4D33216FD75500C52480 /* Storages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D32216FD75500C52480 /* Storages.swift */; };
+		816A4D34216FD75500C52480 /* Storages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D32216FD75500C52480 /* Storages.swift */; };
+		816A4D36216FD90300C52480 /* TupleU256+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D35216FD90300C52480 /* TupleU256+Div.swift */; };
+		816A4D37216FD90300C52480 /* TupleU256+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D35216FD90300C52480 /* TupleU256+Div.swift */; };
+		816A4D39216FD92800C52480 /* TupleU256+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D38216FD92800C52480 /* TupleU256+Aux.swift */; };
+		816A4D3A216FD92800C52480 /* TupleU256+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D38216FD92800C52480 /* TupleU256+Aux.swift */; };
+		816A4D3C216FD9D900C52480 /* TupleU256+Bits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D3B216FD9D900C52480 /* TupleU256+Bits.swift */; };
+		816A4D3D216FD9D900C52480 /* TupleU256+Bits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D3B216FD9D900C52480 /* TupleU256+Bits.swift */; };
+		816A4D3F216FDCC200C52480 /* TupleU256+Num.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D3E216FDCC200C52480 /* TupleU256+Num.swift */; };
+		816A4D40216FDCC200C52480 /* TupleU256+Num.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D3E216FDCC200C52480 /* TupleU256+Num.swift */; };
+		816A4D42216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D41216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift */; };
+		816A4D44216FE61F00C52480 /* TupleU512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */; };
+		816A4D45216FE61F00C52480 /* TupleU512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */; };
 		817A163F2167AEBD009C7B2A /* DoubleAndAddExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */; };
 		817A16402167AEBD009C7B2A /* kSlidingWindowExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */; };
 		817A16412167AEC4009C7B2A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
@@ -214,10 +239,18 @@
 		81F00513216CB58E00770786 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00512216CB58E00770786 /* Aliases.swift */; };
 		81F00514216CB58E00770786 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00512216CB58E00770786 /* Aliases.swift */; };
 		81F74E6A21591E11006D4E9A /* EllipticSwiftPolynomialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E6921591E11006D4E9A /* EllipticSwiftPolynomialTests.swift */; };
+		F32B90E7EECF8F047C0FF84F /* Pods_EllipticSwiftTests_Performance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0CCB7AF59378517CF9D2B4 /* Pods_EllipticSwiftTests_Performance.framework */; };
 		F9F701DF4008E1E6BE0EFDD3 /* Pods_EllipticSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40792BF309C45D0D4C35AA1D /* Pods_EllipticSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		816A4D1B216FC60100C52480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8165EBAC2154337900C7117A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 817A167B2167AFA1009C7B2A;
+			remoteInfo = EllipticSwift;
+		};
 		817A172F2167CF48009C7B2A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8165EBAC2154337900C7117A /* Project object */;
@@ -232,6 +265,7 @@
 		09C3C4D7B1B7ABB0D47B51E8 /* Pods-EllipticSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwiftTests.debug.xcconfig"; path = "Target Support Files/Pods-EllipticSwiftTests/Pods-EllipticSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1115AED3A4B27A038C78B34A /* Pods-EllipticSwift_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.release.xcconfig"; path = "Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		40792BF309C45D0D4C35AA1D /* Pods_EllipticSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllipticSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C5069F9FA7F8DFB09743CAF /* Pods-EllipticSwiftTests_Performance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwiftTests_Performance.debug.xcconfig"; path = "Target Support Files/Pods-EllipticSwiftTests_Performance/Pods-EllipticSwiftTests_Performance.debug.xcconfig"; sourceTree = "<group>"; };
 		787219C471352311FEE926EC /* Pods-EllipticSwift_iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS_Tests.debug.xcconfig"; path = "Target Support Files/Pods-EllipticSwift_iOS_Tests/Pods-EllipticSwift_iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8122DE4921543A8400870D39 /* EllipticSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EllipticSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8122DE592154420400870D39 /* MontgommeryCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontgommeryCurve.swift; sourceTree = "<group>"; };
@@ -241,6 +275,21 @@
 		8165EBB92154337900C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8165EBC32154337900C7117A /* EllipticSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftTests.swift; sourceTree = "<group>"; };
 		8165EBC52154337900C7117A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		816A4D15216FC60100C52480 /* EllipticSwiftTests_Performance.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EllipticSwiftTests_Performance.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		816A4D17216FC60100C52480 /* EllipticSwiftTests_Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticSwiftTests_Performance.swift; sourceTree = "<group>"; };
+		816A4D19216FC60100C52480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		816A4D21216FC86500C52480 /* TupleU256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleU256.swift; sourceTree = "<group>"; };
+		816A4D24216FCF9900C52480 /* TupleU256+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Add.swift"; sourceTree = "<group>"; };
+		816A4D27216FCFDA00C52480 /* TupleU256+Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Sub.swift"; sourceTree = "<group>"; };
+		816A4D2B216FD0D800C52480 /* TupleU512.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleU512.swift; sourceTree = "<group>"; };
+		816A4D2E216FD17300C52480 /* TupleU256+Mul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Mul.swift"; sourceTree = "<group>"; };
+		816A4D32216FD75500C52480 /* Storages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storages.swift; sourceTree = "<group>"; };
+		816A4D35216FD90300C52480 /* TupleU256+Div.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Div.swift"; sourceTree = "<group>"; };
+		816A4D38216FD92800C52480 /* TupleU256+Aux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Aux.swift"; sourceTree = "<group>"; };
+		816A4D3B216FD9D900C52480 /* TupleU256+Bits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Bits.swift"; sourceTree = "<group>"; };
+		816A4D3E216FDCC200C52480 /* TupleU256+Num.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Num.swift"; sourceTree = "<group>"; };
+		816A4D41216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EllipticSwiftTupleU256Tests.swift; path = /Users/alexvlasov/Blockchain/EllipticSwift/EllipticSwift/tmp/EllipticSwift/EllipticSwiftTests/EllipticSwiftTupleU256Tests.swift; sourceTree = "<absolute>"; };
+		816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Aux.swift"; sourceTree = "<group>"; };
 		817A16362167AEA5009C7B2A /* EllipticSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		817A16382167AEA5009C7B2A /* EllipticSwift_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift_iOS.h; sourceTree = "<group>"; };
 		817A16392167AEA5009C7B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -361,6 +410,7 @@
 		81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleAndAddExponentiation.swift; sourceTree = "<group>"; };
 		81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kSlidingWindowExponentiation.swift; sourceTree = "<group>"; };
 		81F74E83215990AE006D4E9A /* UInt64+BitsAndBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+BitsAndBytes.swift"; sourceTree = "<group>"; };
+		8D0CCB7AF59378517CF9D2B4 /* Pods_EllipticSwiftTests_Performance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllipticSwiftTests_Performance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98BA8928F002F9DEBEC86D0F /* Pods_EllipticSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllipticSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D6F019B464E2D42FA1EFA7 /* Pods-EllipticSwift_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-EllipticSwift_iOS_Tests/Pods-EllipticSwift_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A8211FE381B08CE983FD86E8 /* Pods-EllipticSwift_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift_iOS.debug.xcconfig"; path = "Target Support Files/Pods-EllipticSwift_iOS/Pods-EllipticSwift_iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -368,6 +418,7 @@
 		AAB5115501697A4C5D5E68AA /* Pods-EllipticSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwift.debug.xcconfig"; path = "Target Support Files/Pods-EllipticSwift/Pods-EllipticSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		ACCFE1DE84DC765CFE083B3D /* Pods_EllipticSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EllipticSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FB7CF461DCA18CF4F8C4AE /* Pods-EllipticSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwiftTests.release.xcconfig"; path = "Target Support Files/Pods-EllipticSwiftTests/Pods-EllipticSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		FD2B4F31B3FC845781686A91 /* Pods-EllipticSwiftTests_Performance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EllipticSwiftTests_Performance.release.xcconfig"; path = "Target Support Files/Pods-EllipticSwiftTests_Performance/Pods-EllipticSwiftTests_Performance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +428,15 @@
 			files = (
 				817A17672167E9A5009C7B2A /* EllipticSwift.framework in Frameworks */,
 				F9F701DF4008E1E6BE0EFDD3 /* Pods_EllipticSwiftTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816A4D12216FC60100C52480 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816A4D1A216FC60100C52480 /* EllipticSwift.framework in Frameworks */,
+				F32B90E7EECF8F047C0FF84F /* Pods_EllipticSwiftTests_Performance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +480,8 @@
 				1115AED3A4B27A038C78B34A /* Pods-EllipticSwift_iOS.release.xcconfig */,
 				787219C471352311FEE926EC /* Pods-EllipticSwift_iOS_Tests.debug.xcconfig */,
 				A6D6F019B464E2D42FA1EFA7 /* Pods-EllipticSwift_iOS_Tests.release.xcconfig */,
+				5C5069F9FA7F8DFB09743CAF /* Pods-EllipticSwiftTests_Performance.debug.xcconfig */,
+				FD2B4F31B3FC845781686A91 /* Pods-EllipticSwiftTests_Performance.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -431,6 +493,7 @@
 				8165EBC22154337900C7117A /* EllipticSwiftTests */,
 				817A16372167AEA5009C7B2A /* EllipticSwift_iOS */,
 				817A172A2167CF48009C7B2A /* EllipticSwift_iOS_Tests */,
+				816A4D16216FC60100C52480 /* EllipticSwiftTests_Performance */,
 				8165EBB62154337900C7117A /* Products */,
 				77B4EF01108EC3871CD7F91D /* Pods */,
 				99EDB7425DECB87991A736D6 /* Frameworks */,
@@ -445,6 +508,7 @@
 				817A16362167AEA5009C7B2A /* EllipticSwift_iOS.framework */,
 				817A16BF2167AFA1009C7B2A /* EllipticSwift.framework */,
 				817A17292167CF48009C7B2A /* EllipticSwift_iOS_Tests.xctest */,
+				816A4D15216FC60100C52480 /* EllipticSwiftTests_Performance.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -465,12 +529,54 @@
 		8165EBC22154337900C7117A /* EllipticSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				816A4D41216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift */,
 				817A17702168C5C6009C7B2A /* EllipticSwiftNativeUIntsTests.swift */,
 				81F74E6921591E11006D4E9A /* EllipticSwiftPolynomialTests.swift */,
 				8165EBC32154337900C7117A /* EllipticSwiftTests.swift */,
 				8165EBC52154337900C7117A /* Info.plist */,
 			);
 			path = EllipticSwiftTests;
+			sourceTree = "<group>";
+		};
+		816A4D16216FC60100C52480 /* EllipticSwiftTests_Performance */ = {
+			isa = PBXGroup;
+			children = (
+				816A4D17216FC60100C52480 /* EllipticSwiftTests_Performance.swift */,
+				816A4D19216FC60100C52480 /* Info.plist */,
+			);
+			path = EllipticSwiftTests_Performance;
+			sourceTree = "<group>";
+		};
+		816A4D20216FC83800C52480 /* TupleU256 */ = {
+			isa = PBXGroup;
+			children = (
+				816A4D21216FC86500C52480 /* TupleU256.swift */,
+				816A4D24216FCF9900C52480 /* TupleU256+Add.swift */,
+				816A4D27216FCFDA00C52480 /* TupleU256+Sub.swift */,
+				816A4D2E216FD17300C52480 /* TupleU256+Mul.swift */,
+				816A4D35216FD90300C52480 /* TupleU256+Div.swift */,
+				816A4D38216FD92800C52480 /* TupleU256+Aux.swift */,
+				816A4D3B216FD9D900C52480 /* TupleU256+Bits.swift */,
+				816A4D3E216FDCC200C52480 /* TupleU256+Num.swift */,
+			);
+			path = TupleU256;
+			sourceTree = "<group>";
+		};
+		816A4D2A216FD0B300C52480 /* TupleU512 */ = {
+			isa = PBXGroup;
+			children = (
+				816A4D2B216FD0D800C52480 /* TupleU512.swift */,
+				816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */,
+			);
+			path = TupleU512;
+			sourceTree = "<group>";
+		};
+		816A4D31216FD72200C52480 /* ExtendedStorageHolders */ = {
+			isa = PBXGroup;
+			children = (
+				816A4D32216FD75500C52480 /* Storages.swift */,
+			);
+			path = ExtendedStorageHolders;
 			sourceTree = "<group>";
 		};
 		817A16372167AEA5009C7B2A /* EllipticSwift_iOS */ = {
@@ -746,6 +852,9 @@
 		81F00535216CC87100770786 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				816A4D31216FD72200C52480 /* ExtendedStorageHolders */,
+				816A4D2A216FD0B300C52480 /* TupleU512 */,
+				816A4D20216FC83800C52480 /* TupleU256 */,
 				817A177521695AC4009C7B2A /* UInt64 */,
 				817A176F2168C124009C7B2A /* NativeU512 */,
 				817A176B2168BFF6009C7B2A /* NativeU256 */,
@@ -839,6 +948,7 @@
 				40792BF309C45D0D4C35AA1D /* Pods_EllipticSwiftTests.framework */,
 				98BA8928F002F9DEBEC86D0F /* Pods_EllipticSwift_iOS.framework */,
 				A9B37997A0478ED5F992EAFA /* Pods_EllipticSwift_iOS_Tests.framework */,
+				8D0CCB7AF59378517CF9D2B4 /* Pods_EllipticSwiftTests_Performance.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -882,6 +992,26 @@
 			name = EllipticSwiftTests;
 			productName = EllipticSwiftTests;
 			productReference = 8122DE4921543A8400870D39 /* EllipticSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		816A4D14216FC60100C52480 /* EllipticSwiftTests_Performance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 816A4D1F216FC60100C52480 /* Build configuration list for PBXNativeTarget "EllipticSwiftTests_Performance" */;
+			buildPhases = (
+				76802DE5E88206F016F958DF /* [CP] Check Pods Manifest.lock */,
+				816A4D11216FC60100C52480 /* Sources */,
+				816A4D12216FC60100C52480 /* Frameworks */,
+				816A4D13216FC60100C52480 /* Resources */,
+				83D934A27FC72591F1D9B4E2 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				816A4D1C216FC60100C52480 /* PBXTargetDependency */,
+			);
+			name = EllipticSwiftTests_Performance;
+			productName = EllipticSwiftTests_Performance;
+			productReference = 816A4D15216FC60100C52480 /* EllipticSwiftTests_Performance.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		817A16352167AEA5009C7B2A /* EllipticSwift_iOS */ = {
@@ -955,6 +1085,9 @@
 					8122DE4821543A8400870D39 = {
 						CreatedOnToolsVersion = 10.0;
 					};
+					816A4D14216FC60100C52480 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					817A16352167AEA5009C7B2A = {
 						CreatedOnToolsVersion = 10.0;
 					};
@@ -979,12 +1112,20 @@
 				817A16352167AEA5009C7B2A /* EllipticSwift_iOS */,
 				817A167B2167AFA1009C7B2A /* EllipticSwift */,
 				817A17282167CF48009C7B2A /* EllipticSwift_iOS_Tests */,
+				816A4D14216FC60100C52480 /* EllipticSwiftTests_Performance */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8122DE4721543A8400870D39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816A4D13216FC60100C52480 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1061,6 +1202,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EllipticSwift_iOS_Tests/Pods-EllipticSwift_iOS_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		76802DE5E88206F016F958DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EllipticSwiftTests_Performance-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		817A167C2167AFA1009C7B2A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1081,6 +1244,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83D934A27FC72591F1D9B4E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EllipticSwiftTests_Performance/Pods-EllipticSwiftTests_Performance-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BigInt-macOS/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash-macOS/SipHash.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EllipticSwiftTests_Performance/Pods-EllipticSwiftTests_Performance-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9993D916B1DB3268FCCE1FD6 /* [CP] Check Pods Manifest.lock */ = {
@@ -1160,7 +1347,16 @@
 			files = (
 				817A17712168C5C6009C7B2A /* EllipticSwiftNativeUIntsTests.swift in Sources */,
 				81F74E6A21591E11006D4E9A /* EllipticSwiftPolynomialTests.swift in Sources */,
+				816A4D42216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift in Sources */,
 				817A16782167AF25009C7B2A /* EllipticSwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816A4D11216FC60100C52480 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816A4D18216FC60100C52480 /* EllipticSwiftTests_Performance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,7 +1365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				817A164C2167AED4009C7B2A /* Secp256k1.swift in Sources */,
+				816A4D33216FD75500C52480 /* Storages.swift in Sources */,
 				817A16F42167C3A5009C7B2A /* TinyUInt256UnsignedInteger.swift in Sources */,
+				816A4D3F216FDCC200C52480 /* TupleU256+Num.swift in Sources */,
 				817A16442167AEC7009C7B2A /* FieldProtocols.swift in Sources */,
 				817A164B2167AED1009C7B2A /* BN256.swift in Sources */,
 				817A16F52167C3A5009C7B2A /* TinyUInt256BinaryInteger.swift in Sources */,
@@ -1184,6 +1382,7 @@
 				817A16462167AEC7009C7B2A /* ArithmeticsProtocol.swift in Sources */,
 				817A16522167AED9009C7B2A /* ProperExtendableWeierstrassCurve.swift in Sources */,
 				817A17162167C3A5009C7B2A /* TinyUInt1024ExpressibleByIntegerLiteral.swift in Sources */,
+				816A4D39216FD92800C52480 /* TupleU256+Aux.swift in Sources */,
 				817A17132167C3A5009C7B2A /* TinyUInt512ExpressibleByIntegerLiteral.swift in Sources */,
 				817A170B2167C3A5009C7B2A /* TinyUInt512Hashable.swift in Sources */,
 				817A17122167C3A5009C7B2A /* TinyUInt512Equatable.swift in Sources */,
@@ -1191,6 +1390,8 @@
 				817A164E2167AED9009C7B2A /* AffineCoordinates.swift in Sources */,
 				817A177A216962D2009C7B2A /* NativeU256+FF.swift in Sources */,
 				817A16F72167C3A5009C7B2A /* TinyUInt256Hashable.swift in Sources */,
+				816A4D36216FD90300C52480 /* TupleU256+Div.swift in Sources */,
+				816A4D28216FCFDA00C52480 /* TupleU256+Sub.swift in Sources */,
 				817A171C2167C3A5009C7B2A /* TinyUInt1024ExpressibleByStringLiteral.swift in Sources */,
 				817A16F62167C3A5009C7B2A /* TinyUInt256Comparable.swift in Sources */,
 				817A17152167C3A5009C7B2A /* StringExtension.swift in Sources */,
@@ -1210,8 +1411,10 @@
 				817A17092167C3A5009C7B2A /* TinyUInt128ExpressibleByIntegerLiteral.swift in Sources */,
 				817A17242167C4EA009C7B2A /* TinyUInt128+FF.swift in Sources */,
 				817A171E2167C3A5009C7B2A /* TinyUInt1024Equatable.swift in Sources */,
+				816A4D3C216FD9D900C52480 /* TupleU256+Bits.swift in Sources */,
 				817A17202167C3A5009C7B2A /* TinyUInt1024UnsignedInteger.swift in Sources */,
 				817A16FD2167C3A5009C7B2A /* TinyUInt256FixedWidthInteger.swift in Sources */,
+				816A4D2F216FD17300C52480 /* TupleU256+Mul.swift in Sources */,
 				817A17022167C3A5009C7B2A /* TinyUInt128Equatable.swift in Sources */,
 				817A17192167C3A5009C7B2A /* TinyUInt1024Hashable.swift in Sources */,
 				817A16FC2167C3A5009C7B2A /* TinyUInt256CustomStringConvertible.swift in Sources */,
@@ -1220,8 +1423,10 @@
 				817A171B2167C3A5009C7B2A /* TinyUInt1024Comparable.swift in Sources */,
 				817A16562167AEE1009C7B2A /* PrimeFieldElement.swift in Sources */,
 				817A16582167AEE1009C7B2A /* MontPrimeField.swift in Sources */,
+				816A4D2C216FD0D800C52480 /* TupleU512.swift in Sources */,
 				817A17012167C3A5009C7B2A /* TinyUInt128Errors.swift in Sources */,
 				817A16592167AEE1009C7B2A /* NaivePrimeFiniteField.swift in Sources */,
+				816A4D44216FE61F00C52480 /* TupleU512+Aux.swift in Sources */,
 				817A16FE2167C3A5009C7B2A /* TinyUInt256Errors.swift in Sources */,
 				817A16762167AEFF009C7B2A /* WindowMethods.swift in Sources */,
 				817A17692168AD5A009C7B2A /* TinyUInt512+FF.swift in Sources */,
@@ -1242,8 +1447,10 @@
 				817A171A2167C3A5009C7B2A /* TinyUInt1024CustomStringConvertible.swift in Sources */,
 				817A176D2168C014009C7B2A /* NativeU256.swift in Sources */,
 				817A16FF2167C3A5009C7B2A /* TinyUInt128ExpressibleByStringLiteral.swift in Sources */,
+				816A4D25216FCF9900C52480 /* TupleU256+Add.swift in Sources */,
 				817A16452167AEC7009C7B2A /* CurveProtocols.swift in Sources */,
 				817A16752167AEFF009C7B2A /* Constants.swift in Sources */,
+				816A4D22216FC86500C52480 /* TupleU256.swift in Sources */,
 				817A17032167C3A5009C7B2A /* TinyUInt128Numeric.swift in Sources */,
 				817A16422167AEC4009C7B2A /* CubicExtensionField.swift in Sources */,
 				817A16F82167C3A5009C7B2A /* TinyUInt256ExpressibleByStringLiteral.swift in Sources */,
@@ -1273,6 +1480,7 @@
 				817A16852167AFA1009C7B2A /* WindowMethods.swift in Sources */,
 				817A16862167AFA1009C7B2A /* U256+Equatable.swift in Sources */,
 				817A17432167DCF8009C7B2A /* TinyUInt256BinaryInteger.swift in Sources */,
+				816A4D40216FDCC200C52480 /* TupleU256+Num.swift in Sources */,
 				817A16872167AFA1009C7B2A /* U128.swift in Sources */,
 				817A173D2167DCE4009C7B2A /* TinyUInt128UnsignedInteger.swift in Sources */,
 				817A16882167AFA1009C7B2A /* UInt32.swift in Sources */,
@@ -1299,7 +1507,9 @@
 				817A173F2167DCE4009C7B2A /* TinyUInt128Comparable.swift in Sources */,
 				817A16942167AFA1009C7B2A /* U512+Mod.swift in Sources */,
 				817A175F2167DD02009C7B2A /* TinyUInt1024BinaryInteger.swift in Sources */,
+				816A4D23216FC86500C52480 /* TupleU256.swift in Sources */,
 				817A17422167DCF8009C7B2A /* TinyUInt256UnsignedInteger.swift in Sources */,
+				816A4D37216FD90300C52480 /* TupleU256+Div.swift in Sources */,
 				817A16952167AFA1009C7B2A /* U512+Mul.swift in Sources */,
 				817A16962167AFA1009C7B2A /* U256+Sub.swift in Sources */,
 				817A16972167AFA1009C7B2A /* QuadraticExtensionField.swift in Sources */,
@@ -1321,6 +1531,7 @@
 				817A169F2167AFA1009C7B2A /* U256+Mul.swift in Sources */,
 				817A175B2167DD02009C7B2A /* TinyUInt1024Hashable.swift in Sources */,
 				817A174A2167DCF8009C7B2A /* TinyUInt256CustomStringConvertible.swift in Sources */,
+				816A4D26216FCF9900C52480 /* TupleU256+Add.swift in Sources */,
 				817A16A02167AFA1009C7B2A /* ArithmeticsProtocol.swift in Sources */,
 				817A17452167DCF8009C7B2A /* TinyUInt256Hashable.swift in Sources */,
 				817A175D2167DD02009C7B2A /* TinyUInt1024Comparable.swift in Sources */,
@@ -1332,6 +1543,7 @@
 				817A17502167DCFD009C7B2A /* TinyUInt512ExpressibleByStringLiteral.swift in Sources */,
 				817A17462167DCF8009C7B2A /* TinyUInt256ExpressibleByStringLiteral.swift in Sources */,
 				817A174E2167DCFD009C7B2A /* TinyUInt512Hashable.swift in Sources */,
+				816A4D3D216FD9D900C52480 /* TupleU256+Bits.swift in Sources */,
 				817A17632167DD07009C7B2A /* TinyUInt256+FF.swift in Sources */,
 				817A16A42167AFA1009C7B2A /* NaivePrimeField.swift in Sources */,
 				817A17492167DCF8009C7B2A /* TinyUInt256Numeric.swift in Sources */,
@@ -1346,16 +1558,22 @@
 				817A16A82167AFA1009C7B2A /* ProperExtendableWeierstrassCurve.swift in Sources */,
 				817A16A92167AFA1009C7B2A /* U512+Sub.swift in Sources */,
 				817A176E2168C014009C7B2A /* NativeU256.swift in Sources */,
+				816A4D29216FCFDA00C52480 /* TupleU256+Sub.swift in Sources */,
+				816A4D34216FD75500C52480 /* Storages.swift in Sources */,
 				817A17612167DD02009C7B2A /* TinyUInt1024FixedWidthInteger.swift in Sources */,
 				817A177821695AE7009C7B2A /* UInt64+Extensions.swift in Sources */,
 				817A17522167DCFD009C7B2A /* TinyUInt512FixedWidthInteger.swift in Sources */,
 				817A16AA2167AFA1009C7B2A /* AffineCoordinates.swift in Sources */,
 				817A175C2167DD02009C7B2A /* TinyUInt1024CustomStringConvertible.swift in Sources */,
+				816A4D45216FE61F00C52480 /* TupleU512+Aux.swift in Sources */,
 				817A16AB2167AFA1009C7B2A /* U128+Comparable.swift in Sources */,
 				817A16AC2167AFA1009C7B2A /* U512+Div.swift in Sources */,
 				817A16AD2167AFA1009C7B2A /* U128+BitAccessible.swift in Sources */,
 				817A16AE2167AFA1009C7B2A /* U256+Add.swift in Sources */,
 				817A16AF2167AFA1009C7B2A /* PrimeFieldElement.swift in Sources */,
+				816A4D2D216FD0D800C52480 /* TupleU512.swift in Sources */,
+				816A4D30216FD17300C52480 /* TupleU256+Mul.swift in Sources */,
+				816A4D3A216FD92800C52480 /* TupleU256+Aux.swift in Sources */,
 				817A177B216962D2009C7B2A /* NativeU256+FF.swift in Sources */,
 				817A17442167DCF8009C7B2A /* TinyUInt256Comparable.swift in Sources */,
 				817A16B02167AFA1009C7B2A /* U256+BitOps.swift in Sources */,
@@ -1384,6 +1602,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		816A4D1C216FC60100C52480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 817A167B2167AFA1009C7B2A /* EllipticSwift */;
+			targetProxy = 816A4D1B216FC60100C52480 /* PBXContainerItemProxy */;
+		};
 		817A17302167CF48009C7B2A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 817A16352167AEA5009C7B2A /* EllipticSwift_iOS */;
@@ -1549,6 +1772,46 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		816A4D1D216FC60100C52480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C5069F9FA7F8DFB09743CAF /* Pods-EllipticSwiftTests_Performance.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				INFOPLIST_FILE = EllipticSwiftTests_Performance/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "shamatar.EllipticSwiftTests-Performance";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		816A4D1E216FC60100C52480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD2B4F31B3FC845781686A91 /* Pods-EllipticSwiftTests_Performance.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 62V9CKQN89;
+				INFOPLIST_FILE = EllipticSwiftTests_Performance/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "shamatar.EllipticSwiftTests-Performance";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1732,6 +1995,15 @@
 			buildConfigurations = (
 				8165EBC72154337900C7117A /* Debug */,
 				8165EBC82154337900C7117A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		816A4D1F216FC60100C52480 /* Build configuration list for PBXNativeTarget "EllipticSwiftTests_Performance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				816A4D1D216FC60100C52480 /* Debug */,
+				816A4D1E216FC60100C52480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

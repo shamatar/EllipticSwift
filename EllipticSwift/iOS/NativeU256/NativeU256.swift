@@ -482,7 +482,7 @@ extension NativeU256 {
         } else if typedStorage[2] != 0 {
             return typedStorage[2].leadingZeroBitCount + 64
         } else if typedStorage[1] != 0 {
-            return typedStorage[0].leadingZeroBitCount + 128
+            return typedStorage[1].leadingZeroBitCount + 128
         } else {
             return typedStorage[0].leadingZeroBitCount + 192
         }

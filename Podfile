@@ -15,7 +15,18 @@ target 'EllipticSwift' do
     import_pods
     # Pods for testing
   end
+
+  target 'EllipticSwiftTests_Performance' do
+    use_frameworks!
+    platform :osx, '10.11'
+    inherit! :search_paths
+    import_pods
+    # Pods for testing
+  end
+
 end
+
+
 
 target 'EllipticSwift_iOS' do
   platform :ios, '9.0'
