@@ -96,20 +96,20 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     
     @_specialize(exported: false, where T == U256)
     internal func doubleAndAddExponentiation(_ a: T, _ b: T) -> T {
-//        return DoubleAndAddExponentiationGeneric(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul)
-        var base = a
-        var result = self.identityElement
-        let bitwidth = b.bitWidth
-        for i in 0 ..< bitwidth {
-            if b.bit(i) {
-                result = self.mul(result, base)
-            }
-            if i == bitwidth - 1 {
-                break
-            }
-            base = mul(base, base)
-        }
-        return result
+        return DoubleAndAddExponentiationGeneric(a: a, power: b, identity: self.identityElement, multiplicationFunction: self.mul)
+//        var base = a
+//        var result = self.identityElement
+//        let bitwidth = b.bitWidth
+//        for i in 0 ..< bitwidth {
+//            if b.bit(i) {
+//                result = self.mul(result, base)
+//            }
+//            if i == bitwidth - 1 {
+//                break
+//            }
+//            base = mul(base, base)
+//        }
+//        return result
     }
     
     @_specialize(exported: false, where T == U256)
@@ -149,10 +149,11 @@ public class NaivePrimeField<T>: PrimeFieldProtocol where T: FiniteFieldCompatib
     
     @_specialize(exported: true, where T == U256)
     public func inv(_ a: T) -> T {
-        // TODO: inversion in Mont. field natively
-        let TWO = T(UInt64(2))
-        let power = self.prime - TWO
-        return self.pow(a, power)
+        return a.modInv(self.prime)
+        // faster than POW
+//        let TWO = T(UInt64(2))
+//        let power = self.prime - TWO
+//        return self.pow(a, power)
     }
     
     @_specialize(exported: true, where T == U256)

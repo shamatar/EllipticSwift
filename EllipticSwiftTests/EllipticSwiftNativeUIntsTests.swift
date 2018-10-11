@@ -167,12 +167,26 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
         let ar = BigUInt.randomInteger(withMaximumWidth: 256)
         let br = BigUInt(1234)
         let a = NativeU256(ar)
-        let r = a.divide(byWord: 1234)
+        let r = a.inplaceDivide(byWord: 1234)
         let (qq, rr) = ar.quotientAndRemainder(dividingBy: br)
         for i in 0 ..< 4 {
             XCTAssert(a.words[i] == qq.words[i])
         }
         XCTAssert(r == rr.words[0])
+    }
+    
+    func testU256DivisionByWord2() {
+        for _ in 0 ..< 100 {
+            let ar = BigUInt.randomInteger(withMaximumWidth: 256)
+            let br = BigUInt.randomInteger(withMaximumWidth: 64)
+            let a = NativeU256(ar)
+            let r = a.inplaceDivide(byWord: UInt64(br.words[0]))
+            let (qq, rr) = ar.quotientAndRemainder(dividingBy: br)
+            for i in 0 ..< 4 {
+                XCTAssert(a.words[i] == qq.words[i])
+            }
+            XCTAssert(r == rr.words[0])
+        }
     }
     
     func testDivisionPerf() {
@@ -298,7 +312,7 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
     
     func testArithmeticsU256() {
         for _ in 0 ..< 100 {
-            let mr = secp256k1PrimeBUI
+            let mr = BigUInt.randomInteger(withMaximumWidth: 256)
             let ar = BigUInt.randomInteger(lessThan: mr)
             let br = BigUInt.randomInteger(lessThan: ar)
             let a = NativeU256(ar)
@@ -346,18 +360,35 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
     }
     
     func testWordMulWithShift() {
-        let ar = BigUInt.randomInteger(withMaximumWidth: 128)
-        let a = NativeU256(ar)
-        let w = UInt64(1)
-        let shift = 1
-        let aWords = a.words
-        let of = a.inplaceMultiply(byWord: w, shiftedBy: shift)
-        XCTAssert(of == 0)
-        XCTAssert(a[0] == 0)
-        print(aWords)
-        print(a.words)
-        XCTAssert(a[1] == aWords[0])
-        XCTAssert(a[2] == aWords[1])
+        for _ in 0 ..< 100 {
+            let ar = BigUInt.randomInteger(withMaximumWidth: 128)
+            let a = NativeU256(ar)
+            let w = UInt64(1)
+            let shift = 1
+            let aWords = a.words
+            let of = a.inplaceMultiply(byWord: w, shiftedBy: shift)
+            XCTAssert(of == 0)
+            XCTAssert(a[0] == 0)
+            print(aWords)
+            print(a.words)
+            XCTAssert(a[1] == aWords[0])
+            XCTAssert(a[2] == aWords[1])
+        }
+        
+        for _ in 0 ..< 100 {
+            let ar = BigUInt.randomInteger(withMaximumWidth: 128)
+            let a = NativeU256(ar)
+            let w = UInt64(1)
+            let shift = 2
+            let aWords = a.words
+            let of = a.inplaceMultiply(byWord: w, shiftedBy: shift)
+            XCTAssert(of == 0)
+            XCTAssert(a[0] == 0)
+            print(aWords)
+            print(a.words)
+            XCTAssert(a[2] == aWords[0])
+            XCTAssert(a[3] == aWords[1])
+        }
     }
     
     func testWordMulWithZeroShift() {

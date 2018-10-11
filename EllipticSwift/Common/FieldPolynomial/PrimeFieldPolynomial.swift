@@ -136,6 +136,9 @@ public struct PrimeFieldPolynomial<F>: FieldPolynomialProtocol where F: PrimeFie
     }
     
     public func evaluate(_ x: FE) -> FE {
+        if x.isZero {
+            return FE.zeroElement(self.field)
+        }
         var p = FE.identityElement(self.field)
         var accumulator = self.coefficients[0] * p
         for i in 1 ..< self.coefficients.count {

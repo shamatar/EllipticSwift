@@ -319,7 +319,7 @@ extension NativeU256 {
         return retval
     }
     
-    @inline(__always) internal func divide(byWord y: UInt64) -> UInt64 {
+    @inline(__always) internal func inplaceDivide(byWord y: UInt64) -> UInt64 {
         precondition(y > 0)
         if y == 1 { return 0 }
         
@@ -334,7 +334,7 @@ extension NativeU256 {
     
     @inline(__always) internal func quotientAndRemainder(dividingByWord y: UInt64) -> (quotient: NativeU256, remainder: UInt64) {
         let div = NativeU256(self)
-        let mod = div.divide(byWord: y)
+        let mod = div.inplaceDivide(byWord: y)
         return (div, mod)
     }
     

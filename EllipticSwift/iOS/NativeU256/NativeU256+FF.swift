@@ -73,17 +73,17 @@ extension NativeU256: ModReducable {
     }
     
     public func modInv(_ modulus: NativeU256) -> NativeU256 {
-        var a = self
+        var a = NativeU256(self)
         let zero = NativeU256(UInt64(0))
         let one = NativeU256(UInt64(1))
-        var new = one
-        var old = zero
-        var q = modulus
-        var r = zero
-        var h = zero
+        var new = NativeU256(one)
+        var old = NativeU256(zero)
+        var q = NativeU256(modulus)
+        var r = NativeU256(zero)
+        var h = NativeU256(zero)
         var positive = false
         while !a.isZero {
-            (q, r) = q.divide(by: a)
+            (q, r) = q.div(a)
             h = q.halfMul(new).addMod(old)
             old = new
             new = h

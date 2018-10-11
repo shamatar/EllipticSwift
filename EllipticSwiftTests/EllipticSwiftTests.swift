@@ -48,18 +48,6 @@ class EllipticSwiftTests: XCTestCase {
         }
     }
     
-    func testModMul() {
-        let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
-        let modulus = TinyUInt256(secp256k1PrimeBUI.serialize())!
-        let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
-        let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
-        let a = TinyUInt256(ar.serialize())!
-        let b = TinyUInt256(br.serialize())!
-        let res = a.modMultiply(b, modulus)
-        let naive = (ar * br) % secp256k1PrimeBUI
-        XCTAssert(String(naive) == String(res))
-    }
-    
     func testDivision128() {
         let ar = BigUInt.randomInteger(withExactWidth: 128)
         let br = BigUInt.randomInteger(lessThan: ar)
@@ -69,17 +57,6 @@ class EllipticSwiftTests: XCTestCase {
         let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
         print(String(q))
         print(String(qr))
-        XCTAssert(String(q) == String(qr))
-        XCTAssert(String(r) == String(rr))
-    }
-    
-    func testDivision() {
-        let ar = BigUInt.randomInteger(withExactWidth: 256)
-        let br = BigUInt.randomInteger(lessThan: ar)
-        let a = TinyUInt256(ar.serialize())!
-        let b = TinyUInt256(br.serialize())!
-        let (q, r) = a.quotientAndRemainder(dividingBy: b)
-        let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
         XCTAssert(String(q) == String(qr))
         XCTAssert(String(r) == String(rr))
     }
@@ -273,10 +250,22 @@ class EllipticSwiftTests: XCTestCase {
     func testLargeFieldInv() {
         let secp256k1Prime = EllipticSwift.secp256k1Prime
         let secp256k1PrimeField = NaivePrimeField<U256>(secp256k1Prime)
-        for i in 0 ..< 10 {
+        for i in 0 ..< 100 {
             let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
             let trivialRes = ar.inverse(secp256k1PrimeBUI)!
+            let res = a.inv()
+            XCTAssert(res.value == trivialRes, "Failed on attempt = " + String(i))
+        }
+    }
+    
+    func testLargeFieldInvBN256() {
+        let prime = EllipticSwift.bn256PrimeBUI
+        let field = NaivePrimeField<NativeU256>(prime)
+        for i in 0 ..< 100 {
+            let ar = BigUInt.randomInteger(lessThan: prime)
+            let a = FieldElement.fromBytes(ar.serialize(), field: field)
+            let trivialRes = ar.inverse(prime)!
             let res = a.inv()
             XCTAssert(res.value == trivialRes, "Failed on attempt = " + String(i))
         }
@@ -328,7 +317,7 @@ class EllipticSwiftTests: XCTestCase {
     func testLargeFieldInvNativeU256() {
         let secp256k1Prime = EllipticSwift.secp256k1Prime
         let secp256k1PrimeField = NaivePrimeField<NativeU256>(secp256k1Prime)
-        for i in 0 ..< 10 {
+        for i in 0 ..< 100 {
             let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
             let trivialRes = ar.inverse(secp256k1PrimeBUI)!
@@ -340,7 +329,7 @@ class EllipticSwiftTests: XCTestCase {
     func testLargeFieldMulNativeU256() {
         let secp256k1Prime = EllipticSwift.secp256k1Prime
         let secp256k1PrimeField = NaivePrimeField<NativeU256>(secp256k1Prime)
-        for i in 0 ..< 10 {
+        for i in 0 ..< 100 {
             let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
@@ -355,7 +344,7 @@ class EllipticSwiftTests: XCTestCase {
     func testLargeFieldAdditionNativeU256() {
         let secp256k1Prime = EllipticSwift.secp256k1Prime
         let secp256k1PrimeField = NaivePrimeField<NativeU256>(secp256k1Prime)
-        for i in 0 ..< 10 {
+        for i in 0 ..< 100 {
             let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let br = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
@@ -539,15 +528,31 @@ class EllipticSwiftTests: XCTestCase {
     func testDifferentExponentiations() {
         let secp256k1Prime = EllipticSwift.secp256k1Prime
         let secp256k1PrimeField = NaivePrimeField<U256>(secp256k1Prime)
-        for _ in 0 ..< 10 {
+        for _ in 0 ..< 100 {
             let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
             let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
-            let br = BigUInt.randomInteger(withExactWidth: 256)
+            let br = BigUInt.randomInteger(withMaximumWidth: 256)
             let b = U256(br.serialize())!
             let trivial = a.field.doubleAndAddExponentiation(a.rawValue, b)
             let sliding = a.field.kSlidingWindowExponentiation(a.rawValue, b, windowSize: 5)
             let naive = ar.power(br, modulus: secp256k1PrimeBUI)
             XCTAssert(trivial == U256(naive.serialize())!)
+            XCTAssert(trivial == sliding)
+        }
+    }
+    
+    func testDifferentExponentiationsInMont() {
+        let secp256k1Prime = EllipticSwift.secp256k1Prime
+        let secp256k1PrimeField = MontPrimeField<U256>(secp256k1Prime)
+        for _ in 0 ..< 100 {
+            let ar = BigUInt.randomInteger(lessThan: secp256k1PrimeBUI)
+            let a = FieldElement.fromBytes(ar.serialize(), field: secp256k1PrimeField)
+            let br = BigUInt.randomInteger(withMaximumWidth: 256)
+            let b = U256(br.serialize())!
+            let trivial = a.field.doubleAndAddExponentiation(a.rawValue, b)
+            let sliding = a.field.kSlidingWindowExponentiation(a.rawValue, b, windowSize: 5)
+            let naive = ar.power(br, modulus: secp256k1PrimeBUI)
+            XCTAssert(a.field.toValue(trivial) == U256(naive.serialize())!)
             XCTAssert(trivial == sliding)
         }
     }
