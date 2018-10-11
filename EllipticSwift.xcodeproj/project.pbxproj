@@ -208,6 +208,8 @@
 		817A177821695AE7009C7B2A /* UInt64+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A177621695AE7009C7B2A /* UInt64+Extensions.swift */; };
 		817A177A216962D2009C7B2A /* NativeU256+FF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A1779216962D2009C7B2A /* NativeU256+FF.swift */; };
 		817A177B216962D2009C7B2A /* NativeU256+FF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A1779216962D2009C7B2A /* NativeU256+FF.swift */; };
+		81C309C4216F3C49009D7463 /* PrimeFieldPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C309C3216F3C49009D7463 /* PrimeFieldPolynomial.swift */; };
+		81C309C5216F3C49009D7463 /* PrimeFieldPolynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C309C3216F3C49009D7463 /* PrimeFieldPolynomial.swift */; };
 		81F00510216CB34400770786 /* EllipticSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8165EBB82154337900C7117A /* EllipticSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81F00513216CB58E00770786 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00512216CB58E00770786 /* Aliases.swift */; };
 		81F00514216CB58E00770786 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00512216CB58E00770786 /* Aliases.swift */; };
@@ -341,6 +343,7 @@
 		81AE0B7A215434000019CA83 /* U256+Mul.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "U256+Mul.swift"; sourceTree = "<group>"; };
 		81AE0BC9215436160019CA83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		81AE0BCB2154361F0019CA83 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		81C309C3216F3C49009D7463 /* PrimeFieldPolynomial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeFieldPolynomial.swift; sourceTree = "<group>"; };
 		81E5C07F215BDA1100BF7D52 /* CubicExtensionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicExtensionField.swift; sourceTree = "<group>"; };
 		81E5C086215BF27B00BF7D52 /* NaivePrimeFiniteField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaivePrimeFiniteField.swift; sourceTree = "<group>"; };
 		81EB299A21652C2400E8E3C2 /* ProperExtendableWeierstrassCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProperExtendableWeierstrassCurve.swift; sourceTree = "<group>"; };
@@ -787,6 +790,7 @@
 			isa = PBXGroup;
 			children = (
 				81F74E63215912F4006D4E9A /* FieldPolynomial.swift */,
+				81C309C3216F3C49009D7463 /* PrimeFieldPolynomial.swift */,
 			);
 			path = FieldPolynomial;
 			sourceTree = "<group>";
@@ -1248,6 +1252,7 @@
 				817A170C2167C3A5009C7B2A /* TinyUInt512UnsignedInteger.swift in Sources */,
 				817A16542167AEDD009C7B2A /* UInt64+BitsAndBytes.swift in Sources */,
 				817A170A2167C3A5009C7B2A /* TinyUInt512BinaryInteger.swift in Sources */,
+				81C309C4216F3C49009D7463 /* PrimeFieldPolynomial.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1309,6 +1314,7 @@
 				817A169A2167AFA1009C7B2A /* FieldProtocols.swift in Sources */,
 				817A17622167DD02009C7B2A /* TinyUInt1024UnsignedInteger.swift in Sources */,
 				817A169B2167AFA1009C7B2A /* U256+Div.swift in Sources */,
+				81C309C5216F3C49009D7463 /* PrimeFieldPolynomial.swift in Sources */,
 				817A169C2167AFA1009C7B2A /* U256.swift in Sources */,
 				817A169D2167AFA1009C7B2A /* Point.swift in Sources */,
 				817A169E2167AFA1009C7B2A /* Constants.swift in Sources */,
