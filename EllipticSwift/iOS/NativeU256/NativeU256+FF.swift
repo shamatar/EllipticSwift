@@ -68,7 +68,7 @@ extension NativeU256: ModReducable {
     }
     
     public func mod(_ modulus: NativeU256) -> NativeU256 {
-        let (_, rem) = self.divide(by: modulus)
+        let (_, rem) = self.div(modulus)
         return rem
     }
     

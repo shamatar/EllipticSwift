@@ -838,7 +838,7 @@ class EllipticSwiftTests: XCTestCase {
         XCTAssert(success, "Failed to init secp256k1 curve!")
         
         // this is basically a private key - large random scalar
-        let randomScalar = BigUInt.randomInteger(lessThan: 256)
+        let randomScalar = BigUInt.randomInteger(withMaximumWidth: 256)
         guard let privateKey = U256(randomScalar.serialize()) else { return XCTFail()}
         
         // make point. Point is made from affine coordinates in normal (not Montgomery) representation
@@ -876,7 +876,7 @@ class EllipticSwiftTests: XCTestCase {
         
         for _ in 0 ..< 100 {
             // this is basically a private key - large random scalar
-            let randomScalar = BigUInt.randomInteger(lessThan: 256)
+            let randomScalar = BigUInt.randomInteger(withMaximumWidth: 256)
             guard let privateKey = U256(randomScalar.serialize()) else { return XCTFail()}
             guard let privateKeyNative = NativeU256(randomScalar.serialize()) else { return XCTFail()}
             // make point. Point is made from affine coordinates in normal (not Montgomery) representation
@@ -922,7 +922,7 @@ class EllipticSwiftTests: XCTestCase {
         
         for _ in 0 ..< 100 {
             // this is basically a private key - large random scalar
-            let randomScalar = BigUInt.randomInteger(lessThan: 256)
+            let randomScalar = BigUInt.randomInteger(withMaximumWidth: 256)
             guard let privateKeyNative = NativeU256(randomScalar.serialize()) else { return XCTFail()}
             guard let GNative = curveNativeU256.toPoint(generatorX, generatorY) else {return XCTFail()}
             
@@ -932,8 +932,8 @@ class EllipticSwiftTests: XCTestCase {
             XCTAssert(!publicKey.isInfinity)
             XCTAssert(!publicKeyNative.isInfinity)
             
-            XCTAssert(publicKey.toAffine().coordinates.X == publicKeyNative.toAffine().coordinates.X)
-            XCTAssert(publicKey.toAffine().coordinates.Y == publicKeyNative.toAffine().coordinates.Y)
+            XCTAssertEqual(publicKey.toAffine().coordinates.X, publicKeyNative.toAffine().coordinates.X)
+            XCTAssertEqual(publicKey.toAffine().coordinates.Y, publicKeyNative.toAffine().coordinates.Y)
             
         }
     }

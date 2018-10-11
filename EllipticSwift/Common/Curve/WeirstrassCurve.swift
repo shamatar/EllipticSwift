@@ -279,7 +279,7 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
             if scalar.bit(i) {
                 result = self.add(result, base)
             }
-            if i == scalar.bitWidth - 1 {
+            if i == bitwidth - 1 {
                 break
             }
             base = self.double(base)
@@ -294,7 +294,8 @@ public class WeierstrassCurve<T>: CurveProtocol where T: PrimeFieldProtocol {
         if p.isInfinity {
             return ProjectiveType.infinityPoint(self)
         }
-        let reducedScalar = scalar.mod(self.order)
+//        let reducedScalar = scalar.mod(self.order)
+        let reducedScalar = scalar
         let projectiveP = p.toProjective()
         let numPrecomputedElements = (1 << (windowSize-2)) // 2**(w-1) precomputations required
         var precomputations = [ProjectiveType]() // P, 3P, 5P, 7P, 9P, 11P, 13P, 15P ...
