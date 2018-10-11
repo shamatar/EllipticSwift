@@ -303,7 +303,7 @@ extension NativeU512 {
         return retval
     }
     
-    @inline(__always) internal func divide(byWord y: UInt64) -> UInt64 {
+    @inline(__always) internal func inplaceDivide(byWord y: UInt64) -> UInt64 {
         precondition(y > 0)
         if y == 1 { return 0 }
         
@@ -318,7 +318,7 @@ extension NativeU512 {
     
     @inline(__always) internal func quotientAndRemainder(dividingByWord y: UInt64) -> (quotient: NativeU512, remainder: UInt64) {
         let div = NativeU512(self)
-        let mod = div.divide(byWord: y)
+        let mod = div.inplaceDivide(byWord: y)
         return (div, mod)
     }
     
@@ -351,7 +351,7 @@ extension NativeU512 {
             let m = j - dc
             // pad with 0 highest word
             var r2 = x[j]
-            if j == xWordCount {
+            if j == U512WordWidth {
                 r2 = xTopBits
             }
             let r1 = x[j - 1]

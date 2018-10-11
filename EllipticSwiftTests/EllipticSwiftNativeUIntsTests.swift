@@ -211,7 +211,7 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
         let ar = BigUInt.randomInteger(withMaximumWidth: 512)
         let br = BigUInt(1234)
         let a = NativeU512(ar)
-        let r = a.divide(byWord: 1234)
+        let r = a.inplaceDivide(byWord: 1234)
         let (qq, rr) = ar.quotientAndRemainder(dividingBy: br)
         for i in 0 ..< 8 {
             XCTAssert(a.words[i] == qq.words[i])
@@ -311,10 +311,11 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
     }
     
     func testArithmeticsU256() {
+        let width = 128
         for _ in 0 ..< 100 {
-            let mr = BigUInt.randomInteger(withMaximumWidth: 256)
-            let ar = BigUInt.randomInteger(lessThan: mr)
-            let br = BigUInt.randomInteger(lessThan: ar)
+            let mr = BigUInt.randomInteger(withMaximumWidth: width)
+            let ar = BigUInt.randomInteger(withMaximumWidth: width)
+            let br = BigUInt.randomInteger(withMaximumWidth: width)
             let a = NativeU256(ar)
             let b = NativeU256(br)
             let m = NativeU256(mr)
@@ -322,9 +323,11 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
             let sumr = (ar + br) % mod
             let sum = a + b
             XCTAssert(compareEq(sum, sumr))
-            let subr = (ar - br) % mod
-            let sub = a - b
-            XCTAssert(compareEq(sub, subr))
+            if br <= ar {
+                let subr = (ar - br) % mod
+                let sub = a - b
+                XCTAssert(compareEq(sub, subr))
+            }
             let mulr = (ar * br) % mod
             let mul = a.halfMul(b)
             XCTAssert(compareEq(mul, mulr))
@@ -335,6 +338,19 @@ class EllipticSwiftNativeUIntsTests: XCTestCase {
             
             let (q, r) = a.div(b)
             let (qr, rr) = ar.quotientAndRemainder(dividingBy: br)
+            if !compareEq(q, qr) || !compareEq(r, rr) {
+                print("Q")
+                print(q.words)
+                print(qr.words.map{(w) -> UInt64 in
+                    return UInt64(w)
+                })
+                print("R")
+                print(r.words)
+                print(rr.words.map{(w) -> UInt64 in
+                    return UInt64(w)
+                })
+                let _ = a.div(b)
+            }
             XCTAssert(compareEq(q, qr))
             XCTAssert(compareEq(r, rr))
             

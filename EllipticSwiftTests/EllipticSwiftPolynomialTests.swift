@@ -25,7 +25,7 @@ class EllipticSwiftPolynomialTests: XCTestCase {
         let arrayOfCoefficients = [FieldElement](repeating: one, count: 9)
         let poly = FieldPolynomial(arrayOfCoefficients)
         let eval = poly.evaluate(zero)
-        XCTAssert(eval.isZero)
+        XCTAssert(eval == arrayOfCoefficients[0])
     }
     
     func testEvaluationAtOne() {

@@ -367,7 +367,7 @@ extension NativeU256 {
             let m = j - dc
             // pad with 0 highest word
             var r2 = x[j]
-            if j == xWordCount {
+            if j == U256WordWidth {
                 r2 = xTopBits
             }
             let r1 = x[j - 1]
