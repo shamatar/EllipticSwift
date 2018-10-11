@@ -139,7 +139,7 @@ public struct FieldPolynomial<F>: FieldPolynomialProtocol where F: FieldProtocol
     
     public func evaluate(_ x: FE) -> FE {
         var p = FE.identityElement(self.field)
-        var accumulator = self.coefficients[0] * x
+        var accumulator = self.coefficients[0] * p
         for i in 1 ..< self.coefficients.count {
             p = p * x
             let c = self.coefficients[i]
