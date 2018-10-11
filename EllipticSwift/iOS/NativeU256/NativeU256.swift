@@ -333,7 +333,7 @@ extension NativeU256 {
     }
     
     @inline(__always) internal func quotientAndRemainder(dividingByWord y: UInt64) -> (quotient: NativeU256, remainder: UInt64) {
-        let div = self
+        let div = NativeU256(self)
         let mod = div.divide(byWord: y)
         return (div, mod)
     }

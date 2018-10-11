@@ -853,4 +853,88 @@ class EllipticSwiftTests: XCTestCase {
         let expectInfinity = groupOrder * G
         XCTAssert(expectInfinity.isInfinity)
     }
+    
+    func testDifferentNativeTypes() {
+        let curve = secp256k1Curve
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        let success = curve.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(success, "Failed to init secp256k1 curve!")
+        
+        let curveNativeU256: WeierstrassCurve<NaivePrimeField<NativeU256>> = {
+            let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+            let secp256k1PrimeField = NaivePrimeField<NativeU256>(secp256k1PrimeBUI)
+            let secp256k1CurveOrderBUI = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
+            let secp256k1CurveOrder = NativeU256(secp256k1CurveOrderBUI.serialize())!
+            let curve = WeierstrassCurve(field: secp256k1PrimeField, order: secp256k1CurveOrder, A: NativeU256(UInt64(0)), B: NativeU256(UInt64(7)))
+            return curve
+        }()
+        
+        let successNative = curveNativeU256.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(successNative, "Failed to init secp256k1 curve!")
+        
+        
+        for _ in 0 ..< 100 {
+            // this is basically a private key - large random scalar
+            let randomScalar = BigUInt.randomInteger(lessThan: 256)
+            guard let privateKey = U256(randomScalar.serialize()) else { return XCTFail()}
+            guard let privateKeyNative = NativeU256(randomScalar.serialize()) else { return XCTFail()}
+            // make point. Point is made from affine coordinates in normal (not Montgomery) representation
+            guard let G = curve.toPoint(generatorX, generatorY) else {return XCTFail()}
+            guard let GNative = curveNativeU256.toPoint(generatorX, generatorY) else {return XCTFail()}
+            
+            // calculate a public key
+            let publicKey = privateKey * G
+            let publicKeyNative = privateKeyNative * GNative
+            XCTAssert(!publicKey.isInfinity)
+            XCTAssert(!publicKeyNative.isInfinity)
+            
+            XCTAssert(publicKey.toAffine().coordinates.X == publicKeyNative.toAffine().coordinates.X)
+            XCTAssert(publicKey.toAffine().coordinates.Y == publicKeyNative.toAffine().coordinates.Y)
+            
+            // also try to multiply by group order
+            let groupOrder = curve.order
+            let expectInfinity = groupOrder * G
+            XCTAssert(expectInfinity.isInfinity)
+            
+            let groupOrderNative = curveNativeU256.order
+            let expectInfinityNative = groupOrderNative * GNative
+            XCTAssert(expectInfinityNative.isInfinity)
+        }
+    }
+    
+    func testDifferentNativeMultiplicationTypes() {
+        let generatorX = BigUInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", radix: 16)!
+        let generatorY = BigUInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", radix: 16)!
+        
+        let curveNativeU256: WeierstrassCurve<NaivePrimeField<NativeU256>> = {
+            let secp256k1PrimeBUI = BigUInt("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16)!
+            let secp256k1PrimeField = NaivePrimeField<NativeU256>(secp256k1PrimeBUI)
+            let secp256k1CurveOrderBUI = BigUInt("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", radix: 16)!
+            let secp256k1CurveOrder = NativeU256(secp256k1CurveOrderBUI.serialize())!
+            let curve = WeierstrassCurve(field: secp256k1PrimeField, order: secp256k1CurveOrder, A: NativeU256(UInt64(0)), B: NativeU256(UInt64(7)))
+            return curve
+        }()
+        
+        let successNative = curveNativeU256.testGenerator(AffineCoordinates(generatorX, generatorY))
+        XCTAssert(successNative, "Failed to init secp256k1 curve!")
+        
+        
+        for _ in 0 ..< 100 {
+            // this is basically a private key - large random scalar
+            let randomScalar = BigUInt.randomInteger(lessThan: 256)
+            guard let privateKeyNative = NativeU256(randomScalar.serialize()) else { return XCTFail()}
+            guard let GNative = curveNativeU256.toPoint(generatorX, generatorY) else {return XCTFail()}
+            
+            // calculate a public key
+            let publicKey = curveNativeU256.doubleAndAddMul(privateKeyNative, GNative)
+            let publicKeyNative = curveNativeU256.wNAFmul(privateKeyNative, GNative)
+            XCTAssert(!publicKey.isInfinity)
+            XCTAssert(!publicKeyNative.isInfinity)
+            
+            XCTAssert(publicKey.toAffine().coordinates.X == publicKeyNative.toAffine().coordinates.X)
+            XCTAssert(publicKey.toAffine().coordinates.Y == publicKeyNative.toAffine().coordinates.Y)
+            
+        }
+    }
 }

@@ -317,7 +317,7 @@ extension NativeU512 {
     }
     
     @inline(__always) internal func quotientAndRemainder(dividingByWord y: UInt64) -> (quotient: NativeU512, remainder: UInt64) {
-        let div = self
+        let div = NativeU512(self)
         let mod = div.divide(byWord: y)
         return (div, mod)
     }
