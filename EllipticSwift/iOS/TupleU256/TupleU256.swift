@@ -22,6 +22,10 @@ public struct TupleU256 {
     public init(_ a: UInt64) {
         self.storage = (a,0,0,0)
     }
+    
+    public init(_ a: (UInt64, UInt64, UInt64, UInt64)) {
+        self.storage = a
+    }
 }
 
 extension TupleU256 {

@@ -353,9 +353,9 @@ class EllipticSwiftTupleU256Tests: XCTestCase {
             XCTAssert(compareEq(q, qr))
             XCTAssert(compareEq(r, rr))
             
-//            let modmul = a.modMultiply(b, m)
-//            let modmulr = (ar * br) % mr
-//            XCTAssert(compareEq(modmul, modmulr))
+            let modmul = a.modMultiply(b, m)
+            let modmulr = (ar * br) % mr
+            XCTAssert(compareEq(modmul, modmulr))
         }
     }
     

@@ -33,6 +33,20 @@
 		816A4D42216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D41216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift */; };
 		816A4D44216FE61F00C52480 /* TupleU512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */; };
 		816A4D45216FE61F00C52480 /* TupleU512+Aux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */; };
+		816A4D47216FEA0600C52480 /* TupleU512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D46216FEA0600C52480 /* TupleU512+Add.swift */; };
+		816A4D48216FEA0600C52480 /* TupleU512+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D46216FEA0600C52480 /* TupleU512+Add.swift */; };
+		816A4D4A2170EA9300C52480 /* TupleU512+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D492170EA9300C52480 /* TupleU512+Sub.swift */; };
+		816A4D4B2170EA9300C52480 /* TupleU512+Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D492170EA9300C52480 /* TupleU512+Sub.swift */; };
+		816A4D4D2170EABD00C52480 /* TupleU512+Bits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D4C2170EABD00C52480 /* TupleU512+Bits.swift */; };
+		816A4D4E2170EABD00C52480 /* TupleU512+Bits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D4C2170EABD00C52480 /* TupleU512+Bits.swift */; };
+		816A4D502170EBDD00C52480 /* TupleU512+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D4F2170EBDD00C52480 /* TupleU512+Mul.swift */; };
+		816A4D512170EBDD00C52480 /* TupleU512+Mul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D4F2170EBDD00C52480 /* TupleU512+Mul.swift */; };
+		816A4D532170EBE800C52480 /* TupleU512+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D522170EBE800C52480 /* TupleU512+Div.swift */; };
+		816A4D542170EBE800C52480 /* TupleU512+Div.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D522170EBE800C52480 /* TupleU512+Div.swift */; };
+		816A4D562170EC6700C52480 /* TupleU512+Num.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D552170EC6700C52480 /* TupleU512+Num.swift */; };
+		816A4D572170EC6700C52480 /* TupleU512+Num.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D552170EC6700C52480 /* TupleU512+Num.swift */; };
+		816A4D592170ECE100C52480 /* TupleU256+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D582170ECE100C52480 /* TupleU256+Mod.swift */; };
+		816A4D5A2170ECE100C52480 /* TupleU256+Mod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816A4D582170ECE100C52480 /* TupleU256+Mod.swift */; };
 		817A163F2167AEBD009C7B2A /* DoubleAndAddExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E7D2159872A006D4E9A /* DoubleAndAddExponentiation.swift */; };
 		817A16402167AEBD009C7B2A /* kSlidingWindowExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E8021598F8A006D4E9A /* kSlidingWindowExponentiation.swift */; };
 		817A16412167AEC4009C7B2A /* QuadraticExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F74E762159773C006D4E9A /* QuadraticExtensionField.swift */; };
@@ -290,6 +304,13 @@
 		816A4D3E216FDCC200C52480 /* TupleU256+Num.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Num.swift"; sourceTree = "<group>"; };
 		816A4D41216FE38A00C52480 /* EllipticSwiftTupleU256Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EllipticSwiftTupleU256Tests.swift; path = /Users/alexvlasov/Blockchain/EllipticSwift/EllipticSwift/tmp/EllipticSwift/EllipticSwiftTests/EllipticSwiftTupleU256Tests.swift; sourceTree = "<absolute>"; };
 		816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Aux.swift"; sourceTree = "<group>"; };
+		816A4D46216FEA0600C52480 /* TupleU512+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Add.swift"; sourceTree = "<group>"; };
+		816A4D492170EA9300C52480 /* TupleU512+Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Sub.swift"; sourceTree = "<group>"; };
+		816A4D4C2170EABD00C52480 /* TupleU512+Bits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Bits.swift"; sourceTree = "<group>"; };
+		816A4D4F2170EBDD00C52480 /* TupleU512+Mul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Mul.swift"; sourceTree = "<group>"; };
+		816A4D522170EBE800C52480 /* TupleU512+Div.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Div.swift"; sourceTree = "<group>"; };
+		816A4D552170EC6700C52480 /* TupleU512+Num.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU512+Num.swift"; sourceTree = "<group>"; };
+		816A4D582170ECE100C52480 /* TupleU256+Mod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TupleU256+Mod.swift"; sourceTree = "<group>"; };
 		817A16362167AEA5009C7B2A /* EllipticSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EllipticSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		817A16382167AEA5009C7B2A /* EllipticSwift_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EllipticSwift_iOS.h; sourceTree = "<group>"; };
 		817A16392167AEA5009C7B2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -558,6 +579,7 @@
 				816A4D38216FD92800C52480 /* TupleU256+Aux.swift */,
 				816A4D3B216FD9D900C52480 /* TupleU256+Bits.swift */,
 				816A4D3E216FDCC200C52480 /* TupleU256+Num.swift */,
+				816A4D582170ECE100C52480 /* TupleU256+Mod.swift */,
 			);
 			path = TupleU256;
 			sourceTree = "<group>";
@@ -567,6 +589,12 @@
 			children = (
 				816A4D2B216FD0D800C52480 /* TupleU512.swift */,
 				816A4D43216FE61F00C52480 /* TupleU512+Aux.swift */,
+				816A4D46216FEA0600C52480 /* TupleU512+Add.swift */,
+				816A4D492170EA9300C52480 /* TupleU512+Sub.swift */,
+				816A4D4C2170EABD00C52480 /* TupleU512+Bits.swift */,
+				816A4D4F2170EBDD00C52480 /* TupleU512+Mul.swift */,
+				816A4D522170EBE800C52480 /* TupleU512+Div.swift */,
+				816A4D552170EC6700C52480 /* TupleU512+Num.swift */,
 			);
 			path = TupleU512;
 			sourceTree = "<group>";
@@ -1382,8 +1410,10 @@
 				817A16462167AEC7009C7B2A /* ArithmeticsProtocol.swift in Sources */,
 				817A16522167AED9009C7B2A /* ProperExtendableWeierstrassCurve.swift in Sources */,
 				817A17162167C3A5009C7B2A /* TinyUInt1024ExpressibleByIntegerLiteral.swift in Sources */,
+				816A4D47216FEA0600C52480 /* TupleU512+Add.swift in Sources */,
 				816A4D39216FD92800C52480 /* TupleU256+Aux.swift in Sources */,
 				817A17132167C3A5009C7B2A /* TinyUInt512ExpressibleByIntegerLiteral.swift in Sources */,
+				816A4D592170ECE100C52480 /* TupleU256+Mod.swift in Sources */,
 				817A170B2167C3A5009C7B2A /* TinyUInt512Hashable.swift in Sources */,
 				817A17122167C3A5009C7B2A /* TinyUInt512Equatable.swift in Sources */,
 				817A16532167AEDD009C7B2A /* Data+Bytes.swift in Sources */,
@@ -1393,6 +1423,7 @@
 				816A4D36216FD90300C52480 /* TupleU256+Div.swift in Sources */,
 				816A4D28216FCFDA00C52480 /* TupleU256+Sub.swift in Sources */,
 				817A171C2167C3A5009C7B2A /* TinyUInt1024ExpressibleByStringLiteral.swift in Sources */,
+				816A4D562170EC6700C52480 /* TupleU512+Num.swift in Sources */,
 				817A16F62167C3A5009C7B2A /* TinyUInt256Comparable.swift in Sources */,
 				817A17152167C3A5009C7B2A /* StringExtension.swift in Sources */,
 				817A177721695AE7009C7B2A /* UInt64+Extensions.swift in Sources */,
@@ -1425,6 +1456,7 @@
 				817A16582167AEE1009C7B2A /* MontPrimeField.swift in Sources */,
 				816A4D2C216FD0D800C52480 /* TupleU512.swift in Sources */,
 				817A17012167C3A5009C7B2A /* TinyUInt128Errors.swift in Sources */,
+				816A4D532170EBE800C52480 /* TupleU512+Div.swift in Sources */,
 				817A16592167AEE1009C7B2A /* NaivePrimeFiniteField.swift in Sources */,
 				816A4D44216FE61F00C52480 /* TupleU512+Aux.swift in Sources */,
 				817A16FE2167C3A5009C7B2A /* TinyUInt256Errors.swift in Sources */,
@@ -1445,8 +1477,10 @@
 				817A16472167AEC7009C7B2A /* FieldPolynomialProtocol.swift in Sources */,
 				817A16F92167C3A5009C7B2A /* TinyUInt256ExpressibleByIntegerLiteral.swift in Sources */,
 				817A171A2167C3A5009C7B2A /* TinyUInt1024CustomStringConvertible.swift in Sources */,
+				816A4D502170EBDD00C52480 /* TupleU512+Mul.swift in Sources */,
 				817A176D2168C014009C7B2A /* NativeU256.swift in Sources */,
 				817A16FF2167C3A5009C7B2A /* TinyUInt128ExpressibleByStringLiteral.swift in Sources */,
+				816A4D4A2170EA9300C52480 /* TupleU512+Sub.swift in Sources */,
 				816A4D25216FCF9900C52480 /* TupleU256+Add.swift in Sources */,
 				817A16452167AEC7009C7B2A /* CurveProtocols.swift in Sources */,
 				817A16752167AEFF009C7B2A /* Constants.swift in Sources */,
@@ -1456,6 +1490,7 @@
 				817A16F82167C3A5009C7B2A /* TinyUInt256ExpressibleByStringLiteral.swift in Sources */,
 				817A16612167AEF1009C7B2A /* UInt32.swift in Sources */,
 				817A16572167AEE1009C7B2A /* NaivePrimeField.swift in Sources */,
+				816A4D4D2170EABD00C52480 /* TupleU512+Bits.swift in Sources */,
 				817A170C2167C3A5009C7B2A /* TinyUInt512UnsignedInteger.swift in Sources */,
 				817A16542167AEDD009C7B2A /* UInt64+BitsAndBytes.swift in Sources */,
 				817A170A2167C3A5009C7B2A /* TinyUInt512BinaryInteger.swift in Sources */,
@@ -1474,6 +1509,7 @@
 				817A16822167AFA1009C7B2A /* CurveProtocols.swift in Sources */,
 				817A16832167AFA1009C7B2A /* Data+Bytes.swift in Sources */,
 				817A16842167AFA1009C7B2A /* CurveOverArithmericsProtocol.swift in Sources */,
+				816A4D512170EBDD00C52480 /* TupleU512+Mul.swift in Sources */,
 				817A173A2167DCE4009C7B2A /* TinyUInt128Numeric.swift in Sources */,
 				817A173E2167DCE4009C7B2A /* TinyUInt128BinaryInteger.swift in Sources */,
 				817A17412167DCE7009C7B2A /* StringExtension.swift in Sources */,
@@ -1490,6 +1526,8 @@
 				817A174F2167DCFD009C7B2A /* TinyUInt512UnsignedInteger.swift in Sources */,
 				817A17382167DCE4009C7B2A /* TinyUInt128Errors.swift in Sources */,
 				817A168A2167AFA1009C7B2A /* CubicExtensionField.swift in Sources */,
+				816A4D4B2170EA9300C52480 /* TupleU512+Sub.swift in Sources */,
+				816A4D572170EC6700C52480 /* TupleU512+Num.swift in Sources */,
 				817A17582167DD02009C7B2A /* TinyUInt1024ExpressibleByIntegerLiteral.swift in Sources */,
 				817A168B2167AFA1009C7B2A /* U256+BitAccessible.swift in Sources */,
 				81F00514216CB58E00770786 /* Aliases.swift in Sources */,
@@ -1517,6 +1555,7 @@
 				817A16992167AFA1009C7B2A /* DoubleAndAddExponentiation.swift in Sources */,
 				817A17362167DCE4009C7B2A /* TinyUInt128ExpressibleByStringLiteral.swift in Sources */,
 				817A173B2167DCE4009C7B2A /* TinyUInt128CustomStringConvertible.swift in Sources */,
+				816A4D5A2170ECE100C52480 /* TupleU256+Mod.swift in Sources */,
 				817A17592167DD02009C7B2A /* TinyUInt1024Errors.swift in Sources */,
 				817A17562167DCFD009C7B2A /* TinyUInt512ExpressibleByIntegerLiteral.swift in Sources */,
 				817A17392167DCE4009C7B2A /* TinyUInt128Equatable.swift in Sources */,
@@ -1548,8 +1587,10 @@
 				817A16A42167AFA1009C7B2A /* NaivePrimeField.swift in Sources */,
 				817A17492167DCF8009C7B2A /* TinyUInt256Numeric.swift in Sources */,
 				817A16A52167AFA1009C7B2A /* ExtensionFieldProtocol.swift in Sources */,
+				816A4D542170EBE800C52480 /* TupleU512+Div.swift in Sources */,
 				817A176A2168AD5A009C7B2A /* TinyUInt512+FF.swift in Sources */,
 				817A16A62167AFA1009C7B2A /* FieldElement.swift in Sources */,
+				816A4D48216FEA0600C52480 /* TupleU512+Add.swift in Sources */,
 				817A17482167DCF8009C7B2A /* TinyUInt256Equatable.swift in Sources */,
 				817A175A2167DD02009C7B2A /* TinyUInt1024Numeric.swift in Sources */,
 				817A17572167DCFD009C7B2A /* TinyUInt512Comparable.swift in Sources */,
@@ -1580,6 +1621,7 @@
 				817A17372167DCE4009C7B2A /* TinyUInt128FixedWidthInteger.swift in Sources */,
 				817A16B12167AFA1009C7B2A /* vUInt32.swift in Sources */,
 				817A174B2167DCF8009C7B2A /* TinyUInt256FixedWidthInteger.swift in Sources */,
+				816A4D4E2170EABD00C52480 /* TupleU512+Bits.swift in Sources */,
 				817A16B22167AFA1009C7B2A /* WeirstrassCurve.swift in Sources */,
 				817A16B32167AFA1009C7B2A /* MontgommeryCurve.swift in Sources */,
 				817A16B42167AFA1009C7B2A /* U128+Equatable.swift in Sources */,

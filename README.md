@@ -1,5 +1,7 @@
 # EllipticSwift
 
+Library for arbitrary elliptic curve arithmetics written in the native Swift and can in principle run on any platform (not just iOS or OSX). Implements long arithmetics, modular arithmetics, allows to define finite fields (over prime modulus only for now), field polynomials and later will bring extension fields and pairing support.
+
 ## Installation
 
 Add the following line to your Podfile
@@ -36,7 +38,7 @@ let curve = secp256k1Curve
 
 ## Limitations
 
-- Point multiplication is not yet constant type
+- Point multiplication is not yet constant time
 - Protocols are quite suboptimal, global cleanups will happen
 - No support of pairings yet
 - U512 type is not polyfilled
