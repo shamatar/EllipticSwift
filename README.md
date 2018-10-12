@@ -44,3 +44,7 @@ let curve = secp256k1Curve
 - U512 type is not polyfilled
 - No Montgomery support on iOS (should work, but untested)
 - Only Weierstrass curves for now
+
+## Authors
+
+- Alex Vlasov, [shamatar](https://github.com/shamatar), alex.m.vlasov@gmail.com
